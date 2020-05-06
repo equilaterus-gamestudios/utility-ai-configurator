@@ -2,11 +2,11 @@
 root = true
 
 # Unix-style newlines with a newline ending every file
-[src/*]
+[*]
 insert_final_newline = true
 
 # Indentation override for all JS under src directory
-[{src/**.js,src/**.json,src/**.ts*}]
+[{**.js,**.json,**.ts*}]
 indent_style = space
 indent_size = 2
 
