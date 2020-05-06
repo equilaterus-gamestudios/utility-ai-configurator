@@ -71,7 +71,10 @@
       "category": "public.app-category.utilities"
     },
     "win": {
-      "target": ["portable", "nsis"]
+      "target": [
+        "portable",
+        "nsis"
+      ]
     },
     "nsis": {
       "oneClick": false,
