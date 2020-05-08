@@ -1,5 +1,8 @@
-import React, { useMemo, useState } from 'react'
+import React, { useMemo} from 'react'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
+import { useForm } from '../../hooks/useForm';
+import { Curve } from '../../common/models';
+
 const POLINOMIAL = "POLINOMIAL";
 const range = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0];
 
@@ -43,21 +46,21 @@ const CurvePreview = ({curveType, exponent, slope, xShift, yShift}) => {
   );
 }
 
-const CurveEditor = () => {
-  const [curveType, setCurveType] = useState("POLINOMIAL");
-  const [exponent, setExponent] = useState(1);
-  const [slope, setSlope] = useState(1);
-  const [xShift, setXShift] = useState(1);
-  const [yShift, setYShift] = useState(1);  
+export interface CurveProps {
+  defaultCurve: Curve,
+}
+
+const CurveEditor = ({defaultCurve} : CurveProps) => {
+  const [curve, setCurveProperty] = useForm(defaultCurve);
  
   return (
     <>
-    <CurvePreview curveType={curveType} exponent={exponent} slope={slope} xShift={xShift} yShift={yShift} />
-        <label>Curve Type</label><select onChange={(e)=>setCurveType(e.currentTarget.options[e.currentTarget.selectedIndex].value)}><option value="POLINOMIAL">Polinomial</option><option value="GAUSSIAN">Gaussian</option></select>     
-        <label>Exponent</label> <input type="number" defaultValue="1" min="-2" step="1" onChange={(e)=>setExponent(parseFloat(e.target.value))} />
-        <label>Slop</label>     <input type="number" defaultValue="1" step="0.01" onChange={(e)=>setSlope(parseFloat(e.target.value))} />
-        <label>XShift</label>   <input type="number" defaultValue="1" step="0.01" onChange={(e)=>setXShift(parseFloat(e.target.value))} />
-        <label>YShift</label>   <input type="number" defaultValue="1" step="0.01" onChange={(e)=>setYShift(parseFloat(e.target.value))} />      
+    <CurvePreview curveType={curve.curveType} exponent={curve.exponent} slope={curve.slope} xShift={curve.xShift} yShift={curve.yShift} />
+        <label>Curve Type</label><select onChange={(e)=>setCurveProperty('curveType',e.currentTarget.options[e.currentTarget.selectedIndex].value)}><option value="POLINOMIAL">Polinomial</option><option value="GAUSSIAN">Gaussian</option></select>     
+        <label>Exponent</label> <input type="number" defaultValue="1" min="-2" step="1" onChange={(e)=>setCurveProperty('exponent',parseFloat(e.target.value))} />
+        <label>Slop</label>     <input type="number" defaultValue="1" step="0.01"       onChange={(e)=>setCurveProperty('slope',parseFloat(e.target.value))} />
+        <label>XShift</label>   <input type="number" defaultValue="1" step="0.01"       onChange={(e)=>setCurveProperty('xShift',parseFloat(e.target.value))} />
+        <label>YShift</label>   <input type="number" defaultValue="1" step="0.01"       onChange={(e)=>setCurveProperty('yShift',parseFloat(e.target.value))} />      
     </>
   );
 }
