@@ -2,7 +2,7 @@ import { DecisionModel } from '../common/models';
 import { DecisionActionTypes, LOAD_DECISIONS_SUCCESS } from '../actions/types';
 
 interface DecisionState {  
-  Decisions: [DecisionModel]
+  data: [DecisionModel]
 }
 
 const defaultState = {} as DecisionState
@@ -11,7 +11,7 @@ export const decisionReducer = (state = defaultState, action : DecisionActionTyp
   switch(action.type) {
     case LOAD_DECISIONS_SUCCESS:
       return {
-        ...state, Decisions: action.payload
+        ...state, data: action.payload
       }
     default: 
       return state;

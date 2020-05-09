@@ -2,7 +2,7 @@ import { DecisionSetModel } from '../common/models';
 import { DecisionSetActionTypes, LOAD_DECISION_SETS_SUCCESS } from '../actions/types';
 
 interface DecisionSetState {  
-  decisionSets: [DecisionSetModel]
+  data: [DecisionSetModel]
 }
 
 const defaultState = {} as DecisionSetState
@@ -11,7 +11,7 @@ export const decisionSetReducer = (state = defaultState, action : DecisionSetAct
   switch(action.type) {
     case LOAD_DECISION_SETS_SUCCESS:
       return {
-        ...state, decisionSets: action.payload
+        ...state, data: action.payload
       }
     default: 
       return state;

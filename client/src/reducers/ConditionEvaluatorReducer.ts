@@ -2,7 +2,7 @@ import { ConditionEvaluatorModel } from '../common/models';
 import { ConditionEvaluatorActionTypes, LOAD_CONDITION_EVALUATORS_SUCCESS } from '../actions/types';
 
 interface ConditionEvaluatorState {  
-  conditionEvaluators: [ConditionEvaluatorModel]
+  data: [ConditionEvaluatorModel]
 }
 
 const defaultState = {} as ConditionEvaluatorState
@@ -11,7 +11,7 @@ export const conditionEvaluatorReducer = (state = defaultState, action : Conditi
   switch(action.type) {
     case LOAD_CONDITION_EVALUATORS_SUCCESS:
       return {
-        ...state, conditionEvaluators: action.payload
+        ...state, data: action.payload
       }
     default: 
       return state;
