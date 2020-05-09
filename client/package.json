@@ -26,13 +26,13 @@
     "typescript": "^3.7.5"
   },
   "scripts": {
-    "start": "rescripts start",
-    "build": "rescripts build",
-    "test": "rescripts test",
-    "electron-dev": "concurrently \"cross-env BROWSER=none npm start\" \"wait-on http://localhost:3000 && electron .\"",
+    "start-web": "rescripts start",
+    "build-web": "rescripts build",
+    "test-web": "rescripts test",
+    "start": "concurrently \"cross-env BROWSER=none npm run start-web\" \"wait-on http://localhost:3000 && electron .\"",
     "postinstall": "electron-builder install-app-deps",
-    "preelectron-pack": "npm run build",
-    "electron-pack": "electron-builder build -w"
+    "build": "electron-builder build -w",
+    "preelectron-pack": "npm run build-web"
   },
   "eslintConfig": {
     "extends": "react-app"
