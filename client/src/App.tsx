@@ -8,9 +8,6 @@ import ConditionEvaluator from './pages/ConditionEvaluator';
 import { loadConditionEvaluators } from './actions/conditionEvaluatorActions';
 import { loadDecisions } from './actions/decisionActions';
 import { loadDecisionSets } from './actions/decisionSetActions';
-
-import 'bootlaterus/dist/css/bootlaterus-cfonts.min.css';
-import './overrides.css';
 import Header from './components/Header';
 
 
@@ -24,8 +21,9 @@ const App = ({ loadConditionEvaluators, loadDecisions, loadDecisionSets }) => {
   return (         
     <Router history={history}>      
       <Header />
-      <div className="m-navbar-side-left-lg">
-        <div className="container"> 
+      <div className="m-navbar-side-left-sm">
+        <div className="pt-5 d-block d-sm-none">&nbsp;</div>
+        <div className="container overflow-auto">
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/ConditionEvaluators" exact component={ConditionEvaluator} />
