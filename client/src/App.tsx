@@ -1,27 +1,39 @@
-import React from 'react';
+import React, { useEffect} from 'react';
+import { Router, Route, Switch } from 'react-router';
+import { connect } from 'react-redux';
+import history from './history';
+import Home from './pages/Home';
+import ConditionEvaluator from './pages/ConditionEvaluator';
+
+import { loadConditionEvaluators } from './actions/conditionEvaluatorActions';
+import { loadDecisions } from './actions/decisionActions';
+import { loadDecisionSets } from './actions/decisionSetActions';
+
 import 'bootlaterus/dist/css/bootlaterus-cfonts.min.css';
 import './overrides.css';
-import Parameter from './components/editors/Parameter';
+import Header from './components/Header';
 
-import CurveEditor from './components/editors/Curve';
 
-import {Curve} from './common/models';
+const App = ({ loadConditionEvaluators, loadDecisions, loadDecisionSets }) => {
+  useEffect(() => {
+    loadConditionEvaluators();
+    loadDecisions();
+    loadDecisionSets();
+  }, [loadConditionEvaluators, loadDecisions, loadDecisionSets])
 
-const defaultCurve:Curve = {
-  curveType: 'POLINOMIAL',
-  exponent: 1,
-  slope: 1,
-  xShift: 1,
-  yShift: 1
-};
-
-function App() {
-  return (
-    <div className="container">
-      <Parameter />
-      <CurveEditor defaultCurve={defaultCurve} />
-    </div>
+  return (         
+    <Router history={history}>      
+      <Header />
+      <div className="m-navbar-side-left-lg">
+        <div className="container"> 
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/c" exact component={ConditionEvaluator} />
+          </Switch>
+        </div>
+      </div>
+    </Router>    
   );
 }
 
-export default App;
+export default connect(null, { loadConditionEvaluators, loadDecisions, loadDecisionSets })(App);
