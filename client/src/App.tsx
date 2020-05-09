@@ -28,7 +28,9 @@ const App = ({ loadConditionEvaluators, loadDecisions, loadDecisionSets }) => {
         <div className="container"> 
           <Switch>
             <Route path="/" exact component={Home} />
-            <Route path="/c" exact component={ConditionEvaluator} />
+            <Route path="/ConditionEvaluators" exact component={ConditionEvaluator} />
+            <Route path="/Decisions" exact component={ConditionEvaluator} />
+            <Route path="/DecisionSets" exact component={ConditionEvaluator} />
           </Switch>
         </div>
       </div>
