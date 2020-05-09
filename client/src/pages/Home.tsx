@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import withLayout from '../wrappers/withLayout';
 
 const Home = () => (
   <>    
@@ -7,4 +8,4 @@ const Home = () => (
   </>
 )
 
-export default Home;
+export default withLayout(Home, 'Home');

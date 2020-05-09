@@ -1,4 +1,5 @@
 import React from 'react';
+import withLayout from '../wrappers/withLayout';
 
 const ConditionEvaluator = () => (
 <>
@@ -18,4 +19,4 @@ const ConditionEvaluator = () => (
 </>
 )
 
-export default ConditionEvaluator;
+export default withLayout(ConditionEvaluator, 'Condition Evaluators');
