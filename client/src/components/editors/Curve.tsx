@@ -1,5 +1,7 @@
-import React, { useMemo } from 'react'
+import React, { useMemo} from 'react'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
+import { useForm } from '../../hooks/useForm';
+import { Curve } from '../../common/models';
 
 const POLINOMIAL = "POLINOMIAL";
 const range = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0];
@@ -12,7 +14,7 @@ const gaussianFunction = (exponent, slope, xShift, yShift) => x =>  {
   return exponent * Math.exp(-slope * Math.pow((x - xShift) / yShift, 2));  
 }
 
-const Curve = ({curveType, exponent, slope, xShift, yShift}) => { 
+const CurvePreview = ({curveType, exponent, slope, xShift, yShift}) => { 
   const calculateData = () => {
     let curveFunction;
     if (curveType === POLINOMIAL) {
@@ -30,8 +32,6 @@ const Curve = ({curveType, exponent, slope, xShift, yShift}) => {
     , [curveType, exponent, slope, xShift, yShift]
   );
    
-  console.log(data)
-
   return (
     <LineChart width={600} height={300} data={data}
           margin={{top: 5, right: 30, left: 20, bottom: 5}}>
@@ -46,4 +46,23 @@ const Curve = ({curveType, exponent, slope, xShift, yShift}) => {
   );
 }
 
-export default Curve;
+export interface CurveProps {
+  defaultCurve: Curve,
+}
+
+const CurveEditor = ({defaultCurve} : CurveProps) => {
+  const [curve, setCurveProperty] = useForm(defaultCurve);
+ 
+  return (
+    <>
+    <CurvePreview curveType={curve.curveType} exponent={curve.exponent} slope={curve.slope} xShift={curve.xShift} yShift={curve.yShift} />
+        <label>Curve Type</label><select onChange={(e)=>setCurveProperty('curveType',e.currentTarget.options[e.currentTarget.selectedIndex].value)}><option value="POLINOMIAL">Polinomial</option><option value="GAUSSIAN">Gaussian</option></select>     
+        <label>Exponent</label> <input type="number" defaultValue="1" min="-2" step="1" onChange={(e)=>setCurveProperty('exponent',parseFloat(e.target.value))} />
+        <label>Slop</label>     <input type="number" defaultValue="1" step="0.01"       onChange={(e)=>setCurveProperty('slope',parseFloat(e.target.value))} />
+        <label>XShift</label>   <input type="number" defaultValue="1" step="0.01"       onChange={(e)=>setCurveProperty('xShift',parseFloat(e.target.value))} />
+        <label>YShift</label>   <input type="number" defaultValue="1" step="0.01"       onChange={(e)=>setCurveProperty('yShift',parseFloat(e.target.value))} />      
+    </>
+  );
+}
+
+export default CurveEditor;
