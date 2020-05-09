@@ -1,6 +1,12 @@
 import { combineReducers } from 'redux';
-import defaultReducer from './default';;
+import { conditionEvaluatorReducer } from './ConditionEvaluatorReducer';
+import { decisionReducer } from './DecisionReducer';
+import { decisionSetReducer } from './DecisionSetReducer';
+import { loadingReducer } from './LoadingReducer';
 
 export default combineReducers({
-  default: defaultReducer
+  conditionEvaluators: conditionEvaluatorReducer,
+  decisions: decisionReducer,
+  decisionSets: decisionSetReducer,
+  loadings: loadingReducer
 });
