@@ -3,7 +3,7 @@ import { Router, Route, Switch } from 'react-router';
 import { connect } from 'react-redux';
 import history from './history';
 import Home from './pages/Home';
-import ConditionEvaluator from './pages/ConditionEvaluator';
+import ConditionEvaluators from './pages/ConditionEvaluators';
 
 import { loadConditionEvaluators } from './actions/conditionEvaluatorActions';
 import { loadDecisions } from './actions/decisionActions';
@@ -28,9 +28,9 @@ const App = ({ loadConditionEvaluators, loadDecisions, loadDecisionSets }) => {
         <div className="container"> 
           <Switch>
             <Route path="/" exact component={Home} />
-            <Route path="/ConditionEvaluators" exact component={ConditionEvaluator} />
-            <Route path="/Decisions" exact component={ConditionEvaluator} />
-            <Route path="/DecisionSets" exact component={ConditionEvaluator} />
+            <Route path="/ConditionEvaluators" exact component={ConditionEvaluators} />
+            <Route path="/Decisions" exact component={ConditionEvaluators} />
+            <Route path="/DecisionSets" exact component={ConditionEvaluators} />
           </Switch>
         </div>
       </div>
