@@ -1,7 +1,7 @@
 import { ConditionEvaluatorModel } from '../common/models';
 import { ConditionEvaluatorActionTypes, LOAD_CONDITION_EVALUATORS_SUCCESS } from '../actions/types';
 
-interface ConditionEvaluatorState {  
+export interface ConditionEvaluatorState {  
   data: [ConditionEvaluatorModel]
 }
 
