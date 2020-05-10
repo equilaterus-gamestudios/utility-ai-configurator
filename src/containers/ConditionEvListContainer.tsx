@@ -1,9 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { ConditionEvaluatorModel } from '../common/models'
 import { selectConditionEvaluatorTags, selectConditionEvaluatorByTag } from '../selectors/ConditionEvSelector';
-import ConditionEvaluatorRow from '../components/ConditionEvaluatorRow';
 import Table from '../components/Table';
 
 interface PropTypes {
