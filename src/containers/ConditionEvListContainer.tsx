@@ -2,15 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ConditionEvaluatorModel } from '../common/models'
-import { selectConditionEvaluators } from '../selectors/ConditionEvSelector';
+import { selectConditionEvaluatorTags, selectConditionEvaluatorByTag } from '../selectors/ConditionEvSelector';
 import ConditionEvaluatorRow from '../components/ConditionEvaluatorRow';
+import Table from '../components/Table';
 
 interface PropTypes {
-  conditionEvaluators: [ConditionEvaluatorModel]
+  conditionEvaluatorTags: [string]
 }
 
-const ConditionEvListContainer = ({ conditionEvaluators } : PropTypes) => {    
-  if (!conditionEvaluators || !conditionEvaluators.length) {
+const ConditionEvListContainer = ({ conditionEvaluatorTags } : PropTypes) => {    
+  if (!conditionEvaluatorTags || !conditionEvaluatorTags.length) {
     return (
       <>
         <div>There are not any condition evaluator</div>
@@ -20,28 +21,12 @@ const ConditionEvListContainer = ({ conditionEvaluators } : PropTypes) => {
   }
 
   return (
-    <table className="table">
-      <thead className="thead-dark">
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
-        </tr>
-      </thead>
-      <tbody>
-        {
-          conditionEvaluators.map(ce => (
-            <ConditionEvaluatorRow conditionEvaluator={ce} />
-          ))
-        }
-      </tbody>
-    </table>
+    <Table tags={conditionEvaluatorTags} properties={['tag', 'description', 'functionName']} actions={null} selector={selectConditionEvaluatorByTag} />
   );
 }
 
 const mapStateToProps = (state) => ({
-  conditionEvaluators: selectConditionEvaluators(state)
+  conditionEvaluatorTags: selectConditionEvaluatorTags(state)
 })
 
 export default connect(mapStateToProps, null)(ConditionEvListContainer)
