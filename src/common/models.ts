@@ -46,3 +46,9 @@ export interface DecisionSetModel {
   defaultDecision: string,
   description: string
 }
+
+//
+
+export interface Dictionary<T> {
+  [Key: string]: T
+}
