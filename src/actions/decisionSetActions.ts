@@ -1,4 +1,5 @@
 import history from '../history';
+import { getValuesFromByTag } from '../common/utility';
 import { LOAD_DECISION_SETS_SUCCESS, LOAD_DECISION_SETS_REQUEST, SAVE_DECISION_SETS_REQUEST, DecisionSetActionTypes } from './types';
 import  *  as decisionSetAPI from '../api/decisionSetAPI';
 
@@ -31,7 +32,9 @@ const saveDecisionSet =  (decisionSet : DecisionSetModel) : DecisionSetActionTyp
 }
 
 
-export const saveDecisionSetAndRedirect = (decisionSet) => async (dispatch) => {
+export const saveDecisionSetAndRedirect = (decisionSet) => async (dispatch, getState) => {
   dispatch(saveDecisionSet(decisionSet));
+  const decisionSets = getValuesFromByTag(getState().decisionSets.byTag);
+  await decisionSetAPI.saveDecisionSets(decisionSets);
   history.push('/DecisionSets');
 }

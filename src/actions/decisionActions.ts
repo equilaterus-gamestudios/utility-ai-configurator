@@ -1,4 +1,5 @@
 import history from '../history';
+import { getValuesFromByTag } from '../common/utility';
 import { LOAD_DECISIONS_SUCCESS, LOAD_DECISIONS_REQUEST, SAVE_DECISIONS_REQUEST, DecisionActionTypes } from './types';
 import  *  as decisionAPI from '../api/decisionAPI';
 
@@ -32,7 +33,9 @@ const saveDecisions =  (decision : DecisionModel) : DecisionActionTypes => {
 }
 
 
-export const saveDecisionAndRedirect = (decision) => async (dispatch) => {
+export const saveDecisionAndRedirect = (decision) => async (dispatch, getState) => {
   dispatch(saveDecisions(decision));
+  const decisions = getValuesFromByTag(getState().decisions.byTag);
+  await decisionAPI.saveDecisions(decisions);
   history.push('/Decisions');
 }

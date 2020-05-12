@@ -1,4 +1,5 @@
 import history from '../history';
+import { getValuesFromByTag } from '../common/utility';
 import { LOAD_CONDITION_EVALUATORS_SUCCESS, LOAD_CONDITION_EVALUATORS_REQUEST, SAVE_CONDITION_EVALUATOR_REQUEST, ConditionEvaluatorActionTypes } from './types';
 import  *  as conditionEvaluatorAPI  from '../api/conditionEvaluatorAPI';
 
@@ -32,7 +33,9 @@ const saveConditionEvaluator =  (conditionEvaluator : ConditionEvaluatorModel) :
 }
 
 
-export const saveConditionEvaluatorAndRedirect = (conditionEvaluator) => async (dispatch) => {
+export const saveConditionEvaluatorAndRedirect = (conditionEvaluator) => async (dispatch, getState) => {
   dispatch(saveConditionEvaluator(conditionEvaluator));
+  const conditionEvaluators = getValuesFromByTag(getState().conditionEvaluators.byTag);
+  await conditionEvaluatorAPI.saveConditionEvaluators(conditionEvaluators);
   history.push('/ConditionEvaluators');
 }
