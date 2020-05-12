@@ -5,6 +5,7 @@ import { DecisionModel } from '../common/models';
 import { useForm } from '../hooks/useForm';
 
 import { useDispatch } from 'react-redux';
+import ConditionEvs from '../components/ConditionEvaluators/ConditionEvs';
 
 interface DecisionEditorContainerProps {
   decision: DecisionModel,
@@ -24,6 +25,7 @@ const DecisionEditorContainer = ({ decision = defaultDecision } : DecisionEditor
   const dispatch = useDispatch();
 
   const handleSave = () => {
+    console.log(model);
     dispatch(saveDecisionAndRedirect(model));
   }
 
@@ -32,7 +34,7 @@ const DecisionEditorContainer = ({ decision = defaultDecision } : DecisionEditor
       <div className="form-row">
         <div className="form-group col-md-6">
           <label>Tag:</label>
-          <input type="text" className="form-control" value={model.tag} onChange={(e) => setProperty('tag', e.target.value)} />
+          <input type="text" className="form-control" value={model.tag} onChange={(e) => setProperty('tag', e.target.value)} required />
         </div>
         <div className="form-group col-md-6">
           <label>Function Name:</label>
@@ -54,6 +56,11 @@ const DecisionEditorContainer = ({ decision = defaultDecision } : DecisionEditor
         <input type="text" className="form-control" value={model.description} onChange={(e) => setProperty('description', e.target.value)} />
       </div>
       <h2>Condition evaluators!</h2>
+      <ConditionEvs
+        listConditionsEv={model.conditionEvaluators}
+        onChangeList={(newList) => setProperty('conditionEvaluators', newList)}
+      />
+
       <input type="button" className="btn btn-primary" value="Save" onClick={handleSave}/>
     </form>
   )
