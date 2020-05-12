@@ -32,7 +32,7 @@ export interface DecisionModel {
   functionName: string,
   weight: number,
   hasTargetDependency: boolean
-  conditionEvaluators: Array<ConditionEvaluatorModel>
+  conditionEvaluators: Array<string>
   description: string,
 }
 
