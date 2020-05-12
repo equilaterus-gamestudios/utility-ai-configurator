@@ -1,11 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { exportConfiguration } from '../actions/exportConfigurationActions';
 import withLayout from '../wrappers/withLayout';
+import { useDispatch } from 'react-redux';
 
-const Home = () => (
-  <>    
-    <Link to='/c' className="btn btn-primary">Conditions</Link>    
-  </>
-)
+const Home = () => {
+  const dispatch = useDispatch();
 
+  const handleExport = (e) => {
+    e.preventDefault();
+    dispatch(exportConfiguration());
+  }
+  
+  return  <button className="btn btn-primary" onClick={handleExport}>Export</button>;
+  
+}
 export default withLayout(Home, 'Home');
