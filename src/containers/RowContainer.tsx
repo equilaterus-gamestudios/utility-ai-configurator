@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import uniqueId from 'lodash/uniqueId';
 
 const RowContainer = ({ selector, properties, actions }) => {
   const model = useSelector(selector);
@@ -7,7 +8,7 @@ const RowContainer = ({ selector, properties, actions }) => {
     <>
     {
       properties.map(property => (
-        <td>{model[property]}</td>      
+        <td key={uniqueId(`${property}_`)}>{model[property]}</td>      
       ))
     }
     {
