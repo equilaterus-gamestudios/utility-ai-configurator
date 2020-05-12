@@ -22,6 +22,9 @@ export interface ParameterModel {
   value: string,
   description: string,
 }
+export function GetEmptyParameterModel() : ParameterModel {
+  return { key: '', value: '', description: ''}
+}
 
 
 // Decision
