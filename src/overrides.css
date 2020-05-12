@@ -3,3 +3,8 @@ button:focus, a:focus { outline:0; }
 .navbar {
     transition: none;
 }
+
+.main-container {
+    max-width: 950px;
+}
+
