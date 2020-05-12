@@ -1,5 +1,6 @@
 import React from 'react';
 import CurveEditor from '../components/editors/Curve';
+import ParametersManager from '../components/ParametersManager';
 
 import { saveConditionEvaluatorAndRedirect } from '../actions/conditionEvaluatorActions';
 import { ConditionEvaluatorModel } from '../common/models';
@@ -28,7 +29,6 @@ const defaultConditionEvaluator:ConditionEvaluatorModel = {
 const ConditionEvEditorContainer = ({ conditionEvaluator = defaultConditionEvaluator } : ConditionEvEditorContainerProps) => {
   const [model, setProperty] = useForm(conditionEvaluator)  
   const dispatch = useDispatch();
-
   const handleSave = () => {
     dispatch(saveConditionEvaluatorAndRedirect(model));
   }
@@ -50,6 +50,7 @@ const ConditionEvEditorContainer = ({ conditionEvaluator = defaultConditionEvalu
         <input type="text" className="form-control" value={model.description} onChange={(e) => setProperty('description', e.target.value)} />
       </div>
       <CurveEditor curve={model.curve} setCurve={setProperty} />
+      <ParametersManager parameters={model.parameters} setParameters={(newValue) => setProperty('parameters', newValue)} />
       <input type="button" className="btn btn-primary" value="Save" onClick={handleSave}/>
     </form>
   )
