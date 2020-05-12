@@ -6,4 +6,3 @@ interface RootState {
 
 export const selectConditionEvaluatorTags = (state: RootState) => state.conditionEvaluators.tags;
 export const selectConditionEvaluatorByTag = (tag) => (state: RootState) => state.conditionEvaluators.byTag[tag];
-
