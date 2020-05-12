@@ -10,8 +10,8 @@ interface PropTypes {
 
 const renderBody = (tags : Array<string>, properties : Array<string>, actions : (any) => any, selector : (any) => any) => (
   tags.map(tag => (
-    <tr>
-      <RowContainer key={tag} properties={properties} actions={actions} selector={selector(tag)} />  
+    <tr key={tag}>
+      <RowContainer properties={properties} actions={actions} selector={selector(tag)} />  
     </tr>
   ))
 )
@@ -20,7 +20,7 @@ const renderHeader = (properties : Array<string>, hasActions : boolean) => (
   <tr>
     {
       properties.map(property => (
-        <th>{property}</th>      
+        <th key={property}>{property}</th>      
       ))
     }  
     {
