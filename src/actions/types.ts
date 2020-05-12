@@ -2,17 +2,17 @@ import { ConditionEvaluatorModel, DecisionModel, DecisionSetModel } from '../com
 
 /** Condition Evaluators */
 
-export const LOAD_CONDITION_EVALUATORS_REQUEST = 'LOAD_CONDITION_EVALUATORS_REQUEST';
-export const LOAD_CONDITION_EVALUATORS_FAIL = 'LOAD_CONDITION_EVALUATORS_FAIL';
-export const LOAD_CONDITION_EVALUATORS_SUCCESS = 'LOAD_CONDITION_EVALUATORS_SUCCESS';
+export const LOAD_CONDITION_EVALUATORS_REQUEST  = 'LOAD_CONDITION_EVALUATORS_REQUEST';
+export const LOAD_CONDITION_EVALUATORS_FAIL     = 'LOAD_CONDITION_EVALUATORS_FAIL';
+export const LOAD_CONDITION_EVALUATORS_SUCCESS  = 'LOAD_CONDITION_EVALUATORS_SUCCESS';
 
-export const SAVE_CONDITION_EVALUATORS_REQUEST = 'SAVE_CONDITION_EVALUATORS_REQUEST';
-export const SAVE_CONDITION_EVALUATORS_FAIL = 'SAVE_CONDITION_EVALUATORS_FAIL';
-export const SAVE_CONDITION_EVALUATORS_SUCCESS = 'SAVE_CONDITION_EVALUATORS_SUCCESS';
+export const SAVE_CONDITION_EVALUATOR_REQUEST  = 'SAVE_CONDITION_EVALUATOR_REQUEST';
+export const SAVE_CONDITION_EVALUATOR_FAIL     = 'SAVE_CONDITION_EVALUATOR_FAIL';
+export const SAVE_CONDITION_EVALUATOR_SUCCESS  = 'SAVE_CONDITION_EVALUATOR_SUCCESS';
 
 interface LoadConditionEvaluatorSuccess {
   type: typeof LOAD_CONDITION_EVALUATORS_SUCCESS,
-  payload: [ConditionEvaluatorModel]
+  payload: Array<ConditionEvaluatorModel>
 }
 
 interface LoadConditionEvaluatorRequest {
@@ -20,11 +20,12 @@ interface LoadConditionEvaluatorRequest {
 }
 
 interface SaveConditionEvaluatorRequest {
-  type: typeof SAVE_CONDITION_EVALUATORS_REQUEST 
+  type: typeof SAVE_CONDITION_EVALUATOR_REQUEST,
+  payload: ConditionEvaluatorModel
 }
 
 interface SaveConditionEvaluatorSuccess {
-  type: typeof SAVE_CONDITION_EVALUATORS_SUCCESS
+  type: typeof SAVE_CONDITION_EVALUATOR_SUCCESS  
 }
 
 export type ConditionEvaluatorActionTypes = LoadConditionEvaluatorSuccess | LoadConditionEvaluatorRequest | SaveConditionEvaluatorSuccess | SaveConditionEvaluatorRequest;
@@ -42,7 +43,7 @@ export const SAVE_DECISIONS_SUCCESS = 'SAVE_DECISIONS_SUCCESS';
 
 interface LoadDecisionsSuccess {
   type: typeof LOAD_DECISIONS_SUCCESS,
-  payload: [DecisionModel]
+  payload: Array<DecisionModel>
 }
 
 interface LoadDecisionsRequest {
@@ -54,7 +55,8 @@ interface SaveDecisionsSuccess {
 }
 
 interface SaveDecisionsRequest {
-  type: typeof SAVE_DECISIONS_REQUEST
+  type: typeof SAVE_DECISIONS_REQUEST,
+  payload: DecisionModel
 }
 
 export type DecisionActionTypes = LoadDecisionsSuccess | LoadDecisionsRequest | SaveDecisionsSuccess | SaveDecisionsRequest;
@@ -72,7 +74,7 @@ export const SAVE_DECISION_SETS_SUCCESS = 'SAVE_DECISION_SETS_SUCCESS';
 
 interface LoadDecisionSetsSuccess {
   type: typeof LOAD_DECISION_SETS_SUCCESS,
-  payload: [DecisionSetModel]
+  payload: Array<DecisionSetModel>
 }
 
 interface LoadDecisionSetsRequest {
@@ -84,7 +86,8 @@ interface SaveDecisionSetsSuccess {
 }
 
 interface SaveDecisionSetsRequest {
-  type: typeof SAVE_DECISION_SETS_REQUEST 
+  type: typeof SAVE_DECISION_SETS_REQUEST,
+  payload: DecisionSetModel
 }
 
 export type DecisionSetActionTypes = LoadDecisionSetsSuccess | LoadDecisionSetsRequest | SaveDecisionSetsSuccess | SaveDecisionSetsRequest;
