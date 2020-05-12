@@ -7,7 +7,10 @@ export interface DecisionState {
   tags: Array<string>
 }
 
-const defaultState = {} as DecisionState
+const defaultState = {
+  byTag: {},
+  tags: []
+} as DecisionState
 
 export const decisionReducer = (state = defaultState, action : DecisionActionTypes) : DecisionState  => {
   switch(action.type) {

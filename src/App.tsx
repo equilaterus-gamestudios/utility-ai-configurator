@@ -18,9 +18,11 @@ import Header from './components/Header';
 
 const App = ({ loadConditionEvaluators, loadDecisions, loadDecisionSets }) => {
   useEffect(() => {
-    loadConditionEvaluators();
-    loadDecisions();
-    loadDecisionSets();
+    setTimeout(() => {
+      loadConditionEvaluators();
+      loadDecisions();
+      loadDecisionSets();
+    }, 1000);
   }, [loadConditionEvaluators, loadDecisions, loadDecisionSets])
 
   return (         
@@ -28,16 +30,18 @@ const App = ({ loadConditionEvaluators, loadDecisions, loadDecisionSets }) => {
       <Header />
       <div className="m-navbar-side-left-sm">
         <div className="pt-5 d-block d-sm-none">&nbsp;</div>
-        <div className="container overflow-auto">
-          <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/ConditionEvaluators" exact component={ConditionEvaluators} />
-            <Route path="/EditConditionEvaluator/:tag?" exact component={EditConditionEvaluator} />
-            <Route path="/Decisions" exact component={Decisions} />
-            <Route path="/EditDecision/:tag?" exact component={EditDecision} />
-            <Route path="/DecisionSets" exact component={DecisionSets} />
-            <Route path="/EditDecisionSet/:tag?" exact component={EditDecisionSet} />
-          </Switch>
+        <div className="container main-container overflow-auto">
+          <div className="px-3">
+            <Switch>
+              <Route path="/" exact component={Home} />
+              <Route path="/ConditionEvaluators" exact component={ConditionEvaluators} />
+              <Route path="/EditConditionEvaluator/:tag?" exact component={EditConditionEvaluator} />
+              <Route path="/Decisions" exact component={Decisions} />
+              <Route path="/EditDecision/:tag?" exact component={EditDecision} />
+              <Route path="/DecisionSets" exact component={DecisionSets} />
+              <Route path="/EditDecisionSet/:tag?" exact component={EditDecisionSet} />
+            </Switch>
+          </div>
         </div>
       </div>
     </Router>    

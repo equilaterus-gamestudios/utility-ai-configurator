@@ -8,6 +8,7 @@ export const loadDecisionSets = async () : Promise<Array<DecisionSetModel>> => {
     const file = await fs.readFile(FILE_NAME, 'utf8');
     return JSON.parse(file);
   }catch(e){
+    console.error(e);
     return [] as Array<DecisionSetModel>;
   }
 }

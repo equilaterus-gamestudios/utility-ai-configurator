@@ -14,7 +14,12 @@ const gaussianFunction = (exponent, slope, xShift, yShift) => x =>  {
   return exponent * Math.exp(-1 * Math.pow((x - xShift) / yShift, 2)) - slope;  
 }
 
-const CurvePreview = ({curveType, exponent, slope, xShift, yShift}) => { 
+const CurvePreview = ({curveType, exponent, slope, xShift, yShift}) => {  
+  exponent = parseFloat(exponent);
+  slope = parseFloat(slope);
+  xShift = parseFloat(xShift);
+  yShift = parseFloat(yShift);
+  
   const calculateData = () => {
     let curveFunction;
     if (curveType === POLINOMIAL) {
@@ -80,22 +85,22 @@ const CurveEditor = ({ curve, setCurve } : CurveProps) => {
       <div className="form-row">
         <div className="form-group col-md-6">
           <label>Exponent:</label>
-          <input type="number" className="form-control" value={curve.exponent} onChange={(e) => handleChange('exponent',parseFloat(e.target.value))} />
+          <input type="number" className="form-control" value={curve.exponent} onChange={(e) => handleChange('exponent', e.target.value)} />
         </div>
         <div className="form-group col-md-6">
           <label>Slop:</label>
-          <input type="number" className="form-control" value={curve.slope} step="0.01" onChange={(e) => handleChange('slope',parseFloat(e.target.value))} />
+          <input type="number" className="form-control" value={curve.slope} step="0.01" onChange={(e) => handleChange('slope',e.target.value)} />
         </div>
       </div>
 
       <div className="form-row">
         <div className="form-group col-md-6">
           <label>XShift:</label>
-          <input type="number" className="form-control" value={curve.xShift} step="0.01" onChange={(e) => handleChange('xShift',parseFloat(e.target.value))} />
+          <input type="number" className="form-control" value={curve.xShift} step="0.01" onChange={(e) => handleChange('xShift', e.target.value)} />
         </div>
         <div className="form-group col-md-6">
           <label>YShift:</label>
-          <input type="number" className="form-control" value={curve.yShift} step="0.01" onChange={(e) => handleChange('yShift',parseFloat(e.target.value))} />
+          <input type="number" className="form-control" value={curve.yShift} step="0.01" onChange={(e) => handleChange('yShift', e.target.value)} />
         </div>
       </div>   
     </>

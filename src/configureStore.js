@@ -12,9 +12,6 @@ function logger({ getState }) {
   }
 }
 
-
-
-
 function configureStore() {
   let middleware =  [reduxThunk];
   if (isDev) {
@@ -26,7 +23,7 @@ function configureStore() {
     compose(applyMiddleware(...middleware))
   )
 
-  return store
+  return store;
 }
 
 export default configureStore
