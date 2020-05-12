@@ -1,8 +1,8 @@
 import { getTags, createByTagStructure } from '../common/utility';
 import { Dictionary, DecisionModel } from '../common/models';
-import { DecisionActionTypes, LOAD_DECISIONS_SUCCESS } from '../actions/types';
+import { DecisionActionTypes, LOAD_DECISIONS_SUCCESS, SAVE_DECISIONS_REQUEST } from '../actions/types';
 
-interface DecisionState {  
+export interface DecisionState {  
   byTag: Dictionary<DecisionModel>,
   tags: Array<string>
 }
@@ -16,6 +16,23 @@ export const decisionReducer = (state = defaultState, action : DecisionActionTyp
         ...state, 
         byTag: createByTagStructure(action.payload),
         tags: getTags(action.payload)
+      }
+    case SAVE_DECISIONS_REQUEST:
+      {
+        const isNewDecision = !state.tags.find(tag => tag === action.payload.tag);
+        const tags = [...state.tags];
+        if (isNewDecision) {
+          tags.push(action.payload.tag);
+        }
+        
+        return {
+          ...state, 
+          byTag: {
+            ...state.byTag,
+            [action.payload.tag]: action.payload
+          },
+          tags: tags
+        } 
       }
     default: 
       return state;
