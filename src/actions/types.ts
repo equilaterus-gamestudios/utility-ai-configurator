@@ -91,3 +91,21 @@ interface SaveDecisionSetsRequest {
 }
 
 export type DecisionSetActionTypes = LoadDecisionSetsSuccess | LoadDecisionSetsRequest | SaveDecisionSetsSuccess | SaveDecisionSetsRequest;
+
+
+/** export configuration */
+
+export const EXPORT_CONFIGURATION_REQUEST = 'EXPORT_CONFIGURATION_REQUEST';
+export const EXPORT_CONFIGURATION_FAIL    = 'EXPORT_CONFIGURATION_FAIL';
+export const EXPORT_CONFIGURATION_SUCCESS = 'EXPORT_CONFIGURATION_SUCCESS';
+
+interface ExportConfigurationRequest {
+  type: typeof EXPORT_CONFIGURATION_REQUEST,
+}
+
+interface ExportConfigurationSuccess {
+  type: typeof EXPORT_CONFIGURATION_SUCCESS 
+}
+
+
+export type ExportConfigurationActionTypes = ExportConfigurationRequest | ExportConfigurationSuccess ;
