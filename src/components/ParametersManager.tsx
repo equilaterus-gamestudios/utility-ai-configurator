@@ -1,5 +1,5 @@
 import React from 'react';
-import { ParameterModel, GetEmptyParameterModel } from '../common/models';
+import { GetEmptyParameterModel } from '../common/models';
 import Parameter from './editors/Parameter';
 import pullAt from 'lodash/pullAt';
 

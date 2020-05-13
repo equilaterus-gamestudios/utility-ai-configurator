@@ -1,6 +1,4 @@
 import React from 'react';
-import { useForm } from "react-hook-form";
-import Input from '../Input';
 import { ParameterModel } from '../../common/models';
 
 interface PropTypes {
