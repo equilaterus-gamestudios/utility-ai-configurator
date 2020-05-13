@@ -45,7 +45,7 @@ export interface DecisionModel {
 
 export interface DecisionSetModel {
   tag: string,
-  decisions: Array<DecisionModel>,
+  decisions: Array<string>,
   defaultDecision: string,
   description: string
 }
