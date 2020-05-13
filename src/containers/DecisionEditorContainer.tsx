@@ -5,7 +5,11 @@ import { DecisionModel } from '../common/models';
 import { useForm } from '../hooks/useForm';
 
 import { useDispatch } from 'react-redux';
-import ConditionEvs from '../components/ConditionEvaluators/ConditionEvs';
+import ConditionEv from '../components/ConditionEvaluators/ConditionEv';
+import ListEditor from '../components/editors/ListEditor';
+import ListElementEditor from '../components/editors/ListElementEditor';
+
+import { selectAllConditionEvaluatorsByTag } from '../selectors/ConditionEvSelector';
 
 interface DecisionEditorContainerProps {
   decision: DecisionModel,
@@ -56,9 +60,10 @@ const DecisionEditorContainer = ({ decision = defaultDecision } : DecisionEditor
         <input type="text" className="form-control" value={model.description} onChange={(e) => setProperty('description', e.target.value)} />
       </div>
       <h2>Condition evaluators!</h2>
-      <ConditionEvs
-        listConditionsEv={model.conditionEvaluators}
+      <ListEditor
+        list={model.conditionEvaluators}
         onChangeList={(newList) => setProperty('conditionEvaluators', newList)}
+        editorComponent={(index, tag, onChangeValue) => <ListElementEditor index={index} tag={tag} onChangeValue={onChangeValue} selector={selectAllConditionEvaluatorsByTag}/>}
       />
 
       <input type="button" className="btn btn-primary-alt btn-lg" value="Save" onClick={handleSave}/>
