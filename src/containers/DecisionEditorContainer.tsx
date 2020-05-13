@@ -61,7 +61,7 @@ const DecisionEditorContainer = ({ decision = defaultDecision } : DecisionEditor
         onChangeList={(newList) => setProperty('conditionEvaluators', newList)}
       />
 
-      <input type="button" className="btn btn-primary" value="Save" onClick={handleSave}/>
+      <input type="button" className="btn btn-primary-alt btn-lg" value="Save" onClick={handleSave}/>
     </form>
   )
 }
