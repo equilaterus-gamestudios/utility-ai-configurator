@@ -1,6 +1,8 @@
 import React from "react";
 import ConditionEv from "./ConditionEv";
-
+import { ReactComponent as UpIcon }  from '../../icons/up.svg';
+import { ReactComponent as DownIcon }  from '../../icons/down.svg';
+import { ReactComponent as TrashIcon }  from '../../icons/trash.svg';
 
 export interface ConditionEvProps {
   listConditionsEv: Array<string>,
@@ -38,34 +40,30 @@ const ConditionEvs = ({listConditionsEv, onChangeList} :ConditionEvProps) => {
   }
 
   return (
-    <div className="border bg-light">
-      <a className="btn btn-primary" onClick={onAdd}>+ Add</a>
-      <hr/>
+    <div className="">
+      <a className="btn btn-primary-alt" href="#" onClick={onAdd}>+ Add</a>
+      <hr />
       {
         listConditionsEv.map((value, index) => (
           <div className="row" key={index}>
-            <div className="col-8">
+            <div className="col-6">
               <ConditionEv
                 index={index}
                 tag={value}
                 onChangeValue={onChangeConditionEv}
               />
             </div>
-            <div className="col-3">
-              {index > 0 && 
-                <a className="btn btn-default" onClick={() => onChangeOrder(index, -1)}>UP</a> 
-              }
-              {index < listConditionsEv.length - 1 && 
-                <a className="btn btn-default" onClick={() => onChangeOrder(index, +1)}>DOWN</a> 
-              }
-            </div>
-            <div className="col-1">
-              <a className="btn btn-danger" onClick={() => onRemove(index)}>-</a>               
+            <div className="col-6">
+              <a className={`btn btn-secondary-alt ${index === 0 ? 'disabled' : ''}`} href="#" onClick={() => onChangeOrder(index, -1)}><UpIcon /></a> 
+
+              <a className={`btn btn-secondary-alt ${index >= listConditionsEv.length - 1 ? 'disabled' : ''}`}  href="#" onClick={() => onChangeOrder(index, +1)}><DownIcon /></a> 
+              
+              <a className="btn btn-danger" href="#" onClick={() => onRemove(index)}><TrashIcon /></a>               
             </div>
           </div>
         ))
       }
-      
+      <hr />
     </div>
   );
 };
