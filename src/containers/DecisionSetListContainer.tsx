@@ -4,12 +4,14 @@ import { Link } from 'react-router-dom';
 import { selectDecisionSetTags, selectDecisionSetByTag } from '../selectors/DecisionSetSelector';
 import Table from '../components/Table';
 import { DecisionSetModel } from '../common/models';
+import { removeDecisionSet } from '../actions/decisionSetActions';
 
 interface PropTypes {
-  decisionSetTags: Array<string>
+  decisionSetTags: Array<string>,
+  removeDecisionSet: (tag: string) => void
 }
 
-const DecisionSetListContainer = ({ decisionSetTags } : PropTypes) => {    
+const DecisionSetListContainer = ({ decisionSetTags, removeDecisionSet } : PropTypes) => {    
   if (!decisionSetTags || !decisionSetTags.length) {
     return (
       <>
@@ -21,8 +23,8 @@ const DecisionSetListContainer = ({ decisionSetTags } : PropTypes) => {
 
   const renderActions = (decisionSet :  DecisionSetModel) => (
     <>
-      <Link to={`/EditConditionEvaluator/${decisionSet.tag}`}  className="btn btn-secondary btn-sm mr-2">E</Link>
-      <Link to="" className="btn btn-danger btn-sm">X</Link>
+      <Link to={`/EditDecisionSet/${decisionSet.tag}`}  className="btn btn-secondary btn-sm mr-2">E</Link>
+      <button className="btn btn-danger btn-sm" onClick={() => removeDecisionSet(decisionSet.tag)}>X</button>
     </>
   )
 
@@ -38,4 +40,4 @@ const mapStateToProps = (state) => ({
   decisionSetTags: selectDecisionSetTags(state)
 })
 
-export default connect(mapStateToProps, null)(DecisionSetListContainer)
+export default connect(mapStateToProps, { removeDecisionSet })(DecisionSetListContainer)

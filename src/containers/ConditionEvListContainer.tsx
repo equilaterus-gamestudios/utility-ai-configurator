@@ -4,12 +4,14 @@ import { Link } from 'react-router-dom';
 import { selectConditionEvaluatorTags, selectConditionEvaluatorByTag } from '../selectors/ConditionEvSelector';
 import Table from '../components/Table';
 import { ConditionEvaluatorModel } from '../common/models';
+import { removeConditionEvaluator } from '../actions/conditionEvaluatorActions';
 
 interface PropTypes {
-  conditionEvaluatorTags: Array<string>
+  conditionEvaluatorTags: Array<string>,
+  removeConditionEvaluator: (tag: string) => void
 }
 
-const ConditionEvListContainer = ({ conditionEvaluatorTags } : PropTypes) => {    
+const ConditionEvListContainer = ({ conditionEvaluatorTags, removeConditionEvaluator } : PropTypes) => {    
   if (!conditionEvaluatorTags || !conditionEvaluatorTags.length) {
     return (
       <>
@@ -22,7 +24,7 @@ const ConditionEvListContainer = ({ conditionEvaluatorTags } : PropTypes) => {
   const renderActions = (conditionEvaluator :  ConditionEvaluatorModel) => (
     <>
       <Link to={`/EditConditionEvaluator/${conditionEvaluator.tag}`}  className="btn btn-secondary btn-sm mr-2">E</Link>
-      <Link to="" className="btn btn-danger btn-sm">X</Link>
+      <button className="btn btn-danger btn-sm" onClick={() => removeConditionEvaluator(conditionEvaluator.tag)}>X</button>
     </>
   )
 
@@ -38,4 +40,4 @@ const mapStateToProps = (state) => ({
   conditionEvaluatorTags: selectConditionEvaluatorTags(state)
 })
 
-export default connect(mapStateToProps, null)(ConditionEvListContainer)
+export default connect(mapStateToProps, { removeConditionEvaluator })(ConditionEvListContainer)

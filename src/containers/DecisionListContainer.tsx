@@ -4,12 +4,14 @@ import { Link } from 'react-router-dom';
 import { selectDecisionTags, selectDecisionByTag } from '../selectors/DecisionSelector';
 import Table from '../components/Table';
 import { DecisionModel } from '../common/models';
+import { removeDecision } from '../actions/decisionActions';
 
 interface PropTypes {
-  decisionTags: Array<string>
+  decisionTags: Array<string>,
+  removeDecision: (tag: string) => void
 }
 
-const DecisionListContainer = ({ decisionTags } : PropTypes) => {    
+const DecisionListContainer = ({ decisionTags, removeDecision } : PropTypes) => {    
   if (!decisionTags || !decisionTags.length) {
     return (
       <>
@@ -22,7 +24,7 @@ const DecisionListContainer = ({ decisionTags } : PropTypes) => {
   const renderActions = (decision :  DecisionModel) => (
     <>
       <Link to={`/EditDecision/${decision.tag}`}  className="btn btn-secondary btn-sm mr-2">E</Link>
-      <Link to="" className="btn btn-danger btn-sm">X</Link>
+      <button className="btn btn-danger btn-sm" onClick={() => removeDecision(decision.tag)}>X</button>
     </>
   )
 
@@ -38,4 +40,4 @@ const mapStateToProps = (state) => ({
   decisionTags: selectDecisionTags(state)
 })
 
-export default connect(mapStateToProps, null)(DecisionListContainer)
+export default connect(mapStateToProps, { removeDecision })(DecisionListContainer)
