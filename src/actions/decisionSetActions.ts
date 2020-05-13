@@ -1,6 +1,6 @@
 import history from '../history';
 import { getValuesFromByTag } from '../common/utility';
-import { LOAD_DECISION_SETS_SUCCESS, LOAD_DECISION_SETS_REQUEST, SAVE_DECISION_SETS_REQUEST, DecisionSetActionTypes } from './types';
+import { LOAD_DECISION_SETS_SUCCESS, LOAD_DECISION_SETS_REQUEST, SAVE_DECISION_SETS_REQUEST, DecisionSetActionTypes, REMOVE_DECISION_SET_REQUEST } from './types';
 import  *  as decisionSetAPI from '../api/decisionSetAPI';
 
 import { DecisionSetModel } from '../common/models';
@@ -38,3 +38,19 @@ export const saveDecisionSetAndRedirect = (decisionSet) => async (dispatch, getS
   await decisionSetAPI.saveDecisionSets(decisionSets);
   history.push('/DecisionSets');
 }
+
+
+
+const removeDecisionSetRequest =  (tag : string) : DecisionSetActionTypes => {
+  return {
+    type: REMOVE_DECISION_SET_REQUEST,
+    payload: tag
+  }
+}
+
+export const removeDecisionSet = (tag) => async (dispatch, getState) => {
+  dispatch(removeDecisionSetRequest(tag));
+  const decisionSets = getValuesFromByTag(getState().decisionSets.byTag);
+  await decisionSetAPI.saveDecisionSets(decisionSets);  
+}
+

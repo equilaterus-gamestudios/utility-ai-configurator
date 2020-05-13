@@ -1,7 +1,8 @@
 import history from '../history';
 import { getValuesFromByTag } from '../common/utility';
-import { LOAD_CONDITION_EVALUATORS_SUCCESS, LOAD_CONDITION_EVALUATORS_REQUEST, SAVE_CONDITION_EVALUATOR_REQUEST, ConditionEvaluatorActionTypes } from './types';
+import { LOAD_CONDITION_EVALUATORS_SUCCESS, LOAD_CONDITION_EVALUATORS_REQUEST, SAVE_CONDITION_EVALUATOR_REQUEST, REMOVE_CONDITION_EVALUATOR_REQUEST, ConditionEvaluatorActionTypes } from './types';
 import  *  as conditionEvaluatorAPI  from '../api/conditionEvaluatorAPI';
+import  *  as decisionAPI  from '../api/decisionAPI';
 
 import { ConditionEvaluatorModel } from '../common/models';
 
@@ -39,3 +40,19 @@ export const saveConditionEvaluatorAndRedirect = (conditionEvaluator) => async (
   await conditionEvaluatorAPI.saveConditionEvaluators(conditionEvaluators);
   history.push('/ConditionEvaluators');
 }
+
+const removeConditionEvaluatorRequest =  (tag : string) : ConditionEvaluatorActionTypes => {
+  return {
+    type: REMOVE_CONDITION_EVALUATOR_REQUEST,
+    payload: tag
+  }
+}
+
+export const removeConditionEvaluator = (tag) => async (dispatch, getState) => {
+  dispatch(removeConditionEvaluatorRequest(tag));
+  const conditionEvaluators = getValuesFromByTag(getState().conditionEvaluators.byTag);
+  const decisions = getValuesFromByTag(getState().decisions.byTag);
+  await conditionEvaluatorAPI.saveConditionEvaluators(conditionEvaluators);  
+  await decisionAPI.saveDecisions(decisions);  
+}
+
