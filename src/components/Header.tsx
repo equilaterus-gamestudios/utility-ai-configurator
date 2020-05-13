@@ -10,8 +10,8 @@ const Header = () => {
     setCollapsed('collapse');
   }
   return (
-    <nav className={`navbar navbar-side navbar-side-left navbar-side-sm navbar-dark bg-dark-alpha-2 h-font ${collapsed}`}  id="sideNavbar">
-      <div className="navbar-brand-container bg-dark-alpha-1">
+    <nav className={`navbar navbar-side navbar-side-left navbar-side-sm navbar-dark bg-dark-alpha-1 h-font ${collapsed}`} id="sideNavbar">
+      <div className="navbar-brand-container">
         <Link onClick={onHide} className="navbar-brand" to="/">
           <span>Utility AI</span>
         </Link>
