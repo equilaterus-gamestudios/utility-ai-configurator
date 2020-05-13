@@ -48,7 +48,7 @@ const DecisionEditorContainer = ({ decision = defaultDecision } : DecisionEditor
         </div>
         <div className="form-group col-md-6">
           <label>Has Target Dependency:</label>
-          <input type="checkbox" className="form-control" checked={model.hasTargetDependency} onChange={(e) => setProperty('hasTargetDependency', e.target.value)} />
+          <input type="checkbox" className="form-control" checked={model.hasTargetDependency} onChange={(e) => setProperty('hasTargetDependency', e.target.checked)} />
         </div>
       </div>
       <div className="form-group">
