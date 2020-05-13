@@ -5,6 +5,9 @@ import { DecisionSetModel } from '../common/models';
 import { useForm } from '../hooks/useForm';
 
 import { useDispatch } from 'react-redux';
+import ListEditor from '../components/editors/ListEditor';
+import ListElementEditor from '../components/editors/ListElementEditor';
+import { selectAllDecisionsByTag } from '../selectors/DecisionSelector';
 
 interface DecisionSetEditorContainerProps {
   decisionSet: DecisionSetModel
@@ -42,6 +45,11 @@ const DecisionSetEditorContainer = ({ decisionSet = defaultDecisionSet } : Decis
         <input type="text" className="form-control" value={model.description} onChange={(e) => setProperty('description', e.target.value)} />
       </div>
       <h2>Decisions</h2>
+      <ListEditor
+        list={model.decisions}
+        onChangeList={(newList) => setProperty('decisions', newList)}
+        editorComponent={(index, tag, onChangeValue) => <ListElementEditor index={index} tag={tag} onChangeValue={onChangeValue} selector={selectAllDecisionsByTag}/>}
+      />
       <input type="button" className="btn btn-primary" value="Save" onClick={handleSave}/>
     </form>
   )
