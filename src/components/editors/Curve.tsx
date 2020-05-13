@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useCallback } from 'react'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
 import { Curve } from '../../common/models';
 import { predefinedCurves } from '../../common/defaultCurves';
@@ -20,7 +20,7 @@ const CurvePreview = ({curveType, exponent, slope, xShift, yShift}) => {
   xShift = parseFloat(xShift);
   yShift = parseFloat(yShift);
   
-  const calculateData = () => {
+  const calculateData = useCallback(() => {
     let curveFunction;
     if (curveType === POLINOMIAL) {
       curveFunction = polinomialFunction(exponent, slope, xShift, yShift);
@@ -30,11 +30,11 @@ const CurvePreview = ({curveType, exponent, slope, xShift, yShift}) => {
     const data = range.map(x => ({x, y: curveFunction(x), max: 1.0, min: 0.0 }))
 
     return data
-  }  
+  }, [curveType, exponent, slope, xShift, yShift])  
   
   const data = useMemo(
     () => calculateData()
-    , [curveType, exponent, slope, xShift, yShift]
+    , [calculateData]
   );
    
   return (
