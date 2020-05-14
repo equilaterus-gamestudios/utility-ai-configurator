@@ -29,7 +29,6 @@ const DecisionEditorContainer = ({ decision = defaultDecision } : DecisionEditor
   const dispatch = useDispatch();
 
   const handleSave = () => {
-    console.log(model);
     dispatch(saveDecisionAndRedirect(model));
   }
 
