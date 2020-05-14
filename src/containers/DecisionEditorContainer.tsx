@@ -9,6 +9,9 @@ import ListEditor from '../components/editors/ListEditor';
 import ListElementEditor from '../components/editors/ListElementEditor';
 
 import { selectAllConditionEvaluatorsByTag } from '../selectors/ConditionEvSelector';
+import { ReactComponent as ConfirmIcon }  from '../icons/confirm.svg';
+import Button from '../components/Button';
+import Form from '../components/Form';
 
 interface DecisionEditorContainerProps {
   decision: DecisionModel,
@@ -32,7 +35,7 @@ const DecisionEditorContainer = ({ decision = defaultDecision } : DecisionEditor
   }
 
   return (
-    <form>
+    <Form onSubmit={handleSave}>
       <div className="form-row">
         <div className="form-group col-md-6">
           <label>Tag:</label>
@@ -64,8 +67,10 @@ const DecisionEditorContainer = ({ decision = defaultDecision } : DecisionEditor
         editorComponent={(index, tag, onChangeValue) => <ListElementEditor index={index} tag={tag} onChangeValue={onChangeValue} selector={selectAllConditionEvaluatorsByTag}/>}
       />
 
-      <input type="button" className="btn btn-primary-alt btn-lg" value="Save" onClick={handleSave}/>
-    </form>
+      <Button type="submit" className="btn btn-primary-alt btn-lg">
+        <ConfirmIcon/> Save
+      </Button>
+    </Form>
   )
 }
 
