@@ -5,7 +5,6 @@ import { DecisionModel } from '../common/models';
 import { useForm } from '../hooks/useForm';
 
 import { useDispatch } from 'react-redux';
-import ConditionEv from '../components/ConditionEvaluators/ConditionEv';
 import ListEditor from '../components/editors/ListEditor';
 import ListElementEditor from '../components/editors/ListElementEditor';
 
