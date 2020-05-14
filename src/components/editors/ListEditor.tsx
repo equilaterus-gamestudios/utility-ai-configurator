@@ -2,6 +2,7 @@ import React from "react";
 import { ReactComponent as UpIcon }  from '../../icons/up.svg';
 import { ReactComponent as DownIcon }  from '../../icons/down.svg';
 import { ReactComponent as TrashIcon }  from '../../icons/trash.svg';
+import Button from "../Button";
 
 export interface ListEditorProps {
   list: Array<string>,
@@ -41,7 +42,9 @@ const ListEditor = ({list, onChangeList, editorComponent} :ListEditorProps) => {
 
   return (
     <div className="">
-      <a className="btn btn-primary-alt" href="#" onClick={onAdd}>+ Add</a>
+      <Button className="btn btn-primary-alt" onClick={onAdd}>
+        + Add
+      </Button>
       <hr />
       {
         list.map((value, index) => (
@@ -50,11 +53,11 @@ const ListEditor = ({list, onChangeList, editorComponent} :ListEditorProps) => {
               { editorComponent(index, value, onChangeConditionEv) }
             </div>
             <div className="col-6">
-              <a className={`btn btn-secondary-alt ${index === 0 ? 'disabled' : ''}`} href="#" onClick={() => onChangeOrder(index, -1)}><UpIcon /></a> 
+              <Button className={`btn btn-secondary-alt ${index === 0 ? 'disabled' : ''}`} href="#" onClick={() => onChangeOrder(index, -1)}><UpIcon /></Button> 
 
-              <a className={`btn btn-secondary-alt ${index >= list.length - 1 ? 'disabled' : ''}`}  href="#" onClick={() => onChangeOrder(index, +1)}><DownIcon /></a> 
+              <Button className={`btn btn-secondary-alt ${index >= list.length - 1 ? 'disabled' : ''}`}  href="#" onClick={() => onChangeOrder(index, +1)}><DownIcon /></Button> 
               
-              <a className="btn btn-danger" href="#" onClick={() => onRemove(index)}><TrashIcon /></a>               
+              <Button className="btn btn-danger" href="#" onClick={() => onRemove(index)}><TrashIcon /></Button>               
             </div>
           </div>
         ))
