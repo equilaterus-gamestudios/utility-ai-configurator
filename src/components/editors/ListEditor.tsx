@@ -3,13 +3,13 @@ import { ReactComponent as UpIcon }  from '../../icons/up.svg';
 import { ReactComponent as DownIcon }  from '../../icons/down.svg';
 import { ReactComponent as TrashIcon }  from '../../icons/trash.svg';
 
-export interface ConditionEvProps {
+export interface ListEditorProps {
   list: Array<string>,
   onChangeList: (list: Array<string>) => void;
   editorComponent: (index: number, tag: string, onChangeValue: (index: number, tag: string) => void) => any
 }
 
-const ListEditor = ({list, onChangeList, editorComponent} :ConditionEvProps) => {
+const ListEditor = ({list, onChangeList, editorComponent} :ListEditorProps) => {
   
   const onAdd = () => {
     const newList = [...list];
