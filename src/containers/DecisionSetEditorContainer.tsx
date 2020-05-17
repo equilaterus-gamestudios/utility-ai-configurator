@@ -36,7 +36,7 @@ const DecisionSetEditorContainer = ({ decisionSet = defaultDecisionSet } : Decis
           <input type="text" className="form-control" value={model.tag} onChange={(e) => setProperty('tag', e.target.value)} />
         </div>
         <div className="form-group col-md-6">
-          <label>Function Name:</label>
+          <label>Default decision:</label>
           <input type="text" className="form-control" value={model.defaultDecision} onChange={(e) => setProperty('defaultDecision', e.target.value)} />
         </div>
       </div>
