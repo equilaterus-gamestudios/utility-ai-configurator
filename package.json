@@ -10,7 +10,7 @@
     "@types/node": "^12.12.38",
     "@types/react": "^16.9.34",
     "@types/react-dom": "^16.9.7",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bootlaterus": "^1.0.0",
     "bootstrap": "^4.6.0",
     "electron-is-dev": "^1.2.0",
