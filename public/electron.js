@@ -1,9 +1,11 @@
 const electron = require('electron');
 const app = electron.app;
+app.allowRendererProcessReuse = false;
 const BrowserWindow = electron.BrowserWindow;
 
 const path = require('path');
-const isDev = require('electron-is-dev');
+// TODO: Find an alternative
+const isDev = true;
 
 let mainWindow;
 
@@ -14,7 +16,8 @@ function createWindow() {
     minHeight: 480,
     minWidth: 480,
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: true,
+      contextIsolation: false
     }
   });
   mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);

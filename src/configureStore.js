@@ -1,7 +1,6 @@
 import reduxThunk from 'redux-thunk';
 import { createStore, compose, applyMiddleware } from 'redux'
 import reducers from './reducers';
-import isDev from 'electron-is-dev';
 
 function logger({ getState }) {
   return (next) => (action) => {
@@ -14,9 +13,8 @@ function logger({ getState }) {
 
 function configureStore() {
   let middleware =  [reduxThunk];
-  if (isDev) {
-    middleware = [...middleware, logger]
-  }
+  // TODO: Enable only for dev
+  middleware = [...middleware, logger]
 
   const store = createStore(
     reducers,
