@@ -6,9 +6,8 @@ import configureStore from './configureStore';
 import * as serviceWorker from './serviceWorker';
 
 // Styles
-//import 'bootlaterus/dist/css/bootlaterus-cfonts.min.css';
-import "nes.css/css/nes.min.css";
-import "./bootstrap-grid.scss";
+import 'nes.css/css/nes.min.css';
+import '../node_modules/bootstrap/scss/bootstrap-grid.scss';
 import './overrides.css';
 
 const store = configureStore();
