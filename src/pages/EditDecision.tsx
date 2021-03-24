@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import DecisionEditorContainer from '../containers/DecisionEditorContainer';
 import { selectDecisionByTag } from '../selectors/DecisionSelector';
+import withLayout from '../wrappers/withLayout';
 
 
 const EditDecision = ({ match }) => {
@@ -9,10 +10,9 @@ const EditDecision = ({ match }) => {
 
   return (
     <>
-      <h1>Edit Decision</h1>
       <DecisionEditorContainer decision={decision} />    
     </>
   )
 }
 
-export default EditDecision;
+export default withLayout(EditDecision, 'Decision');

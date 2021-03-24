@@ -26,7 +26,8 @@ const App = ({ loadConditionEvaluators, loadDecisions, loadDecisionSets }) => {
   }, [loadConditionEvaluators, loadDecisions, loadDecisionSets])
 
   return (         
-    <Router history={history}>  
+    <Router history={history}>
+      <div className="container-fluid">
      <div className="row">
         <Header />
         <div className="col">
@@ -46,6 +47,7 @@ const App = ({ loadConditionEvaluators, loadDecisions, loadDecisionSets }) => {
           </div>
         </div>
       </div>    
+      </div> 
     </Router>    
   );
 }
