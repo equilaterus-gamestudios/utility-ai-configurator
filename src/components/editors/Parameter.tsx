@@ -20,18 +20,18 @@ const Parameter = ({ parameter, index, remove, update } : PropTypes) => {
     <div className="form-row">
       <div className="form-group col-md-3">
         <label>Key:</label>
-        <input type="text" className="form-control" value={parameter.key} onChange={(e) => handleChange('key', e.target.value)} />
+        <input type="text" className="nes-input" value={parameter.key} onChange={(e) => handleChange('key', e.target.value)} />
       </div>
       <div className="form-group col-md-3">
         <label>Value:</label>
-        <input type="text" className="form-control" value={parameter.value} onChange={(e) => handleChange('value', e.target.value)} />
+        <input type="text" className="nes-input" value={parameter.value} onChange={(e) => handleChange('value', e.target.value)} />
       </div>
       <div className="form-group col-md-5">
         <label>Description:</label>
-        <input type="text" className="form-control" value={parameter.description} onChange={(e) => handleChange('description', e.target.value)} />
+        <input type="text" className="nes-input" value={parameter.description} onChange={(e) => handleChange('description', e.target.value)} />
       </div>
       <div className="form-group col-md-1">                
-        <button className="btn btn-sm btn-danger" onClick={(e) => remove(e, index)}>-</button>
+        <button className="nes-btn is-error" onClick={(e) => remove(e, index)}>-</button>
       </div>
     </div>    
   );

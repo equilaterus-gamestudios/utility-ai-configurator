@@ -33,16 +33,16 @@ const DecisionSetEditorContainer = ({ decisionSet = defaultDecisionSet } : Decis
       <div className="form-row">
         <div className="form-group col-md-6">
           <label>Tag:</label>
-          <input type="text" className="form-control" value={model.tag} onChange={(e) => setProperty('tag', e.target.value)} />
+          <input type="text" className="nes-input" value={model.tag} onChange={(e) => setProperty('tag', e.target.value)} />
         </div>
         <div className="form-group col-md-6">
           <label>Default decision:</label>
-          <input type="text" className="form-control" value={model.defaultDecision} onChange={(e) => setProperty('defaultDecision', e.target.value)} />
+          <input type="text" className="nes-input" value={model.defaultDecision} onChange={(e) => setProperty('defaultDecision', e.target.value)} />
         </div>
       </div>
       <div className="form-group">
         <label>Description:</label>
-        <input type="text" className="form-control" value={model.description} onChange={(e) => setProperty('description', e.target.value)} />
+        <input type="text" className="nes-input" value={model.description} onChange={(e) => setProperty('description', e.target.value)} />
       </div>
       <h2>Decisions</h2>
       <ListEditor
@@ -50,7 +50,7 @@ const DecisionSetEditorContainer = ({ decisionSet = defaultDecisionSet } : Decis
         onChangeList={(newList) => setProperty('decisions', newList)}
         editorComponent={(index, tag, onChangeValue) => <ListElementEditor index={index} tag={tag} onChangeValue={onChangeValue} selector={selectAllDecisionsByTag}/>}
       />
-      <input type="button" className="btn btn-primary" value="Save" onClick={handleSave}/>
+      <input type="button" className="nes-btn is-primary" value="Save" onClick={handleSave}/>
     </form>
   )
 }

@@ -11,7 +11,7 @@ const Home = () => {
     dispatch(exportConfiguration());
   }
   
-  return  <button className="btn btn-primary" onClick={handleExport}>Export</button>;
+  return  <button className="nes-btn is-primary" onClick={handleExport}>Export</button>;
   
 }
 export default withLayout(Home, 'Home');

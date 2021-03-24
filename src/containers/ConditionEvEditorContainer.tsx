@@ -36,22 +36,22 @@ const ConditionEvEditorContainer = ({ conditionEvaluator = defaultConditionEvalu
   return (
     <form>
       <div className="form-row">
-        <div className="form-group col-md-6">
+        <div className="nes-field is-inline">
           <label>Tag:</label>
-          <input type="text" className="form-control" value={model.tag} onChange={(e) => setProperty('tag', e.target.value)} />
+          <input type="text" className="nes-input" value={model.tag} onChange={(e) => setProperty('tag', e.target.value)} />
         </div>
-        <div className="form-group col-md-6">
+        <div className="nes-field is-inline">
           <label>Function Name:</label>
-          <input type="text" className="form-control" value={model.functionName} onChange={(e) => setProperty('functionName', e.target.value)} />
+          <input type="text" className="nes-input" value={model.functionName} onChange={(e) => setProperty('functionName', e.target.value)} />
         </div>
       </div>
-      <div className="form-group">
+      <div className="nes-field is-inline">
         <label>Description:</label>
-        <input type="text" className="form-control" value={model.description} onChange={(e) => setProperty('description', e.target.value)} />
+        <input type="text" className="nes-input" value={model.description} onChange={(e) => setProperty('description', e.target.value)} />
       </div>
       <CurveEditor curve={model.curve} setCurve={setProperty} />
       <ParametersManager parameters={model.parameters} setParameters={(newValue) => setProperty('parameters', newValue)} />
-      <input type="button" className="btn btn-primary" value="Save" onClick={handleSave}/>
+      <input type="button" className="nes-btn is-primary" value="Save" onClick={handleSave}/>
     </form>
   )
 }

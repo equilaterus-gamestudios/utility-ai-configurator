@@ -31,14 +31,16 @@ const renderHeader = (properties : Array<string>, hasActions : boolean) => (
 
 const Table = ({ tags, properties, actions, selector } : PropTypes) => {
   return (
-    <table className="table">
-      <thead className="thead-dark">
-      { renderHeader(properties, !!actions) }
-      </thead>
-      <tbody>
-        { renderBody(tags, properties, actions, selector) }
-      </tbody>
-    </table>
+    <div className="nes-table-responsive">
+      <table className="nes-table is-bordered is-centered">
+        <thead className="is-dark">
+        { renderHeader(properties, !!actions) }
+        </thead>
+        <tbody>
+          { renderBody(tags, properties, actions, selector) }
+        </tbody>
+      </table>
+    </div>
   );
 }
 

@@ -8,10 +8,52 @@ button:focus, a:focus { outline:0; }
     max-width: 950px;
 }
 @font-face {
-    font-family: 'DotGothic16';
-    src: local('DotGothic16'), url(./fonts/DotGothic16-Regular.ttf) format('woff');
+    font-family: 'Press Start 2P';
+    src: local('Press Start 2P'), url(./fonts/PressStart2P-Regular.ttf) format('woff');
   }
 html, body, pre, code, kbd, samp {
-    font-family: "DotGothic16";
+    font-family: "Press Start 2P";
 }
 
+.left-menu{
+    flex-direction: column;
+    margin-left: 10px;
+    margin-right: 10px;
+
+}
+.left-menu-item{
+    padding-top: 10px;
+    width: 100%;
+    display: grid;
+}
+.left-col{
+    min-height: 100vh;
+    max-width: 50vh;
+}
+.message .-left{
+    align-self: flex-start;
+}
+
+.message {
+    display: flex;
+    margin-top: 2rem;
+}
+.message-bot{
+    text-decoration: none;
+    color: black;
+    position: fixed;
+    bottom:10px;
+    left: 10px;
+    transition: all 0.5s ease-in;
+}
+.message-bot:hover{
+    color: black;
+
+}
+
+.message-bot.inactive{
+    left:-370px;
+}
+link > div > p{
+    color: black;
+}

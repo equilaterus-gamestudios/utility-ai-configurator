@@ -12,7 +12,7 @@ const ListElementEditor = ({index, tag, onChangeValue, selector} : ListElementEd
   const options = useSelector(selector);
 
   return (
-    <select className="form-control" value={tag} onChange={(e) => onChangeValue(index, e.target.value)}>
+    <select className="nes-input" value={tag} onChange={(e) => onChangeValue(index, e.target.value)}>
     {
       <>
         <option>--SELECT AN OPTION--</option>

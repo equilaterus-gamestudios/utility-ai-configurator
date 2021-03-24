@@ -42,7 +42,7 @@ const ListEditor = ({list, onChangeList, editorComponent} :ListEditorProps) => {
 
   return (
     <div className="">
-      <Button className="btn btn-primary-alt" onClick={onAdd}>
+      <Button className="nes-btn is-primary" onClick={onAdd}>
         + Add
       </Button>
       <hr />
@@ -53,11 +53,11 @@ const ListEditor = ({list, onChangeList, editorComponent} :ListEditorProps) => {
               { editorComponent(index, value, onChangeConditionEv) }
             </div>
             <div className="col-6">
-              <Button className={`btn btn-secondary-alt ${index === 0 ? 'disabled' : ''}`} href="#" onClick={() => onChangeOrder(index, -1)}><UpIcon /></Button> 
+              <Button className={`nes-btn ${index === 0 ? 'disabled' : ''}`} href="#" onClick={() => onChangeOrder(index, -1)}><UpIcon /></Button> 
 
-              <Button className={`btn btn-secondary-alt ${index >= list.length - 1 ? 'disabled' : ''}`}  href="#" onClick={() => onChangeOrder(index, +1)}><DownIcon /></Button> 
+              <Button className={`nes-btn btn-secondary-alt ${index >= list.length - 1 ? 'disabled' : ''}`}  href="#" onClick={() => onChangeOrder(index, +1)}><DownIcon /></Button> 
               
-              <Button className="btn btn-danger" href="#" onClick={() => onRemove(index)}><TrashIcon /></Button>               
+              <Button className="nes-btn is-error" href="#" onClick={() => onRemove(index)}><TrashIcon /></Button>               
             </div>
           </div>
         ))

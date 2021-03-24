@@ -65,8 +65,9 @@ const CurveEditor = ({ curve, setCurve } : CurveProps) => {
   }
 
   const renderPredefinedCurves = () => (
-    <div className="form-group col-md-3">
-      <label>Predefined Curves:</label>
+    <>
+    <label>Predefined Curves:</label>
+    <div className="nes-select">
       <select className="form-control" onChange={(e) => setCurve('curve', predefinedCurves[e.target.value])}>
         {
           Object.keys(predefinedCurves).map(key => (
@@ -75,6 +76,7 @@ const CurveEditor = ({ curve, setCurve } : CurveProps) => {
         }        
       </select>      
     </div>
+    </>
   )
  
   return (
@@ -85,22 +87,22 @@ const CurveEditor = ({ curve, setCurve } : CurveProps) => {
       <div className="form-row">
         <div className="form-group col-md-6">
           <label>Exponent:</label>
-          <input type="number" className="form-control" value={curve.exponent} onChange={(e) => handleChange('exponent', e.target.value)} />
+          <input type="number" className="nes-input" value={curve.exponent} onChange={(e) => handleChange('exponent', e.target.value)} />
         </div>
         <div className="form-group col-md-6">
           <label>Slop:</label>
-          <input type="number" className="form-control" value={curve.slope} step="0.01" onChange={(e) => handleChange('slope',e.target.value)} />
+          <input type="number" className="nes-input" value={curve.slope} step="0.01" onChange={(e) => handleChange('slope',e.target.value)} />
         </div>
       </div>
 
       <div className="form-row">
         <div className="form-group col-md-6">
           <label>XShift:</label>
-          <input type="number" className="form-control" value={curve.xShift} step="0.01" onChange={(e) => handleChange('xShift', e.target.value)} />
+          <input type="number" className="nes-input" value={curve.xShift} step="0.01" onChange={(e) => handleChange('xShift', e.target.value)} />
         </div>
         <div className="form-group col-md-6">
           <label>YShift:</label>
-          <input type="number" className="form-control" value={curve.yShift} step="0.01" onChange={(e) => handleChange('yShift', e.target.value)} />
+          <input type="number" className="nes-input" value={curve.yShift} step="0.01" onChange={(e) => handleChange('yShift', e.target.value)} />
         </div>
       </div>   
     </>

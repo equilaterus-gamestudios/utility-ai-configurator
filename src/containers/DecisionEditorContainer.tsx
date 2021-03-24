@@ -39,26 +39,26 @@ const DecisionEditorContainer = ({ decision = defaultDecision } : DecisionEditor
       <div className="form-row">
         <div className="form-group col-md-6">
           <label>Tag:</label>
-          <input type="text" className="form-control" value={model.tag} onChange={(e) => setProperty('tag', e.target.value)} required />
+          <input type="text" className="nes-input" value={model.tag} onChange={(e) => setProperty('tag', e.target.value)} required />
         </div>
         <div className="form-group col-md-6">
           <label>Function Name:</label>
-          <input type="text" className="form-control" value={model.functionName} onChange={(e) => setProperty('functionName', e.target.value)} />
+          <input type="text" className="nes-input" value={model.functionName} onChange={(e) => setProperty('functionName', e.target.value)} />
         </div>
       </div>
       <div className="form-row">
         <div className="form-group col-md-6">
           <label>Weight:</label>
-          <input type="number" className="form-control" value={model.weight} onChange={(e) => setProperty('weight', parseFloat(e.target.value))} />
+          <input type="number" className="nes-input" value={model.weight} onChange={(e) => setProperty('weight', parseFloat(e.target.value))} />
         </div>
-        <div className="form-group col-md-6">
-          <label>Has Target Dependency:</label>
-          <input type="checkbox" className="form-control" checked={model.hasTargetDependency} onChange={(e) => setProperty('hasTargetDependency', e.target.checked)} />
-        </div>
+          <label>
+          <input type="checkbox" className="nes-checkbox" checked={model.hasTargetDependency} onChange={(e) => setProperty('hasTargetDependency', e.target.checked)} />
+          <span>Has Target Dependency:</span>
+          </label>
       </div>
       <div className="form-group">
         <label>Description:</label>
-        <input type="text" className="form-control" value={model.description} onChange={(e) => setProperty('description', e.target.value)} />
+        <input type="text" className="nes-input" value={model.description} onChange={(e) => setProperty('description', e.target.value)} />
       </div>
       <h2>Condition evaluators!</h2>
       <ListEditor
@@ -67,7 +67,7 @@ const DecisionEditorContainer = ({ decision = defaultDecision } : DecisionEditor
         editorComponent={(index, tag, onChangeValue) => <ListElementEditor index={index} tag={tag} onChangeValue={onChangeValue} selector={selectAllConditionEvaluatorsByTag}/>}
       />
 
-      <Button type="submit" className="btn btn-primary-alt btn-lg">
+      <Button type="submit" className="nes-btn is-primary">
         <ConfirmIcon/> Save
       </Button>
     </Form>
