@@ -4,8 +4,7 @@ app.allowRendererProcessReuse = false;
 const BrowserWindow = electron.BrowserWindow;
 
 const path = require('path');
-// TODO: Find an alternative
-const isDev = true;
+const isDev =  require('electron-is-dev');
 
 let mainWindow;
 
