@@ -33,11 +33,11 @@ const Header = () => {
       </div>
       </div>
       <Link onClick={hideBot} className={style}>
-      <section className="message -left">
-      <i className="nes-bcrikko"></i>
-      <div className="nes-balloon from-left">
+      <section className="message -right">
+      <div className="nes-balloon from-right">
         <p>Welcome to Utility AI</p>
       </div>
+      <i className="nes-bcrikko"></i>
     </section>
     </Link>
     </div>

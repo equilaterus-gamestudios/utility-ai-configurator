@@ -36,25 +36,25 @@ const DecisionEditorContainer = ({ decision = defaultDecision } : DecisionEditor
 
   return (
     <Form onSubmit={handleSave}>
-      <div className="form-row">
-        <div className="form-group col-md-6">
+      <div className="row">
+        <div className="col-md-5">
           <label>Tag:</label>
           <input type="text" className="nes-input" value={model.tag} onChange={(e) => setProperty('tag', e.target.value)} required />
         </div>
-        <div className="form-group col-md-6">
+        <div className="col-md-5">
           <label>Function Name:</label>
           <input type="text" className="nes-input" value={model.functionName} onChange={(e) => setProperty('functionName', e.target.value)} />
         </div>
-      </div>
-      <div className="form-row">
-        <div className="form-group col-md-6">
+        <div className="col-md-2">
           <label>Weight:</label>
           <input type="number" className="nes-input" value={model.weight} onChange={(e) => setProperty('weight', parseFloat(e.target.value))} />
         </div>
-          <label>
+      </div>
+      <div className="row">
+        <div className="checkbox">
           <input type="checkbox" className="nes-checkbox" checked={model.hasTargetDependency} onChange={(e) => setProperty('hasTargetDependency', e.target.checked)} />
           <span>Has Target Dependency:</span>
-          </label>
+        </div>
       </div>
       <div className="form-group">
         <label>Description:</label>

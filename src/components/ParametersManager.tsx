@@ -30,7 +30,7 @@ const ParametersManager = ({ parameters, setParameters }) => {
           return <Parameter parameter={parameter} key={index} index={index} remove={removeParameter} update={updateParameter} />
         })
       }
-      <button className="nes-btn is-primary" onClick={addNewParameter}>+</button>
+      <button className="nes-btn is-success" onClick={addNewParameter}>+ Add</button>
     </div>
   )
 }

@@ -16,14 +16,14 @@ const DecisionListContainer = ({ decisionTags, removeDecision } : PropTypes) => 
     return (
       <>
         <div>There are not any decisions</div>
-        <Link to="/EditDecision" className="nes-btn is-primary">Add new decision</Link>
+        <Link to="/EditDecision" className="nes-btn is-primary main-btn">Add new decision</Link>
       </>
     );
   }
 
   const renderActions = (decision :  DecisionModel) => (
     <>
-      <Link to={`/EditDecision/${decision.tag}`}  className="nes-btn">E</Link>
+      <Link to={`/EditDecision/${decision.tag}`}  className="nes-btn is-success">E</Link>
       <button className="nes-btn is-error" onClick={() => removeDecision(decision.tag)}>X</button>
     </>
   )
@@ -31,7 +31,7 @@ const DecisionListContainer = ({ decisionTags, removeDecision } : PropTypes) => 
   return (
     <>
       <Table tags={decisionTags} properties={['tag', 'description', 'functionName']} actions={renderActions} selector={selectDecisionByTag} />
-      <Link to="/EditDecision" className="nes-btn is-primary">Add new decision</Link>
+      <Link to="/EditDecision" className="nes-btn is-primary main-btn">Add new decision</Link>
     </>
   );
 }

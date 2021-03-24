@@ -35,17 +35,17 @@ const ConditionEvEditorContainer = ({ conditionEvaluator = defaultConditionEvalu
 
   return (
     <form>
-      <div className="form-row">
-        <div className="nes-field is-inline">
+      <div className="row">
+        <div className="nes-field col">
           <label>Tag:</label>
           <input type="text" className="nes-input" value={model.tag} onChange={(e) => setProperty('tag', e.target.value)} />
         </div>
-        <div className="nes-field is-inline">
+        <div className="nes-field col">
           <label>Function Name:</label>
           <input type="text" className="nes-input" value={model.functionName} onChange={(e) => setProperty('functionName', e.target.value)} />
         </div>
       </div>
-      <div className="nes-field is-inline">
+      <div className="nes-field">
         <label>Description:</label>
         <input type="text" className="nes-input" value={model.description} onChange={(e) => setProperty('description', e.target.value)} />
       </div>

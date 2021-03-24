@@ -47,13 +47,33 @@ html, body, pre, code, kbd, samp {
     transition: all 0.5s ease-in;
 }
 .message-bot:hover{
+    text-decoration: none;
     color: black;
 
 }
 
 .message-bot.inactive{
-    left:-370px;
+    left:-404px;
 }
 link > div > p{
     color: black;
+}
+
+.btn-center{
+    align-self:center;
+}
+.nes-input{
+    margin-bottom: 30px;
+}
+.nes-select{
+    margin-bottom: 30px;
+}
+.checkbox{
+    margin-bottom: 30px;
+}
+.nes-btn{
+    margin-right: 10px;
+}
+.main-btn{
+    margin-top: 30px;
 }

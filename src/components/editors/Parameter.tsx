@@ -17,21 +17,21 @@ const Parameter = ({ parameter, index, remove, update } : PropTypes) => {
   }
 
   return (
-    <div className="form-row">
-      <div className="form-group col-md-3">
+    <div className="row">
+      <div className="col-md-3">
         <label>Key:</label>
         <input type="text" className="nes-input" value={parameter.key} onChange={(e) => handleChange('key', e.target.value)} />
       </div>
-      <div className="form-group col-md-3">
+      <div className="col-md-3">
         <label>Value:</label>
         <input type="text" className="nes-input" value={parameter.value} onChange={(e) => handleChange('value', e.target.value)} />
       </div>
-      <div className="form-group col-md-5">
+      <div className="col-md-5">
         <label>Description:</label>
         <input type="text" className="nes-input" value={parameter.description} onChange={(e) => handleChange('description', e.target.value)} />
       </div>
-      <div className="form-group col-md-1">                
-        <button className="nes-btn is-error" onClick={(e) => remove(e, index)}>-</button>
+      <div className="col-md-1 btn-center">                
+        <button className="nes-btn is-error" onClick={(e) => remove(e, index)}>X</button>
       </div>
     </div>    
   );

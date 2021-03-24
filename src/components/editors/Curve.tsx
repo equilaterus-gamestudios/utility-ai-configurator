@@ -84,23 +84,23 @@ const CurveEditor = ({ curve, setCurve } : CurveProps) => {
       { renderPredefinedCurves() }
       <CurvePreview curveType={curve.curveType} exponent={curve.exponent} slope={curve.slope} xShift={curve.xShift} yShift={curve.yShift} />
 
-      <div className="form-row">
-        <div className="form-group col-md-6">
+      <div className="row">
+        <div className="col-md-6">
           <label>Exponent:</label>
           <input type="number" className="nes-input" value={curve.exponent} onChange={(e) => handleChange('exponent', e.target.value)} />
         </div>
-        <div className="form-group col-md-6">
+        <div className="col-md-6">
           <label>Slop:</label>
           <input type="number" className="nes-input" value={curve.slope} step="0.01" onChange={(e) => handleChange('slope',e.target.value)} />
         </div>
       </div>
 
-      <div className="form-row">
-        <div className="form-group col-md-6">
+      <div className="row">
+        <div className="col-md-6">
           <label>XShift:</label>
           <input type="number" className="nes-input" value={curve.xShift} step="0.01" onChange={(e) => handleChange('xShift', e.target.value)} />
         </div>
-        <div className="form-group col-md-6">
+        <div className="col-md-6">
           <label>YShift:</label>
           <input type="number" className="nes-input" value={curve.yShift} step="0.01" onChange={(e) => handleChange('yShift', e.target.value)} />
         </div>
