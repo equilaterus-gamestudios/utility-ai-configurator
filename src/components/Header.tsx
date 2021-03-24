@@ -3,28 +3,46 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [collapsed, setCollapsed] = useState('collapse');
+  const [style, setStyle] = useState('message-bot');
   const onCollapse = () => {
     setCollapsed(collapsed === '' ? 'collapse' : '')
   }
   const onHide = () => {
+
     setCollapsed('collapse');
   }
+  const hideBot = () => {
+    console.log('se esconde')
+    setStyle(style === 'message-bot'? 'message-bot inactive' : 'message-bot' );
+  }
   return (
-    <nav className={`navbar navbar-side navbar-side-left navbar-side-sm navbar-dark bg-dark-alpha-1 h-font ${collapsed}`} id="sideNavbar">
-      <div className="navbar-brand-container">
-        <Link onClick={onHide} className="navbar-brand" to="/">
-          <span>Utility AI</span>
-        </Link>
+    <>
+    <div className="col left-col" style={{backgroundColor:'#4aa52e'}}>
+      <div className="row left-menu">
+        <div className="left-menu-item">
+        <Link  onClick={onHide} className="nes-btn is-warning " to="/">Utility AI</Link>
+        </div>
+        <div className="left-menu-item">
+      <Link onClick={onHide} className="nes-btn is-primary" to="/ConditionEvaluators">Condition Evaluators</Link>
       </div>
-      <button className="navbar-toggler" type="button" onClick={onCollapse} aria-controls="sideNavbar" aria-expanded="false" aria-label="Toggle navigation">
-        <span className="navbar-toggler-icon"></span>
-      </button>
-      <ul className="navbar-nav">
-        <li><Link onClick={onHide} className="nav-link" to="/ConditionEvaluators">Condition Evaluators</Link></li>
-        <li><Link onClick={onHide} className="nav-link" to="/Decisions">Decisions</Link></li>
-        <li><Link onClick={onHide} className="nav-link" to="/DecisionSets">Decision Sets</Link></li>
-      </ul>
-    </nav>
+      <div className="left-menu-item">
+      <Link onClick={onHide} className="nes-btn is-primary" to="/Decisions">Decisions</Link>
+      </div>
+      <div className="left-menu-item">
+      <Link onClick={onHide} className="nes-btn is-primary" to="/DecisionSets">Decision Sets</Link>
+      </div>
+      </div>
+      <Link onClick={hideBot} className={style}>
+      <section className="message -left">
+      <i className="nes-bcrikko"></i>
+      <div className="nes-balloon from-left">
+        <p>Welcome to Utility AI</p>
+      </div>
+    </section>
+    </Link>
+    </div>
+    </>
+    
   )
 }
 
