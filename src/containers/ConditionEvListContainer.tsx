@@ -5,6 +5,11 @@ import { selectConditionEvaluatorTags, selectConditionEvaluatorByTag } from '../
 import Table from '../components/Table';
 import { ConditionEvaluatorModel } from '../common/models';
 import { removeConditionEvaluator } from '../actions/conditionEvaluatorActions';
+import sortBy from "lodash/orderBy";
+
+const sortTags = (tags : Array<string>) => {
+  return sortBy(tags, [(tag) => { return  tag.split('').reduce((acc, val, index) => acc + val.charCodeAt(0) * Math.pow(10, index), 0)}])
+}
 
 interface PropTypes {
   conditionEvaluatorTags: Array<string>,
@@ -30,7 +35,7 @@ const ConditionEvListContainer = ({ conditionEvaluatorTags, removeConditionEvalu
 
   return (
     <>
-      <Table tags={conditionEvaluatorTags} properties={['tag', 'description', 'functionName']} actions={renderActions} selector={selectConditionEvaluatorByTag} />
+      <Table tags={sortTags(conditionEvaluatorTags)} properties={['tag', 'description', 'functionName']} actions={renderActions} selector={selectConditionEvaluatorByTag} />
       <Link to="/EditConditionEvaluator" className="nes-btn is-primary main-btn">Add new condition evaluator</Link>
     </>
   );
