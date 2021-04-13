@@ -49,10 +49,10 @@ const ListEditor = ({list, onChangeList, editorComponent} :ListEditorProps) => {
       {
         list.map((value, index) => (
           <div className="row" key={index}>
-            <div className="col-6">
+            <div className="col-9">
               { editorComponent(index, value, onChangeConditionEv) }
             </div>
-            <div className="col-6">
+            <div className="col-3">
               <Button className={`nes-btn ${index === 0 ? 'is-disabled' : ''}`} href="#" onClick={() => onChangeOrder(index, -1)}><UpIcon /></Button> 
 
               <Button className={`nes-btn ${index >= list.length - 1 ? 'is-disabled' : ''}`}  href="#" onClick={() => onChangeOrder(index, +1)}><DownIcon /></Button> 

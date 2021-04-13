@@ -5,7 +5,7 @@ import { StringifyToPascalCase } from '../common/utility';
 import pick from 'lodash/pick';
 import Parameter from '../components/editors/Parameter';
 
-const FILE_NAME = 'AIConfiguration.json';
+const FILE_NAME = 'AIConfiguration.aidb';
 
 const conditionEvaluatorProperties = ['tag', 'functionName', 'curve', 'parameters'];
 const decisionProperties = ['tag', 'functionName', 'weight', 'hasTargetDependency', 'conditionEvaluators'];

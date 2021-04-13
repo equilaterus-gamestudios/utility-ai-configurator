@@ -1,7 +1,7 @@
 import { Curve } from './models';
 
 const lineal : Curve = {
-  curveType: 'POLINOMIAL',
+  curveType: 'POLYNOMIAL',
   exponent: 1,
   slope: 1,
   xShift: 1,
@@ -9,7 +9,7 @@ const lineal : Curve = {
 };
 
 const linealInverse : Curve = {
-  curveType: 'POLINOMIAL',
+  curveType: 'POLYNOMIAL',
   exponent: 1,
   slope: -1,
   xShift: 0,
@@ -17,7 +17,7 @@ const linealInverse : Curve = {
 };
 
 const quadratic : Curve = {
-  curveType: 'POLINOMIAL',
+  curveType: 'POLYNOMIAL',
   exponent: 2,
   slope: 1,
   xShift: 1,
@@ -25,7 +25,7 @@ const quadratic : Curve = {
 };
 
 const quadraticInverse : Curve = {
-  curveType: 'POLINOMIAL',
+  curveType: 'POLYNOMIAL',
   exponent: 2,
   slope: -1,
   xShift: 0,

@@ -17,7 +17,7 @@ const defaultConditionEvaluator:ConditionEvaluatorModel = {
   functionName: '',
   parameters: [],
   curve: {
-    curveType: 'POLINOMIAL',
+    curveType: 'POLYNOMIAL',
     exponent: 1,
     slope: 1,
     xShift: 1,

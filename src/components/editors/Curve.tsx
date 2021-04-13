@@ -3,10 +3,10 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
 import { Curve } from '../../common/models';
 import { predefinedCurves } from '../../common/defaultCurves';
 
-const POLINOMIAL = "POLINOMIAL";
+const POLYNOMIAL = "POLYNOMIAL";
 const range = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0];
 
-const polinomialFunction = (exponent, slope, xShift, yShift) => x =>  {
+const polynomialFunction = (exponent, slope, xShift, yShift) => x =>  {
   return slope * Math.pow(x, exponent) - yShift + xShift;
 }
 
@@ -22,8 +22,8 @@ const CurvePreview = ({curveType, exponent, slope, xShift, yShift}) => {
   
   const calculateData = useCallback(() => {
     let curveFunction;
-    if (curveType === POLINOMIAL) {
-      curveFunction = polinomialFunction(exponent, slope, xShift, yShift);
+    if (curveType === POLYNOMIAL) {
+      curveFunction = polynomialFunction(exponent, slope, xShift, yShift);
     } else {
       curveFunction = gaussianFunction(exponent, slope, xShift, yShift);
     }
