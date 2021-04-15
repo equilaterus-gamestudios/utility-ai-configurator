@@ -19,7 +19,7 @@ function createWindow() {
       contextIsolation: false
     }
   });
-  mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
+  loadUrlWithNodeWorkaround(mainWindow, isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
   if (isDev) {
     // Open the DevTools.
     //BrowserWindow.addDevToolsExtension('<location to your react chrome extension>');
@@ -43,3 +43,10 @@ app.on('activate', () => {
     createWindow();
   }
 });
+
+// Workaround for https://github.com/electron/electron/issues/19554 otherwise fs does not work
+function loadUrlWithNodeWorkaround(window, url) {
+  setTimeout(() => {
+    window.loadURL(url);
+  }, 10);
+}
