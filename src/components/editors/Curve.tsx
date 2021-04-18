@@ -6,12 +6,14 @@ import { predefinedCurves } from '../../common/defaultCurves';
 const POLYNOMIAL = "POLYNOMIAL";
 const range = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0];
 
+const clamp = (x) => Math.min(Math.max(x, 0), 1);
+
 const polynomialFunction = (exponent, slope, xShift, yShift) => x =>  {
-  return slope * Math.pow(x, exponent) - yShift + xShift;
+  return clamp(slope * Math.pow(x, exponent) - yShift + xShift);
 }
 
 const gaussianFunction = (exponent, slope, xShift, yShift) => x =>  {
-  return exponent * Math.exp(-1 * Math.pow((x - xShift) / yShift, 2)) - slope;  
+  return clamp(exponent * Math.exp(-1 * Math.pow((x - xShift) / yShift, 2)) - slope);  
 }
 
 const CurvePreview = ({curveType, exponent, slope, xShift, yShift}) => {  
