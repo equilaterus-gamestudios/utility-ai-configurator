@@ -5,11 +5,8 @@ import { selectConditionEvaluatorTags, selectConditionEvaluatorByTag } from '../
 import Table from '../components/Table';
 import { ConditionEvaluatorModel } from '../common/models';
 import { removeConditionEvaluator } from '../actions/conditionEvaluatorActions';
-import sortBy from "lodash/orderBy";
+import { sortTags } from "../common/utility";
 
-const sortTags = (tags : Array<string>) => {
-  return sortBy(tags, [(tag) => { return  tag.split('').reduce((acc, val, index) => acc + val.charCodeAt(0) * Math.pow(10, index), 0)}])
-}
 
 interface PropTypes {
   conditionEvaluatorTags: Array<string>,

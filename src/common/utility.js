@@ -1,5 +1,10 @@
 import keyBy from 'lodash/keyBy';
 import values from 'lodash/values';
+import sortBy from 'lodash/sortBy';
+
+export const sortTags = (tags) => {
+  return sortBy(tags, [(tag) => { return  tag.split('').reduce((acc, val, index) => acc + (val.charCodeAt(0)) * Math.pow(10, tag.length - index), 0)}])
+}
 
 export const getTags = (list) => (
   list.map(element => element.tag)
