@@ -5,6 +5,7 @@ import { selectDecisionTags, selectDecisionByTag } from '../selectors/DecisionSe
 import Table from '../components/Table';
 import { DecisionModel } from '../common/models';
 import { removeDecision } from '../actions/decisionActions';
+import { sortTags } from "../common/utility";
 
 interface PropTypes {
   decisionTags: Array<string>,
@@ -30,7 +31,7 @@ const DecisionListContainer = ({ decisionTags, removeDecision } : PropTypes) => 
 
   return (
     <>
-      <Table tags={decisionTags} properties={['tag', 'description', 'functionName']} actions={renderActions} selector={selectDecisionByTag} />
+      <Table tags={sortTags(decisionTags)} properties={['tag', 'description', 'functionName']} actions={renderActions} selector={selectDecisionByTag} />
       <Link to="/EditDecision" className="nes-btn is-primary main-btn">Add new decision</Link>
     </>
   );

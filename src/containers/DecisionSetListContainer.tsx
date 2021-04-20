@@ -5,6 +5,7 @@ import { selectDecisionSetTags, selectDecisionSetByTag } from '../selectors/Deci
 import Table from '../components/Table';
 import { DecisionSetModel } from '../common/models';
 import { removeDecisionSet } from '../actions/decisionSetActions';
+import { sortTags } from '../common/utility';
 
 interface PropTypes {
   decisionSetTags: Array<string>,
@@ -30,7 +31,7 @@ const DecisionSetListContainer = ({ decisionSetTags, removeDecisionSet } : PropT
 
   return (
     <>
-      <Table tags={decisionSetTags} properties={['tag', 'description', 'functionName']} actions={renderActions} selector={selectDecisionSetByTag} />
+      <Table tags={sortTags(decisionSetTags)} properties={['tag', 'description', 'functionName']} actions={renderActions} selector={selectDecisionSetByTag} />
       <Link to="/EditDecisionSet" className="nes-btn is-primary main-btn">Add new decision set</Link>
     </>
   );
