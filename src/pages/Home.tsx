@@ -1,12 +1,20 @@
-import withLayout from '../wrappers/withLayout';
-import { useActions } from '../hooks/useActions';
+
+import StartActions from '../components/StartActions';
+import RecentFiles from '../components/RecentFiles';
 
 const Home = () => {
   return  (
     <>
-      <h4>Start</h4>
-
-      <h4>Recent projects</h4>
+      <div className="editor">
+          <div className="default-col container-fluid">
+            <div className="row">
+              <div className="col-4">
+                <StartActions />
+              </div>
+            </div>
+            <RecentFiles />
+          </div>
+        </div>
     </>
   );
   

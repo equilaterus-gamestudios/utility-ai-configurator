@@ -12,6 +12,7 @@ import Header from './components/Header';
 import SideMenu from './components/SideMenu';
 import { usePrivateActions } from './hooks/usePrivateActions';
 import { useEffect } from 'react';
+import { useActions } from './hooks/useActions';
 
 
 // Custom title bar
@@ -22,6 +23,7 @@ export const titlebar = new Titlebar({
 
 const App = () => {
   const { onLoadRuntimeDialog } = usePrivateActions();
+  const { runtime } = useActions();
 
   useEffect(() => { 
     onLoadRuntimeDialog(); 
@@ -33,7 +35,7 @@ const App = () => {
       <div className="app-contents">
         <SideMenu /><Header />         
         <div className="main-col">
-          <div className="pt-5 d-block d-sm-none">&nbsp;</div>          
+          <div className="pt-5 d-block d-sm-none">&nbsp;</div>            
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/ConditionEvaluators" exact component={ConditionEvaluators} />
@@ -43,6 +45,7 @@ const App = () => {
             <Route path="/DecisionSets" exact component={DecisionSets} />
             <Route path="/EditDecisionSet/:tag?" exact component={EditDecisionSet} />
           </Switch>
+          <span className="file-path">{runtime.projectPath ?? ''} {runtime.changesNotSaved ? '[*]' : ''}</span>
         </div>   
       </div> 
    

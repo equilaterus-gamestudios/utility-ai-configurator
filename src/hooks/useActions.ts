@@ -38,6 +38,26 @@ export function useActions() {
     // Load file
     dispatch(loadProject(result.filePaths[0]));
   }
+  /** 
+   * Load Project
+   */
+  const onLoadProject = async (filePath : string) => {
+    // Pending changes?
+    if (runtime.changesNotSaved) {
+      const choice = await dialog.showMessageBox(
+        {
+          type: 'question',
+          buttons: ['No, I want to save my changes before openning a new file.', 'Yes, continue and ignore changes.'],
+          title: 'Confirmation',
+          message: 'Unsaved changes will be lost.'
+        }
+      );
+      if (choice.response === 0) return;
+    }    
+    // Load file
+    dispatch(loadProject(filePath));
+
+  }
 
   /**
    * Create project
@@ -139,6 +159,6 @@ export function useActions() {
     dispatch(saveProject(false));
   }
 
-  return { onLoadProjectDialog, onCreateProjectDialog, onExportProjectDialog, onSaveAsProjectDialog, onSaveProject, runtime }
+  return { onLoadProjectDialog, onCreateProjectDialog, onExportProjectDialog, onSaveAsProjectDialog, onLoadProject, onSaveProject, runtime }
 }
 

@@ -9,11 +9,8 @@ const Header = () => {
   const { onLoadProjectDialog, onCreateProjectDialog, onExportProjectDialog, onSaveAsProjectDialog, onSaveProject, runtime } = useActions();
 
   const isDev = useIsDev();
-  const [collapsed, setCollapsed] = useState('collapse');
-  const [style, setStyle] = useState('message-bot');
-  const onCollapse = () => {
-    setCollapsed(collapsed === '' ? 'collapse' : '')
-  }  
+
+  const RedirectToHome = 
 
   useEffect(() => {
     const menu = new ElectronMenu();
@@ -112,19 +109,21 @@ const Header = () => {
       ]
     }));*/
 
+    const isProjectLoaded = () => (runtime.projectPath && runtime.projectPath.length > 0);
+
     return (
     <div className="col left-col">
       <div className="left-menu">
-        <a className="nes-btn"
-          onClick={onCreateProjectDialog}>
-            <img src={process.env.PUBLIC_URL + '/new.png'} alt="New" />
-        </a>
+        <Link to="/" className="nes-btn">
+          <img src={process.env.PUBLIC_URL + '/new.png'} alt="New" />
+        </Link>
         <a className="nes-btn"
           onClick={onLoadProjectDialog}>
             <img src={process.env.PUBLIC_URL + '/open.png'} alt="Open" />
         </a>
-        <a className="nes-btn"
-          onClick={onSaveProject}>
+        <a className={`nes-btn ${isProjectLoaded() ? '' : 'is-disabled'}`}
+          onClick={onSaveProject}
+          style={{pointerEvents: isProjectLoaded() ? 'auto' : 'none'}}>
             <img src={process.env.PUBLIC_URL + '/save.png'} alt="Save"/> 
             {runtime.changesNotSaved ? '[*]' : ''}
         </a>
@@ -132,8 +131,6 @@ const Header = () => {
           onClick={onSaveAsProjectDialog}>
             <img src={process.env.PUBLIC_URL + '/save-as.png'} alt="SaveAs" />
         </a>
-        <span className="file-path">{runtime.projectPath ?? ''} {runtime.changesNotSaved ? '[*]' : ''}</span>     
-          
         <Link to="/ConditionEvaluators" className="nes-btn is-primary big">
             <img src={process.env.PUBLIC_URL + '/Conditions.png'} alt="Conditions" />
         </Link>
@@ -146,8 +143,9 @@ const Header = () => {
           <img src={process.env.PUBLIC_URL + '/Archetypes.png'} alt="Archetypes" />         
         </Link>
 
-        <a className="nes-btn is-error big"
-          onClick={onExportProjectDialog}>
+        <a className={`nes-btn is-error big ${isProjectLoaded() ? '' : 'is-disabled'}`}        
+          onClick={onExportProjectDialog} 
+          style={{pointerEvents: isProjectLoaded() ? 'auto' : 'none'}}>
             <img src={process.env.PUBLIC_URL + '/export.png'} alt="Export" />
         </a>
         </div>

@@ -22,8 +22,10 @@ body {
 }
 
 .main-container {
-    max-width: 950px;
+    max-width: 1000px;
     background-color: #fff;
+    margin-top: 25px;
+    margin-bottom: 30px;
 }
 h1,h2,h3,h4,h5,h6 {
     font-weight: normal;
@@ -218,7 +220,15 @@ link > div > p{
 }
 
 .file-path {
+    background-color: #eee;
+    font-size: 12px;
     color: #a2937c;
     margin-left: auto;
     padding-right: 15px;
+    pointer-events: none;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border: 2px solid #000;
+    padding: 2px 6px;
 }

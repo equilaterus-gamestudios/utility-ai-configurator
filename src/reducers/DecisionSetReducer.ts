@@ -9,7 +9,10 @@ export interface DecisionSetState {
   tags: Array<string>
 }
 
-const defaultState = {} as DecisionSetState
+const defaultState = {
+  byTag: {},
+  tags: []
+} as DecisionSetState
 
 export const decisionSetReducer = (state = defaultState, action : ProjectActionTypes | DecisionSetActionTypes | DecisionActionTypes) : DecisionSetState  => {
   switch(action.type) {

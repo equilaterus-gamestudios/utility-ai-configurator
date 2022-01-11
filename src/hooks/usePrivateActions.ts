@@ -1,22 +1,18 @@
 import { dialog } from '@electron/remote';
 import { useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { loadProject } from '../actions/projectActions';
 import { loadRuntime, cleanTemp } from '../actions/runtimeActions';
 import { TEMP_FILE } from '../common/Global';
-import { runtimeModel } from '../common/models';
 
-import * as runtimeAPI from '../api/runtimeAPI';
-
-export function usePrivateActions() {
-  const runtime = useSelector((state) => state.runtime) as runtimeModel
+export function usePrivateActions() {  
   const dispatch = useDispatch();
 
   /**
-   * Load project
+   * Load runtime
    */
   const onLoadRuntimeDialog = async () => {
-    const privateOnLoadRuntimeDialog = async (runtime) => {
+    const runtimeDialogCallback = async (runtime) => {
       // Pending changes?
       if (runtime.changesNotSaved) {
         const choice = await dialog.showMessageBox(
@@ -31,7 +27,6 @@ export function usePrivateActions() {
           dispatch(cleanTemp());
           return;
         }
-        
           
         // Restore
         dispatch(loadProject(TEMP_FILE))
@@ -47,7 +42,7 @@ export function usePrivateActions() {
     }
 
     // Load runtime
-    dispatch(loadRuntime(privateOnLoadRuntimeDialog));
+    dispatch(loadRuntime(runtimeDialogCallback));
   }
 
   return { onLoadRuntimeDialog: useCallback(onLoadRuntimeDialog, []) }
