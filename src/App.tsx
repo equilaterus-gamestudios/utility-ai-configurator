@@ -23,6 +23,7 @@ const App = () => {
   
   useEffect(() => { 
     onLoadRuntimeDialog(); 
+    // eslint-disable-next-line 
   }, [] );
 
   return (
