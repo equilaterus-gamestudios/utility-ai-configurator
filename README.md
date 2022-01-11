@@ -1,7 +1,9 @@
 
-# UtilityAI Configurator
+# Geppetto - UtilityAI Configurator
 
-UtilityAI for UE4 by Equilaterus.
+![Geppetto UtilityAI Configurator](https://equilaterus.com/assets/img/projects/geppetto-utility-ai.PNG)
+
+UtilityAI for Unreal by Equilaterus.
 
 * Run: 
   ```
