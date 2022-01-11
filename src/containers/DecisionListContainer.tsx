@@ -16,7 +16,7 @@ const DecisionListContainer = ({ decisionTags, removeDecision } : PropTypes) => 
   if (!decisionTags || !decisionTags.length) {
     return (
       <>
-        <div>There are not any decisions</div>
+        <div>You haven't created any decision yet.</div>
         <Link to="/EditDecision" className="nes-btn is-primary main-btn">Add new decision</Link>
       </>
     );
