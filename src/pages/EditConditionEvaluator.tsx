@@ -9,9 +9,7 @@ const EditConditionEvaluator = ({ match }) => {
   const conditionEvaluator = useSelector(selectConditionEvaluatorByTag(match.params.tag))
 
   return (
-    <>
-      <ConditionEvEditorContainer conditionEvaluator={conditionEvaluator} />    
-    </>
+    <ConditionEvEditorContainer conditionEvaluator={conditionEvaluator} />
   )
 }
 

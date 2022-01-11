@@ -1,5 +1,3 @@
-import history from '../history';
-import { getValuesFromByTag } from '../common/utility';
 import { DecisionActionTypes, SAVE_DECISIONS_REQUEST, REMOVE_DECISION_REQUEST } from './types';
 
 

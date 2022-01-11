@@ -1,4 +1,3 @@
-import history from '../history';
 import { getValuesFromByTag } from '../common/utility';
 import { ProjectActionTypes, LOAD_PROJECT_REQUEST, LOAD_PROJECT_SUCCESS, EXPORT_PROJECT_REQUEST, EXPORT_PROJECT_SUCCESS, SAVE_PROJECT_REQUEST, SAVE_PROJECT_SUCCESS, RESTORE_PROJECT } from './types';
 import * as projectAPI from '../api/projectAPI';

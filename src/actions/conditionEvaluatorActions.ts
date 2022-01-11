@@ -1,5 +1,3 @@
-import history from '../history';
-import { getValuesFromByTag } from '../common/utility';
 import { SAVE_CONDITION_EVALUATOR_REQUEST, REMOVE_CONDITION_EVALUATOR_REQUEST, ConditionEvaluatorActionTypes } from './types';
 
 import { ConditionEvaluatorModel } from '../common/models';
