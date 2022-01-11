@@ -15,42 +15,35 @@ import SideMenu from './components/SideMenu';
 // Custom title bar
 export const titlebar = new Titlebar({
 	backgroundColor: Color.fromHex('#000'),
-  icon: `${process.env.PUBLIC_URL}/icon.png`
+  icon: `${process.env.PUBLIC_URL}/UtilityAi.ico`
 });
 
-const App = () => {
-  //useEffect(() => {
-  //  setTimeout(() => {
-  //    loadConfiguration();
-  //  }, 1000);
-  //})
-
-  return (         
-    <Router history={history}>
-      <Header />
-      <SideMenu />
-      <div className="container-fluid">
-      <div className="row">        
-        <div className="col">
-          <div className="pt-5 d-block d-sm-none">&nbsp;</div>
-          <div className="container main-container overflow-auto">
-            <div className="px-3">
-              <Switch>
-                <Route path="/" exact component={Home} />
-                <Route path="/ConditionEvaluators" exact component={ConditionEvaluators} />
-                <Route path="/EditConditionEvaluator/:tag?" exact component={EditConditionEvaluator} />
-                <Route path="/Decisions" exact component={Decisions} />
-                <Route path="/EditDecision/:tag?" exact component={EditDecision} />
-                <Route path="/DecisionSets" exact component={DecisionSets} />
-                <Route path="/EditDecisionSet/:tag?" exact component={EditDecisionSet} />
-              </Switch>
-            </div>
+const App = () => (         
+  <Router history={history}>
+    <Header />
+    <SideMenu />
+    <div className="container-fluid">
+    <div className="row">        
+      <div className="col">
+        <div className="pt-5 d-block d-sm-none">&nbsp;</div>
+        <div className="container main-container overflow-auto">
+          <div className="px-3">
+            <Switch>
+              <Route path="/" exact component={Home} />
+              <Route path="/ConditionEvaluators" exact component={ConditionEvaluators} />
+              <Route path="/EditConditionEvaluator/:tag?" exact component={EditConditionEvaluator} />
+              <Route path="/Decisions" exact component={Decisions} />
+              <Route path="/EditDecision/:tag?" exact component={EditDecision} />
+              <Route path="/DecisionSets" exact component={DecisionSets} />
+              <Route path="/EditDecisionSet/:tag?" exact component={EditDecisionSet} />
+            </Switch>
           </div>
         </div>
-      </div>    
-      </div> 
-    </Router>    
-  );
-}
+      </div>
+    </div>    
+    </div> 
+  </Router>    
+);
+
 
 export default App;

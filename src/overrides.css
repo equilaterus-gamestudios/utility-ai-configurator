@@ -77,3 +77,32 @@ link > div > p{
 .main-btn{
     margin-top: 30px;
 }
+
+.btn {
+    font-size: 1rem;
+    padding: 1px 6px 4px 6px !important;
+    border-image: none;
+    background-color: #504330;
+    color: #ab9e7f;
+    cursor: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAzElEQVRYR+2X0Q6AIAhF5f8/2jYXZkwEjNSVvVUjDpcrGgT7FUkI2D9xRfQETwNIiWO85wfINfQUEyxBG2ArsLwC0jioGt5zFcwF4OYDPi/mBYKm4t0U8ATgRm3ThFoAqkhNgWkA0jJLvaOVSs7j3qMnSgXWBMiWPXe94QqMBMBc1VZIvaTu5u5pQewq0EqNZvIEMCmxAawK0DNkay9QmfFNAJUXfgGgUkLaE7j/h8fnASkxHTz0DGIBMCnBeeM7AArpUd3mz2x3C7wADglA8BcWMZhZAAAAAElFTkSuQmCC) 14 0,pointer;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    border-top: 2px solid #5c4f3c;
+    border-bottom: 4px solid #33291b;
+    background-color: #504330;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.menu img {
+    max-width: 32px;
+}
+
+.file-path {
+    color: #a2937c;
+    margin-left: auto;
+    padding-right: 15px;
+}

@@ -5,7 +5,7 @@ import { changeProjectPath } from '../actions/runtimeActions';
 import { runtimeModel } from '../common/models';
 
 export function useActions() {
-  const runTime = useSelector((state) => state.runtime) as runtimeModel
+  const runtime = useSelector((state) => state.runtime) as runtimeModel
   const dispatch = useDispatch();
 
   /**
@@ -13,7 +13,7 @@ export function useActions() {
    */
   const onLoadProjectDialog = async () => {
     // Pending changes?
-    if (runTime.changesNotSaved) {
+    if (runtime.changesNotSaved) {
       const choice = await dialog.showMessageBox(
         {
           type: 'question',
@@ -44,7 +44,7 @@ export function useActions() {
    */
   const onCreateProjectDialog = async () => {
     // Pending changes?
-    if (runTime.changesNotSaved) {            
+    if (runtime.changesNotSaved) {            
       const choice = await dialog.showMessageBox(
         {
           type: 'question',
@@ -76,7 +76,7 @@ export function useActions() {
    */
    const onExportProjectDialog = async () => {
     // Pending changes?
-    if (runTime.changesNotSaved) {            
+    if (runtime.changesNotSaved) {            
       const choice = await dialog.showMessageBox(
         {
           type: 'question',
@@ -88,7 +88,7 @@ export function useActions() {
       // Save the in-memory changes into disk
       if (choice.response === 0) dispatch(saveProject(false));
       // Discard in-memory changes an re-load from disk
-      else dispatch(loadProject(runTime.projectPath));
+      else dispatch(loadProject(runtime.projectPath));
     }
   
     // Show load dialog
@@ -139,6 +139,6 @@ export function useActions() {
     dispatch(saveProject(false));
   }
 
-  return { onLoadProjectDialog, onCreateProjectDialog, onExportProjectDialog, onSaveAsProjectDialog, onSaveProject }
+  return { onLoadProjectDialog, onCreateProjectDialog, onExportProjectDialog, onSaveAsProjectDialog, onSaveProject, runtime }
 }
 

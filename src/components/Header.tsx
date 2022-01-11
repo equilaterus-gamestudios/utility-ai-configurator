@@ -5,7 +5,7 @@ import { useActions } from '../hooks/useActions';
 import { titlebar } from '../App';
 
 const Header = () => {
-  const { onLoadProjectDialog, onCreateProjectDialog, onExportProjectDialog, onSaveAsProjectDialog, onSaveProject } = useActions();
+  const { onLoadProjectDialog, onCreateProjectDialog, onExportProjectDialog, onSaveAsProjectDialog, onSaveProject, runtime } = useActions();
 
   const [collapsed, setCollapsed] = useState('collapse');
   const [style, setStyle] = useState('message-bot');
@@ -90,7 +90,37 @@ const Header = () => {
       ]
     }));*/
 
-    return <></>
+    return (
+    <div className="menu">
+      <button
+        type="button" className="btn"
+        onClick={onCreateProjectDialog}>
+          <img src={process.env.PUBLIC_URL + '/new.png'} alt="New" />
+      </button>
+      <button
+        type="button" className="btn"
+        onClick={onLoadProjectDialog}>
+          <img src={process.env.PUBLIC_URL + '/open.png'} alt="Open" />
+      </button>
+      <button 
+        type="button" className="btn"
+        onClick={onSaveProject}>
+          <img src={process.env.PUBLIC_URL + '/save.png'} alt="Save"/> 
+          {runtime.changesNotSaved ? '[*]' : ''}
+      </button>
+      <button
+        type="button" className="btn"
+        onClick={onSaveAsProjectDialog}>
+          <img src={process.env.PUBLIC_URL + '/save-as.png'} alt="SaveAs" />
+      </button>
+      <button
+        type="button" className="btn"
+        onClick={onExportProjectDialog}>
+          <img src={process.env.PUBLIC_URL + '/export.png'} alt="Export" />
+      </button>
+      <span className="file-path">{runtime.projectPath ?? 'Not saved'} {runtime.changesNotSaved ? '[*]' : ''}</span>
+    </div>
+    );
 }
 
 export default Header;
