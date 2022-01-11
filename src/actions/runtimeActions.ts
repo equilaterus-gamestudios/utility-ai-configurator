@@ -1,4 +1,9 @@
-import { RuntimeActionTypes, SET_PROJECT_PATH } from './types';
+import { RuntimeActionTypes, SET_PROJECT_PATH, LOAD_RUNTIME_SUCCESS, CLEANUP_SUCCESS } from './types';
+import { ProjectModel, runtimeModel } from '../common/models';
+
+import * as runtimeAPI from '../api/runtimeAPI';
+import * as projectAPI from '../api/projectAPI';
+import { TEMP_FILE, DEFAULT_PROJ } from '../common/Global';
 
 const setProjectPath =  (newProjectPath: string) : RuntimeActionTypes => {
   return {
@@ -9,4 +14,31 @@ const setProjectPath =  (newProjectPath: string) : RuntimeActionTypes => {
 
 export const changeProjectPath = (newProjectPath: string) => async (dispatch) => {
   dispatch(setProjectPath(newProjectPath));
+}
+
+const loadRuntimeSuccess = (runtime : runtimeModel) => ({
+  type: LOAD_RUNTIME_SUCCESS,
+  payload: runtime
+})
+
+export const loadRuntime = (callback) => async (dispatch) => {
+  const runtime = await runtimeAPI.loadRuntime();
+  dispatch(loadRuntimeSuccess(runtime));
+  await callback(runtime);
+}
+
+export const saveRuntime = () => async (dispatch, getState) => {  
+  await runtimeAPI.saveRuntime(getState().runtime);
+}
+
+const cleanupSuccess = () => ({
+  type: CLEANUP_SUCCESS
+})
+
+export const cleanTemp = () => async (dispatch) => {
+  await projectAPI.saveProject(TEMP_FILE, DEFAULT_PROJ as ProjectModel);
+  dispatch(cleanupSuccess());
+
+  // save the runtime
+  dispatch(saveRuntime())
 }

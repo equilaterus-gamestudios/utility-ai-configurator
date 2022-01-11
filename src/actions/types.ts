@@ -1,4 +1,4 @@
-import { ConditionEvaluatorModel, ProjectModel, DecisionModel, DecisionSetModel } from '../common/models'
+import { ConditionEvaluatorModel, ProjectModel, DecisionModel, DecisionSetModel, runtimeModel } from '../common/models'
 
 /** Condition Evaluators */
 
@@ -186,11 +186,26 @@ export type ProjectActionTypes = LoadProjectRequest | LoadProjectSuccess | SaveP
 /**
  * Runtime
  */
+export const LOAD_RUNTIME_REQUEST = 'LOAD_RUNTIME_REQUEST';
+export const LOAD_RUNTIME_SUCCESS = 'LOAD_RUNTIME_SUCCESS';
+export const SAVE_RUNTIME_REQUEST = 'SAVE_RUNTIME_REQUEST';
+export const SAVE_RUNTIME_SUCCESS = 'SAVE_RUNTIME_SUCCESS';
+
 export const SET_PROJECT_PATH = 'SET_PROJECT_PATH';
+export const CLEANUP_SUCCESS = 'CLEANUP_SUCCESS';
 
 interface SetProjectPath {
   type: typeof SET_PROJECT_PATH,
   payload: string
 }
 
-export type RuntimeActionTypes = SetProjectPath;
+interface LoadRuntimeSuccess {
+  type: typeof LOAD_RUNTIME_SUCCESS,
+  payload: runtimeModel
+}
+
+interface CleanupSuccess {
+  type: typeof CLEANUP_SUCCESS
+}
+
+export type RuntimeActionTypes = SetProjectPath | LoadRuntimeSuccess | CleanupSuccess;

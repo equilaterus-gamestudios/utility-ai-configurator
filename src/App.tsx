@@ -10,6 +10,8 @@ import DecisionSets from './pages/DecisionSets';
 import EditDecisionSet from './pages/EditDecisionSet';
 import Header from './components/Header';
 import SideMenu from './components/SideMenu';
+import { usePrivateActions } from './hooks/usePrivateActions';
+import { useEffect } from 'react';
 
 
 // Custom title bar
@@ -19,6 +21,12 @@ export const titlebar = new Titlebar({
 });
 
 const App = () => {
+  const { onLoadRuntimeDialog } = usePrivateActions();
+
+  useEffect(() => { 
+    onLoadRuntimeDialog(); 
+  }, [] );
+
   return (
     <Router history={history}>
     <div className="app">    

@@ -30,7 +30,7 @@ export function useActions() {
       {
         title:'Open Dialogue',
         properties: ['openFile'],
-        filters: [{'extensions': ['aiconf'], 'name': 'AI Configuration file' } as Electron.FileFilter]
+        filters: [{'extensions': ['aiproj'], 'name': 'AI Project file' } as Electron.FileFilter]
       }
     );
     if (result.filePaths.length === 0) return;
@@ -61,7 +61,7 @@ export function useActions() {
       {
         title:'Create Dialogue',
         properties: ['createDirectory'],
-        filters: [{'extensions': ['aiconf'], 'name': 'AI Configuration file' } as Electron.FileFilter]
+        filters: [{'extensions': ['aiproj'], 'name': 'AI Project file' } as Electron.FileFilter]
       }
     );    
     if (result.canceled === true) return;
@@ -129,7 +129,7 @@ export function useActions() {
       {
         title:'Save As Dialogue',
         properties: ['createDirectory'],
-        filters: [{'extensions': ['aiconf'], 'name': 'AI Configuration file' } as Electron.FileFilter]
+        filters: [{'extensions': ['aiproj'], 'name': 'AI Project file' } as Electron.FileFilter]
       }
     );
     if (result.canceled === true) return;

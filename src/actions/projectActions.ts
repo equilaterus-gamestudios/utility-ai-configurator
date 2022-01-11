@@ -4,6 +4,8 @@ import { ProjectActionTypes, LOAD_PROJECT_REQUEST, LOAD_PROJECT_SUCCESS, EXPORT_
 import * as projectAPI from '../api/projectAPI';
 
 import { ProjectModel } from '../common/models';
+import { TEMP_FILE } from '../common/Global';
+import { saveRuntime } from './runtimeActions';
 
 const loadProjectRequest = (filePath: string) : ProjectActionTypes => {
   return {
@@ -23,6 +25,9 @@ export const loadProject = (filePath: string) => async (dispatch) => {
   dispatch(loadProjectRequest(filePath));
   const project = await projectAPI.loadProject(filePath);
   dispatch(loadProjectSuccess(project));
+
+  // save the runtime
+  dispatch(saveRuntime())
 }
 
 const saveProjectRequest = () => ({
@@ -36,13 +41,16 @@ const saveProjectSuccess = (isTemporalSave : boolean) : ProjectActionTypes => ({
 
 export const saveProject = (isTemporalSave : boolean) => async (dispatch, getState) => {
     dispatch(saveProjectRequest);
-    const fileName = isTemporalSave ? 'temp.aiconf' : getState().runtime.projectPath;
+    const fileName = isTemporalSave ? TEMP_FILE : getState().runtime.projectPath;
     const conditionEvaluators = getValuesFromByTag(getState().conditionEvaluators.byTag);
     const decisions = getValuesFromByTag(getState().decisions.byTag);
     const decisionSets = getValuesFromByTag(getState().decisionSets.byTag);
     const project = { conditionEvaluators, decisions, decisionSets };
     await projectAPI.saveProject(fileName, project);
     dispatch(saveProjectSuccess(isTemporalSave));
+    
+    // save the runtime
+    dispatch(saveRuntime())
 }
 
 /*

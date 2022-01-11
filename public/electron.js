@@ -33,13 +33,13 @@ function createWindow() {
   } else {
     // Do nothing
   }
-
+  
   mainWindow.on('close', (e) => {
     const choice = electron.dialog.showMessageBoxSync(
       mainWindow,
       {
         type: 'question',
-        buttons: ['Wait! I don\'t want to be evaporated (neither lose pending changes).', 'Yes. Close everything.'],
+        buttons: ['Wait! I don\'t want to be evaporated (neither lose pending changes).', 'Yes. Close everything. (anyway, I can restore them later)'],
         title: 'Confirmation',
         message: 'Unsaved changes will be lost.'
       }

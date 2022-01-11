@@ -140,7 +140,7 @@ const Header = () => {
         onClick={onExportProjectDialog}>
           <img src={process.env.PUBLIC_URL + '/export.png'} alt="Export" />
       </button>
-      <span className="file-path">{runtime.projectPath ?? 'Not saved'} {runtime.changesNotSaved ? '[*]' : ''}</span>
+      <span className="file-path">{runtime.projectPath ?? ''} {runtime.changesNotSaved ? '[*]' : ''}</span>
     </div>
     );
 }
