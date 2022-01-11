@@ -1,0 +1,97 @@
+{
+  "name": "utility-ai-configurator",
+  "description": "Geppetto Ai: Master of puppets.",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@electron/remote": "^1.1.0",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.5",
+    "@testing-library/user-event": "^12.8.3",
+    "@types/jest": "^26.0.21",
+    "@types/node": "^12.20.6",
+    "@types/react": "^17.0.3",
+    "@types/react-dom": "^17.0.3",
+    "bootstrap": "^4.6.0",
+    "custom-electron-titlebar": "^3.2.7",
+    "electron-is-dev": "^2.0.0",
+    "lodash": "^4.17.15",
+    "nes.css": "^2.3.0",
+    "node-sass": "^4.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.3",
+    "recharts": "^1.8.5",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
+    "typescript": "^4.2.3",
+    "web-vitals": "^1.1.1"
+  },
+  "scripts": {
+    "start-web": "rescripts start",
+    "build-web": "rescripts build",
+    "test-web": "rescripts test",
+    "start": "concurrently \"cross-env BROWSER=none npm run start-web\" \"wait-on http://localhost:3000 && electron .\"",
+    "postinstall": "electron-builder install-app-deps",
+    "build": "electron-builder build -w",
+    "preelectron-pack": "npm run build-web"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@rescripts/cli": "0.0.16",
+    "@rescripts/rescript-env": "0.0.12",
+    "concurrently": "^6.0.0",
+    "cross-env": "^7.0.3",
+    "electron": "^12.0.1",
+    "electron-builder": "^22.10.5",
+    "wait-on": "^5.3.0"
+  },
+  "win": {
+    "icon": "public/icon.png"
+  },
+  "main": "public/electron.js",
+  "homepage": ".",
+  "author": {
+    "name": "Equilaterus",
+    "url": "https://equilaterus.com"
+  },
+  "build": {
+    "appId": "com.equilaterus.utilityai",
+    "productName": "GeppettoAi",
+    "copyright": "Copyright © 2021 ${author}",
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "win": {
+      "target": [
+        "portable"
+      ]
+    },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "build"
+    }
+  }
+}
