@@ -26,7 +26,8 @@ export const loadProject = (filePath: string) => async (dispatch) => {
   dispatch(loadProjectSuccess(project));
 
   // save the runtime
-  dispatch(saveRuntime())
+  dispatch(saveRuntime());
+  history.push('/ConditionEvaluators');
 }
 
 const saveProjectRequest = () => ({
@@ -51,16 +52,6 @@ export const saveProject = (isTemporalSave : boolean) => async (dispatch, getSta
     // save the runtime
     dispatch(saveRuntime())
 }
-
-/*
-export const saveConditionEvaluatorAndRedirect = (conditionEvaluator) => async (dispatch, getState) => {
-  dispatch(saveConfigurationRequest(conditionEvaluator));
-  const conditionEvaluators = getValuesFromByTag(getState().conditionEvaluators.byTag);
-  await conditionEvaluatorAPI.saveConditionEvaluators(conditionEvaluators);
-  history.push('/ConditionEvaluators');
-}
-*/
-
 
 const exportProjectRequest = () : ProjectActionTypes => ({
     type: EXPORT_PROJECT_REQUEST

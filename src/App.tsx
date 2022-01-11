@@ -15,7 +15,7 @@ import { useEffect } from 'react';
 // Custom title bar
 export const titlebar = new Titlebar({
 	backgroundColor: Color.fromHex('#000'),
-  icon: `${process.env.PUBLIC_URL}/UtilityAi.ico`
+  icon: `${process.env.PUBLIC_URL}/icon.png`
 });
 
 const App = () => {

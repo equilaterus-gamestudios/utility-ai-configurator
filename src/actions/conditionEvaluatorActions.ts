@@ -1,3 +1,4 @@
+import history from '../history';
 import { SAVE_CONDITION_EVALUATOR_REQUEST, REMOVE_CONDITION_EVALUATOR_REQUEST, ConditionEvaluatorActionTypes } from './types';
 
 import { ConditionEvaluatorModel } from '../common/models';
@@ -14,10 +15,7 @@ const saveConditionEvaluator =  (conditionEvaluator : ConditionEvaluatorModel) :
 export const saveConditionEvaluatorAndRedirect = (conditionEvaluator) => async (dispatch, getState) => {
   dispatch(saveConditionEvaluator(conditionEvaluator));
   dispatch(saveProject(true));
-  //const conditionEvaluators = getValuesFromByTag(getState().conditionEvaluators.byTag);
-//  await conditionEvaluatorAPI.saveConditionEvaluators(conditionEvaluators);
-  
-  //history.push('/ConditionEvaluators');
+  history.push('/ConditionEvaluators');
 }
 
 const removeConditionEvaluatorRequest =  (tag : string) : ConditionEvaluatorActionTypes => {

@@ -1,3 +1,4 @@
+import history from '../history';
 import { DecisionActionTypes, SAVE_DECISIONS_REQUEST, REMOVE_DECISION_REQUEST } from './types';
 
 
@@ -14,9 +15,8 @@ const saveDecisions =  (decision : DecisionModel) : DecisionActionTypes => {
 export const saveDecisionAndRedirect = (decision) => async (dispatch) => {
   dispatch(saveDecisions(decision));
   dispatch(saveProject(true));
-  /*const decisions = getValuesFromByTag(getState().decisions.byTag);
-  await decisionAPI.saveDecisions(decisions);
-  history.push('/Decisions');*/
+
+  history.push('/Decisions');
 }
 
 const removeDecisionRequest =  (tag : string) : DecisionActionTypes => {
@@ -29,10 +29,5 @@ const removeDecisionRequest =  (tag : string) : DecisionActionTypes => {
 export const removeDecision = (tag) => async (dispatch) => {
   dispatch(removeDecisionRequest(tag));
   dispatch(saveProject(true));
-  /*
-  const decisions = getValuesFromByTag(getState().decisions.byTag);
-  const decisionSets = getValuesFromByTag(getState().decisionSets.byTag);
-  await decisionAPI.saveDecisions(decisions);  
-  await decisionSetAPI.saveDecisionSets(decisionSets);  */
 }
 

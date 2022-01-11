@@ -1,5 +1,6 @@
 {
   "name": "utility-ai-configurator",
+  "description": "Master of the puppets.",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -65,7 +66,7 @@
     "wait-on": "^5.3.0"
   },
   "win": {
-    "icon": "./public/UtilityAi.ico"
+    "icon": "public/icon.png"
   },
   "main": "public/electron.js",
   "homepage": ".",
@@ -82,20 +83,15 @@
     },
     "win": {
       "target": [
-        "portable",
-        "nsis"
+        "portable"
       ]
-    },
-    "nsis": {
-      "oneClick": false,
-      "allowToChangeInstallationDirectory": true
     },
     "files": [
       "build/**/*",
       "node_modules/**/*"
     ],
     "directories": {
-      "buildResources": "assets"
+      "buildResources": "build"
     }
   }
 }
