@@ -18,7 +18,7 @@ import { useActions } from './hooks/useActions';
 // Custom title bar
 export const titlebar = new Titlebar({
 	backgroundColor: Color.fromHex('#000'),
-  icon: `${process.env.PUBLIC_URL}/UtilityAi.ico`
+  icon: `${process.env.PUBLIC_URL}/icon.png`
 });
 
 const App = () => {
@@ -36,14 +36,14 @@ const App = () => {
         <SideMenu /><Header />         
         <div className="main-col">
           <div className="pt-5 d-block d-sm-none">&nbsp;</div>            
-          <Switch>
-            <Route path="/" exact component={Home} />
+          <Switch>            
             <Route path="/ConditionEvaluators" exact component={ConditionEvaluators} />
             <Route path="/EditConditionEvaluator/:tag?" exact component={EditConditionEvaluator} />
             <Route path="/Decisions" exact component={Decisions} />
             <Route path="/EditDecision/:tag?" exact component={EditDecision} />
             <Route path="/DecisionSets" exact component={DecisionSets} />
             <Route path="/EditDecisionSet/:tag?" exact component={EditDecisionSet} />
+            <Route path="/" exact component={Home} />
           </Switch>
           <span className="file-path">{runtime.projectPath ?? ''} {runtime.changesNotSaved ? '[*]' : ''}</span>
         </div>   

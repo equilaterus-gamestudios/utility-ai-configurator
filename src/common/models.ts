@@ -43,7 +43,7 @@ export interface DecisionModel {
 // Decision set
 // Models
 
-export interface DecisionSetModel {
+export interface ArchetypeModel {
   tag: string,
   decisions: Array<string>,
   defaultDecision: string,
@@ -57,7 +57,7 @@ export interface DecisionSetModel {
 export interface ProjectModel {
   conditionEvaluators: Array<ConditionEvaluatorModel>,
   decisions: Array<DecisionModel>,
-  decisionSets: Array<DecisionSetModel>
+  archetypes: Array<ArchetypeModel>
 }
 
 
