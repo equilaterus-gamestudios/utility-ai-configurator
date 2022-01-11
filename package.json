@@ -1,6 +1,6 @@
 {
   "name": "utility-ai-configurator",
-  "description": "Geppetto: Master of puppets.",
+  "description": "Geppetto Ai: Master of puppets.",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
@@ -76,7 +76,7 @@
   },
   "build": {
     "appId": "com.equilaterus.utilityai",
-    "productName": "Geppetto-UtilityAI",
+    "productName": "GeppettoAi",
     "copyright": "Copyright © 2021 ${author}",
     "mac": {
       "category": "public.app-category.utilities"
