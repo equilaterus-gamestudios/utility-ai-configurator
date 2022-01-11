@@ -143,3 +143,23 @@ link > div > p{
   ::-webkit-scrollbar-thumb:hover {
     background: #352c1e; 
   }
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    border-top: 2px solid #5c4f3c;
+    border-bottom: 4px solid #33291b;
+    background-color: #504330;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.menu img {
+    max-width: 32px;
+}
+
+.file-path {
+    color: #a2937c;
+    margin-left: auto;
+    padding-right: 15px;
+}

@@ -11,6 +11,7 @@ let mainWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
+    icon: path.join(__dirname, '/UtilityAi.ico'),
     width: 1280, 
     height: 720, 
     minWidth: 1280,

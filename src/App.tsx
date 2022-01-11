@@ -10,20 +10,26 @@ import DecisionSets from './pages/DecisionSets';
 import EditDecisionSet from './pages/EditDecisionSet';
 import Header from './components/Header';
 import SideMenu from './components/SideMenu';
+import { ipcRenderer } from 'electron';
+import { useEffect } from 'react';
 
 
 // Custom title bar
 export const titlebar = new Titlebar({
 	backgroundColor: Color.fromHex('#000'),
-  icon: `${process.env.PUBLIC_URL}/icon.png`
+  icon: `${process.env.PUBLIC_URL}/UtilityAi.ico`
 });
 
+// Is dev?
+export let isDev: boolean;
+const setIsDev = async () => { isDev = await ipcRenderer.invoke('is-dev') as boolean; };
+
+
 const App = () => {
-  //useEffect(() => {
-  //  setTimeout(() => {
-  //    loadConfiguration();
-  //  }, 1000);
-  //})
+  // On mount set isDev value
+  useEffect(() => {
+    setIsDev();
+  }, [])
 
   return (
     <div className='app'>
