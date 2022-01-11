@@ -53,7 +53,7 @@ const DecisionEditorContainer = ({ decision = defaultDecision } : DecisionEditor
       <div className="row">
         <div className="col-md-8">
           <label>
-            <input type="checkbox" className="nes-checkbox" checked={model.hasTargetDependency} onChange={(e) => {console.log(e);setProperty('hasTargetDependency', e.target.checked)}} />
+            <input type="checkbox" className="nes-checkbox" checked={model.hasTargetDependency} onChange={(e) => setProperty('hasTargetDependency', e.target.checked)} />
             <span>Has Target Dependency</span>
           </label>
         </div>

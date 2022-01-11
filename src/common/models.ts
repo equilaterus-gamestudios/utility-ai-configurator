@@ -64,10 +64,9 @@ export interface ProjectModel {
 // Runtime 
 // Models
 export interface runtimeModel {
-  projectPath: string
-  projectName: string
-  projectOpen: boolean
-  changesNotSaved: boolean
+  projectPath: string,
+  changesNotSaved: boolean,
+  latestOpenedProjects: Array<string>
 }
 
 //
