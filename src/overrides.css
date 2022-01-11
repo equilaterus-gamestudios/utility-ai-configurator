@@ -4,9 +4,6 @@ button:focus, a:focus { outline:0; }
     transition: none;
 }
 
-.main-container {
-    max-width: 950px;
-}
 @font-face {
     font-family: 'Press Start 2P';
     src: local('Press Start 2P'), url(./fonts/PressStart2P-Regular.ttf) format('woff');
@@ -20,12 +17,40 @@ html, body, pre, code, kbd, samp {
     -webkit-font-smoothing: none !important;
     font-size: 24px !important;
 }
+body {
+    background-color: #121d3b;
+    color: #bdbdbd;
+}
+.title-container {
+    max-width: 950px;
+    background-color: #fff;
+    color: #2e2e2e;
+}
+.main-container {
+    max-width: 950px;
+    background-color: #a5a8a8;
+    color: #2e2e2e;
+}
+h1,h2,h3,h4,h5,h6 {
+    font-weight: normal;
+}
+.header{
+    display: block;
+    background-color: #fff;
+    padding: 7px;   
+}
 .app {
     max-width: 100vw;
     max-height: 100vh;
     overflow: hidden;
     display: flex;
     flex-direction: column;    
+}
+.app-contents {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow: hidden;
 }
 
 .titlebar, .menubar-menu-container .action-label {
@@ -55,10 +80,21 @@ img {
     margin-left: 0;
     margin-right: 0;
 }
+.main-col {
+    width: calc(100% - 100px);
+    overflow: hidden auto;
+    padding-top: 10px;
+    padding-bottom: 30px;
+}
 .left-col {
-    min-height: 100vh;
+    width: 100px !important;
+    padding: 0;
     max-width: 133px !important;
-    background-color: #3a3123;
+    background-color: #2e2e2e;
+}
+.left-col, .main-col {
+    height: 100vh;
+    max-height: calc(100vh - 81px);    
 }
 .left-col img {
     width: 100%;
@@ -96,24 +132,44 @@ link > div > p{
 .btn-center{
     align-self:center;
 }
-.nes-input{
-    margin-bottom: 30px;
+.nes-input {
+    margin-bottom: 10px;
 }
 .nes-select{
     margin-bottom: 30px;
 }
+
+.nes-select select, .nes-input, .nes-textarea {
+    background-color: #3b3b3b;
+    color: #fff;
+    border-image-width: 0 !important;
+    border-image-outset: 0;
+    border-width: 0;
+    padding: 3px 5px;
+}
+.nes-select select {
+    border-image-outset: 1;
+}
+.nes-select select:focus, .nes-input:focus, .nes-textarea:focus {
+    outline-width: 4px;
+    outline-style: outset;
+    outline-color: #00ffff;
+}
+
 .checkbox{
     margin-bottom: 30px;
 }
-.nes-btn{
+.nes-btn {
     margin-right: 10px;
+    border-image-width: 0;
+    border-image-outset: 1;
 }
 .btn {
     font-size: 1rem;
     padding: 1px 6px 4px 6px !important;
     border-image: none;
-    background-color: #504330;
-    color: #ab9e7f;
+    background-color: #3b3b3b;
+    color: rgb(192, 192, 192);
     cursor: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAzElEQVRYR+2X0Q6AIAhF5f8/2jYXZkwEjNSVvVUjDpcrGgT7FUkI2D9xRfQETwNIiWO85wfINfQUEyxBG2ArsLwC0jioGt5zFcwF4OYDPi/mBYKm4t0U8ATgRm3ThFoAqkhNgWkA0jJLvaOVSs7j3qMnSgXWBMiWPXe94QqMBMBc1VZIvaTu5u5pQewq0EqNZvIEMCmxAawK0DNkay9QmfFNAJUXfgGgUkLaE7j/h8fnASkxHTz0DGIBMCnBeeM7AArpUd3mz2x3C7wADglA8BcWMZhZAAAAAElFTkSuQmCC) 14 0,pointer;
 }
 .main-btn{
@@ -131,25 +187,25 @@ link > div > p{
   
   /* Track */
   ::-webkit-scrollbar-track {
-    background: #5c4f3c; 
+    background: #202020; 
   }
    
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: #352c1e; 
+    background: #3b3b3b; 
   }
   
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: #352c1e; 
+    background: #3b3b3b; 
   }
 
 .menu {
     display: flex;
     flex-direction: row;
-    border-top: 2px solid #5c4f3c;
-    border-bottom: 4px solid #33291b;
-    background-color: #504330;
+    border-top: 2px solid #2e2e2e;
+    border-bottom: 4px solid #1b1b1b;
+    background-color: #202020;
     align-items: center;
     justify-content: flex-start;
 }

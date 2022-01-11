@@ -2,16 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu as ElectronMenu, MenuItem } from '@electron/remote';
 import { useActions } from '../hooks/useActions';
-import { isDev } from '../App';
+import { titlebar } from '../App';
+import { useIsDev } from '../hooks/useIsDev';
 
 const Header = () => {
   const { onLoadProjectDialog, onCreateProjectDialog, onExportProjectDialog, onSaveAsProjectDialog, onSaveProject, runtime } = useActions();
 
+  const isDev = useIsDev();
   const [collapsed, setCollapsed] = useState('collapse');
   const [style, setStyle] = useState('message-bot');
   const onCollapse = () => {
     setCollapsed(collapsed === '' ? 'collapse' : '')
-  }
+  }  
 
   useEffect(() => {
     const menu = new ElectronMenu();
@@ -53,8 +55,7 @@ const Header = () => {
       ]
     }));
 
-    if (isDev)
-    {
+    if (isDev) {      
       menu.append(new MenuItem({
         label: 'Dev',
         submenu: [
@@ -74,9 +75,9 @@ const Header = () => {
       }));
     }
 
-    //titlebar.updateMenu(menu);
+    titlebar.updateMenu(menu);
     ElectronMenu.setApplicationMenu(menu);
-  })
+  }, [isDev])
 /*
     menu.append(new MenuItem({
       label: 'Edit',

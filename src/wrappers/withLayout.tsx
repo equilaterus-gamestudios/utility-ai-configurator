@@ -4,8 +4,12 @@ function withLayout(WrappedComponent, title:string) {
   return function(props) {
     return (
       <>
-        <h2>{title}</h2>
-        <WrappedComponent {...props} />
+        <div className="container title-container">
+          <h3 className="header">{title}</h3>
+        </div>
+        <div className="container main-container">
+          <WrappedComponent {...props} />
+        </div>
       </>
     );
   }

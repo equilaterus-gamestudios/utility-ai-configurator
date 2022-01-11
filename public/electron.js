@@ -8,10 +8,12 @@ const path = require('path');
 const isDev =  require('electron-is-dev');
 
 let mainWindow;
+let fullscreen = false;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    icon: path.join(__dirname, '/UtilityAi.ico'),
+    icon: path.join(__dirname, '/icon.png'),
+    backgroundColor: '#000',
     width: 1280, 
     height: 720, 
     minWidth: 1280,
@@ -27,26 +29,44 @@ function createWindow() {
   if (isDev) {
     // Open the DevTools.
     //BrowserWindow.addDevToolsExtension('<location to your react chrome extension>');
-    mainWindow.webContents.openDevTools();
+    mainWindow.webContents.openDevTools();    
   } else {
-    //mainWindow.removeMenu();
+    // Do nothing
   }
+
+  mainWindow.on('close', (e) => {
+    const choice = electron.dialog.showMessageBoxSync(
+      mainWindow,
+      {
+        type: 'question',
+        buttons: ['Wait! I don\'t want to be evaporated (neither lose pending changes).', 'Yes. Close everything.'],
+        title: 'Confirmation',
+        message: 'Unsaved changes will be lost.'
+      }
+    );
+    if (choice === 0) e.preventDefault();
+  });
+
   mainWindow.on('closed', () => mainWindow = null);
 }
 
 app.on('ready', createWindow);
-
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit();
-  }
-});
 
 app.on('activate', () => {
   if (mainWindow === null) {
     createWindow();
   }
 });
+
+electron.ipcMain.handle('is-dev', async () => {
+  return isDev;
+})
+
+electron.ipcMain.handle('fullscreen', async () => {
+  fullscreen = !fullscreen;
+  mainWindow.setFullScreen(fullscreen);
+  return true;
+})
 
 // Workaround for https://github.com/electron/electron/issues/19554 otherwise fs does not work
 function loadUrlWithNodeWorkaround(window, url) {

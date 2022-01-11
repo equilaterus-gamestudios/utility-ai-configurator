@@ -6,9 +6,6 @@ const SideMenu = () => {
     <div className="col left-col">
       <div className="left-menu">
         <div className="left-menu-item">
-          <Link to="/"><button className='btn'>Utility AI</button></Link>
-        </div>
-        <div className="left-menu-item">
           <Link to="/ConditionEvaluators">
             <button className='btn'>
               <img src={process.env.PUBLIC_URL + '/Conditions.png'} alt="Conditions" />
