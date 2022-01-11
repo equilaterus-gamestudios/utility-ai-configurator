@@ -1,7 +1,5 @@
-import React from 'react';
-
-import { saveDecisionSetAndRedirect } from '../actions/decisionSetActions';
-import { DecisionSetModel } from '../common/models';
+import { saveArchetypeAndRedirect } from '../actions/archetypesActions';
+import { ArchetypeModel } from '../common/models';
 import { useForm } from '../hooks/useForm';
 
 import { useDispatch } from 'react-redux';
@@ -9,23 +7,23 @@ import ListEditor from '../components/editors/ListEditor';
 import ListElementEditor from '../components/editors/ListElementEditor';
 import { selectAllDecisionsByTag } from '../selectors/DecisionSelector';
 
-interface DecisionSetEditorContainerProps {
-  decisionSet: DecisionSetModel
+interface ArchetypeEditorContainerProps {
+  archetype: ArchetypeModel
 }
 
-const defaultDecisionSet:DecisionSetModel = {
+const defaultArchetype:ArchetypeModel = {
   tag: '',
   description: '',
   decisions: [],
   defaultDecision: ''
 };
 
-const DecisionSetEditorContainer = ({ decisionSet = defaultDecisionSet } : DecisionSetEditorContainerProps) => {
-  const [model, setProperty] = useForm(decisionSet)  
+const ArchetypeEditorContainer = ({ archetype = defaultArchetype } : ArchetypeEditorContainerProps) => {
+  const [model, setProperty] = useForm(archetype)  
   const dispatch = useDispatch()
 
   const handleSave = () => {
-    dispatch(saveDecisionSetAndRedirect(model));
+    dispatch(saveArchetypeAndRedirect(model));
   }
 
   return (
@@ -55,4 +53,4 @@ const DecisionSetEditorContainer = ({ decisionSet = defaultDecisionSet } : Decis
   )
 }
 
-export default DecisionSetEditorContainer;
+export default ArchetypeEditorContainer;

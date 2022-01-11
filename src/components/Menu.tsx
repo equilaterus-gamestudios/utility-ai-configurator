@@ -115,7 +115,7 @@ const Menu = () => {
         <img src={process.env.PUBLIC_URL + '/Decisions.png'} alt="Decisions" />
       </Link>
     
-      <Link to="/DecisionSets" className='nes-btn is-warning big'>
+      <Link to="/Archetypes" className='nes-btn is-warning big'>
         <img src={process.env.PUBLIC_URL + '/Archetypes.png'} alt="Archetypes" />         
       </Link>
 

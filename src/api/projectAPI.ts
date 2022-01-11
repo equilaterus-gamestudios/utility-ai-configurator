@@ -6,7 +6,7 @@ import pick from 'lodash/pick';
 
 const conditionEvaluatorProperties = ['tag', 'functionName', 'curve', 'parameters'];
 const decisionProperties = ['tag', 'functionName', 'weight', 'hasTargetDependency', 'conditionEvaluators'];
-const decisionSetProperties = ['tag', 'defaultDecision', 'decisions'];
+const archetypeProperties = ['tag', 'defaultDecision', 'decisions'];
 
 // This functions takes the parameters in the condition evaluator and converts them from a parameter's array to
 // a dictionary that only sets the key and the value per each parameter, removing the description
@@ -36,11 +36,11 @@ export const saveProject = async (path : string, configuration : ProjectModel) =
 export const exportProject = async (path : string, configuration : ProjectModel) => {   
   const procesedConditionEvaluators = configuration.conditionEvaluators.map(ce => pick({...ce, parameters: parametersToDictionary(ce.parameters)}, conditionEvaluatorProperties));
   const procesedDecisions = configuration.decisions.map(d => pick(d, decisionProperties));
-  const procesedDecisionSets = configuration.decisionSets.map(ds => pick(ds, decisionSetProperties));
+  const procesedArchetypes = configuration.archetypes.map(ds => pick(ds, archetypeProperties));
   const exportedProject = {
     conditionEvaluators: procesedConditionEvaluators,
     decisions: procesedDecisions,
-    decisionSets: procesedDecisionSets
+    archetypes: procesedArchetypes
   }
   await fs.writeFile(path, StringifyToPascalCase(exportedProject), 'utf8');  
 }

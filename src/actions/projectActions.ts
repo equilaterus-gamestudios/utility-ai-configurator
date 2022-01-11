@@ -1,3 +1,4 @@
+import history from '../history';
 import { getValuesFromByTag } from '../common/utility';
 import { ProjectActionTypes, LOAD_PROJECT_REQUEST, LOAD_PROJECT_SUCCESS, EXPORT_PROJECT_REQUEST, EXPORT_PROJECT_SUCCESS, SAVE_PROJECT_REQUEST, SAVE_PROJECT_SUCCESS, RESTORE_PROJECT } from './types';
 import * as projectAPI from '../api/projectAPI';
@@ -44,8 +45,8 @@ export const saveProject = (isTemporalSave : boolean) => async (dispatch, getSta
     const fileName = isTemporalSave ? TEMP_FILE : getState().runtime.projectPath;
     const conditionEvaluators = getValuesFromByTag(getState().conditionEvaluators.byTag);
     const decisions = getValuesFromByTag(getState().decisions.byTag);
-    const decisionSets = getValuesFromByTag(getState().decisionSets.byTag);
-    const project = { conditionEvaluators, decisions, decisionSets };
+    const archetypes = getValuesFromByTag(getState().archetypes.byTag);
+    const project = { conditionEvaluators, decisions, archetypes };
     await projectAPI.saveProject(fileName, project);
     dispatch(saveProjectSuccess(isTemporalSave));
     
@@ -65,8 +66,8 @@ export const exportProject = (filePath : string) => async (dispatch, getState) =
   dispatch(exportProjectRequest());
   const conditionEvaluators = getValuesFromByTag(getState().conditionEvaluators.byTag);
   const decisions = getValuesFromByTag(getState().decisions.byTag);
-  const decisionSets = getValuesFromByTag(getState().decisionSets.byTag);
-  const project = { conditionEvaluators, decisions, decisionSets };
+  const archetypes = getValuesFromByTag(getState().archetypes.byTag);
+  const project = { conditionEvaluators, decisions, archetypes };
   await projectAPI.exportProject(filePath, project);
   dispatch(exportProjectSuccess());
 }

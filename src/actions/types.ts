@@ -1,4 +1,4 @@
-import { ConditionEvaluatorModel, ProjectModel, DecisionModel, DecisionSetModel, runtimeModel } from '../common/models'
+import { ConditionEvaluatorModel, ProjectModel, DecisionModel, ArchetypeModel, runtimeModel } from '../common/models'
 
 /** Condition Evaluators */
 
@@ -90,46 +90,46 @@ export type DecisionActionTypes = SaveDecisionsRequest | RemoveDecisionRequest
 
 /** Decision Sets */
 
-export const LOAD_DECISION_SETS_REQUEST = 'LOAD_DECISION_SETS_REQUEST';
-export const LOAD_DECISION_SETS_FAIL    = 'LOAD_DECISION_SETS_FAIL';
-export const LOAD_DECISION_SETS_SUCCESS = 'LOAD_DECISION_SETS_SUCCESS';
+export const LOAD_ARCHETYPES_REQUEST = 'LOAD_ARCHETYPES_REQUEST';
+export const LOAD_ARCHETYPES_FAIL    = 'LOAD_ARCHETYPES_FAIL';
+export const LOAD_ARCHETYPES_SUCCESS = 'LOAD_ARCHETYPES_SUCCESS';
 
-export const SAVE_DECISION_SETS_REQUEST = 'SAVE_DECISION_SETS_REQUEST';
-export const SAVE_DECISION_SETS_FAIL    = 'SAVE_DECISION_SETS_FAIL';
-export const SAVE_DECISION_SETS_SUCCESS = 'SAVE_DECISION_SETS_SUCCESS';
+export const SAVE_ARCHETYPES_REQUEST = 'SAVE_ARCHETYPES_REQUEST';
+export const SAVE_ARCHETYPES_FAIL    = 'SAVE_ARCHETYPES_FAIL';
+export const SAVE_ARCHETYPES_SUCCESS = 'SAVE_ARCHETYPES_SUCCESS';
 
-export const REMOVE_DECISION_SET_REQUEST= 'REMOVE_DECISION_SET_REQUEST';
-export const REMOVE_DECISION_SET_FAIL   = 'REMOVE_DECISION_SET_FAIL';
-export const REMOVE_DECISION_SET_SUCCESS= 'REMOVE_DECISION_SET_SUCCESS';
+export const REMOVE_ARCHETYPE_REQUEST= 'REMOVE_ARCHETYPE_REQUEST';
+export const REMOVE_ARCHETYPE_FAIL   = 'REMOVE_ARCHETYPE_FAIL';
+export const REMOVE_ARCHETYPE_SUCCESS= 'REMOVE_ARCHETYPE_SUCCESS';
 
-interface LoadDecisionSetsSuccess {
-  type: typeof LOAD_DECISION_SETS_SUCCESS,
-  payload: Array<DecisionSetModel>
+interface LoadArchetypesSuccess {
+  type: typeof LOAD_ARCHETYPES_SUCCESS,
+  payload: Array<ArchetypeModel>
 }
 
-interface LoadDecisionSetsRequest {
-  type: typeof LOAD_DECISION_SETS_REQUEST 
+interface LoadArchetypesRequest {
+  type: typeof LOAD_ARCHETYPES_REQUEST 
 }
 
-interface SaveDecisionSetsSuccess {
-  type: typeof SAVE_DECISION_SETS_SUCCESS 
+interface SaveArchetypesSuccess {
+  type: typeof SAVE_ARCHETYPES_SUCCESS 
 }
 
-interface SaveDecisionSetsRequest {
-  type: typeof SAVE_DECISION_SETS_REQUEST,
-  payload: DecisionSetModel
+interface SaveArchetypesRequest {
+  type: typeof SAVE_ARCHETYPES_REQUEST,
+  payload: ArchetypeModel
 }
 
-interface RemoveDecisionSetSuccess {
-  type: typeof REMOVE_DECISION_SET_SUCCESS  
+interface RemoveArchetypeSuccess {
+  type: typeof REMOVE_ARCHETYPE_SUCCESS  
 }
 
-interface RemoveDecisionSetRequest {
-  type: typeof REMOVE_DECISION_SET_REQUEST,
+interface RemoveArchetypeRequest {
+  type: typeof REMOVE_ARCHETYPE_REQUEST,
   payload: string
 }
 
-export type DecisionSetActionTypes = SaveDecisionSetsRequest | RemoveDecisionSetRequest
+export type ArchetypeActionTypes = SaveArchetypesRequest | RemoveArchetypeRequest
 
 
 /** configuration */

@@ -6,8 +6,8 @@ import ConditionEvaluators from './pages/ConditionEvaluators';
 import EditConditionEvaluator from './pages/EditConditionEvaluator';
 import Decisions from './pages/Decisions';
 import EditDecision from './pages/EditDecision';
-import DecisionSets from './pages/DecisionSets';
-import EditDecisionSet from './pages/EditDecisionSet';
+import Archetypes from './pages/Archetypes';
+import EditArchetype from './pages/EditArchetype';
 import { usePrivateActions } from './hooks/usePrivateActions';
 import { useEffect } from 'react';
 
@@ -33,8 +33,8 @@ const App = () => {
         <Route path="/EditConditionEvaluator/:tag?" exact component={EditConditionEvaluator} />
         <Route path="/Decisions" exact component={Decisions} />
         <Route path="/EditDecision/:tag?" exact component={EditDecision} />
-        <Route path="/DecisionSets" exact component={DecisionSets} />
-        <Route path="/EditDecisionSet/:tag?" exact component={EditDecisionSet} />
+        <Route path="/Archetypes" exact component={Archetypes} />
+        <Route path="/EditArchetype/:tag?" exact component={EditArchetype} />
       </Switch>
     </Router>  
   );
