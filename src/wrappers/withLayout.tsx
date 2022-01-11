@@ -3,14 +3,12 @@ import React from 'react';
 function withLayout(WrappedComponent, title:string) {
   return function(props) {
     return (
-      <>
-        <div className="container title-container">
-          <h3 className="header">{title}</h3>
-        </div>
-        <div className="container main-container">
+      <div className="container main-container">
+        <div className="nes-container with-title">
+          <p className="title">{title}</p>
           <WrappedComponent {...props} />
         </div>
-      </>
+      </div>
     );
   }
 }

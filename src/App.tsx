@@ -29,10 +29,9 @@ const App = () => {
 
   return (
     <Router history={history}>
-    <div className="app">    
-      <Header />
+    <div className="app">
       <div className="app-contents">
-        <SideMenu />          
+        <SideMenu /><Header />         
         <div className="main-col">
           <div className="pt-5 d-block d-sm-none">&nbsp;</div>          
           <Switch>
