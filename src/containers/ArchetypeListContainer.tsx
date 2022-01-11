@@ -16,7 +16,7 @@ const ArchetypeListContainer = ({ archetypeTags, removeArchetype } : PropTypes) 
   if (!archetypeTags || !archetypeTags.length) {
     return (
       <>
-        <div>There is not any decision set</div>
+        <div>You haven't created any archetype yet.</div>
         <Link to="/EditArchetype" className="nes-btn is-primary main-btn">Add new archetype</Link>
       </>
     );
