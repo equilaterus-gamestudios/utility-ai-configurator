@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu as ElectronMenu, MenuItem } from '@electron/remote';
 import { useActions } from '../hooks/useActions';
-import { titlebar } from '../App';
+import { isDev } from '../App';
 
 const Header = () => {
   const { onLoadProjectDialog, onCreateProjectDialog, onExportProjectDialog, onSaveAsProjectDialog, onSaveProject } = useActions();
@@ -53,7 +53,28 @@ const Header = () => {
       ]
     }));
 
-    titlebar.updateMenu(menu);
+    if (isDev)
+    {
+      menu.append(new MenuItem({
+        label: 'Dev',
+        submenu: [
+          {
+            label: 'Inspector',
+            role: 'toggleDevTools'
+          },
+          {
+            label: 'Reload',
+            role: 'reload'
+          },
+          {
+            label: 'Force reload',
+            role: 'forceReload'
+          },
+      ]
+      }));
+    }
+
+    //titlebar.updateMenu(menu);
     ElectronMenu.setApplicationMenu(menu);
   })
 /*
