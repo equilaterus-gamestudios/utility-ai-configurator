@@ -1,6 +1,6 @@
 import { getTags, createByTagStructure } from '../common/utility';
 import { Dictionary, DecisionSetModel } from '../common/models';
-import { DecisionSetActionTypes, LOAD_DECISION_SETS_SUCCESS, SAVE_DECISION_SETS_REQUEST, REMOVE_DECISION_SET_REQUEST, REMOVE_DECISION_REQUEST } from '../actions/types';
+import { ProjectActionTypes, LOAD_PROJECT_SUCCESS, RESTORE_PROJECT, DecisionSetActionTypes, SAVE_DECISION_SETS_REQUEST, REMOVE_DECISION_SET_REQUEST, DecisionActionTypes, REMOVE_DECISION_REQUEST } from '../actions/types';
 import omit from 'lodash/omit';
 import mapValues from 'lodash/mapValues';
 
@@ -11,13 +11,13 @@ export interface DecisionSetState {
 
 const defaultState = {} as DecisionSetState
 
-export const decisionSetReducer = (state = defaultState, action : DecisionSetActionTypes) : DecisionSetState  => {
+export const decisionSetReducer = (state = defaultState, action : ProjectActionTypes | DecisionSetActionTypes | DecisionActionTypes) : DecisionSetState  => {
   switch(action.type) {
-    case LOAD_DECISION_SETS_SUCCESS:
+    case LOAD_PROJECT_SUCCESS:
       return {
         ...state,
-        byTag: createByTagStructure(action.payload),
-        tags: getTags(action.payload)
+        byTag: createByTagStructure(action.payload.decisionSets),
+        tags: getTags(action.payload.decisionSets)
       }
     case SAVE_DECISION_SETS_REQUEST:
       {
@@ -58,6 +58,8 @@ export const decisionSetReducer = (state = defaultState, action : DecisionSetAct
           byTag
         } 
       }
+    case RESTORE_PROJECT:
+      return defaultState;
     default: 
       return state;
   }

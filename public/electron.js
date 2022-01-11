@@ -1,4 +1,5 @@
 const electron = require('electron');
+require('@electron/remote/main').initialize();
 const app = electron.app;
 app.allowRendererProcessReuse = false;
 const BrowserWindow = electron.BrowserWindow;
@@ -14,9 +15,11 @@ function createWindow() {
     height: 720, 
     minWidth: 1280,
     minHeight: 720,
+    frame: false,
     webPreferences: {
       nodeIntegration: true,
-      contextIsolation: false
+      contextIsolation: false,
+      enableRemoteModule: true
     }
   });
   loadUrlWithNodeWorkaround(mainWindow, isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
@@ -25,7 +28,7 @@ function createWindow() {
     //BrowserWindow.addDevToolsExtension('<location to your react chrome extension>');
     mainWindow.webContents.openDevTools();
   } else {
-    mainWindow.removeMenu();
+    //mainWindow.removeMenu();
   }
   mainWindow.on('closed', () => mainWindow = null);
 }

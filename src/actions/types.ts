@@ -1,4 +1,4 @@
-import { ConditionEvaluatorModel, DecisionModel, DecisionSetModel } from '../common/models'
+import { ConditionEvaluatorModel, ProjectModel, DecisionModel, DecisionSetModel } from '../common/models'
 
 /** Condition Evaluators */
 
@@ -41,7 +41,7 @@ interface RemoveConditionEvaluatorRequest {
   payload: string
 }
 
-export type ConditionEvaluatorActionTypes = LoadConditionEvaluatorSuccess | LoadConditionEvaluatorRequest | SaveConditionEvaluatorSuccess | SaveConditionEvaluatorRequest | RemoveConditionEvaluatorRequest;
+export type ConditionEvaluatorActionTypes = SaveConditionEvaluatorRequest | RemoveConditionEvaluatorRequest;
 
 
 /** Decisions */
@@ -85,7 +85,7 @@ interface RemoveDecisionRequest {
   payload: string
 }
 
-export type DecisionActionTypes = LoadDecisionsSuccess | LoadDecisionsRequest | SaveDecisionsSuccess | SaveDecisionsRequest | RemoveDecisionRequest | RemoveConditionEvaluatorRequest;
+export type DecisionActionTypes = SaveDecisionsRequest | RemoveDecisionRequest
 
 
 /** Decision Sets */
@@ -129,22 +129,68 @@ interface RemoveDecisionSetRequest {
   payload: string
 }
 
-export type DecisionSetActionTypes = LoadDecisionSetsSuccess | LoadDecisionSetsRequest | SaveDecisionSetsSuccess | SaveDecisionSetsRequest | RemoveDecisionSetRequest | RemoveDecisionRequest;
+export type DecisionSetActionTypes = SaveDecisionSetsRequest | RemoveDecisionSetRequest
 
 
-/** export configuration */
+/** configuration */
 
-export const EXPORT_CONFIGURATION_REQUEST = 'EXPORT_CONFIGURATION_REQUEST';
-export const EXPORT_CONFIGURATION_FAIL    = 'EXPORT_CONFIGURATION_FAIL';
-export const EXPORT_CONFIGURATION_SUCCESS = 'EXPORT_CONFIGURATION_SUCCESS';
+export const LOAD_PROJECT_REQUEST = 'LOAD_PROJECT_REQUEST';
+export const LOAD_PROJECT_FAIL    = 'LOAD_PROJECT_FAIL';
+export const LOAD_PROJECT_SUCCESS = 'LOAD_PROJECT_SUCCESS';
 
-interface ExportConfigurationRequest {
-  type: typeof EXPORT_CONFIGURATION_REQUEST,
+export const SAVE_PROJECT_REQUEST = 'SAVE_PROJECT_REQUEST';
+export const SAVE_PROJECT_FAIL    = 'SAVE_PROJECT_FAIL';
+export const SAVE_PROJECT_SUCCESS = 'SAVE_PROJECT_SUCCESS';
+
+
+export const EXPORT_PROJECT_REQUEST = 'EXPORT_PROJECT_REQUEST';
+export const EXPORT_PROJECT_FAIL    = 'EXPORT_PROJECT_FAIL';
+export const EXPORT_PROJECT_SUCCESS = 'EXPORT_PROJECT_SUCCESS';
+
+export const RESTORE_PROJECT = 'RESTORE_PROJECT';
+
+interface LoadProjectRequest {
+  type: typeof LOAD_PROJECT_REQUEST,
+  payload: string
 }
 
-interface ExportConfigurationSuccess {
-  type: typeof EXPORT_CONFIGURATION_SUCCESS 
+interface LoadProjectSuccess {
+  type: typeof LOAD_PROJECT_SUCCESS,
+  payload: ProjectModel
+}
+
+interface SaveProjectRequest {
+  type: typeof SAVE_PROJECT_REQUEST,
+}
+
+interface SaveProjectSuccess {
+  type: typeof SAVE_PROJECT_SUCCESS,
+  payload: boolean
+}
+
+interface ExportProjectRequest {
+  type: typeof EXPORT_PROJECT_REQUEST,
+}
+
+interface ExportProjectSuccess {
+  type: typeof EXPORT_PROJECT_SUCCESS 
+}
+
+interface RestoreProject {
+  type: typeof RESTORE_PROJECT
 }
 
 
-export type ExportConfigurationActionTypes = ExportConfigurationRequest | ExportConfigurationSuccess ;
+export type ProjectActionTypes = LoadProjectRequest | LoadProjectSuccess | SaveProjectRequest | SaveProjectSuccess | ExportProjectRequest | ExportProjectSuccess | RestoreProject
+
+/**
+ * Runtime
+ */
+export const SET_PROJECT_PATH = 'SET_PROJECT_PATH';
+
+interface SetProjectPath {
+  type: typeof SET_PROJECT_PATH,
+  payload: string
+}
+
+export type RuntimeActionTypes = SetProjectPath;

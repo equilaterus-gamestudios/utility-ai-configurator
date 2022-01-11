@@ -1,6 +1,6 @@
 import { getTags, createByTagStructure } from '../common/utility';
 import { Dictionary, ConditionEvaluatorModel } from '../common/models';
-import { ConditionEvaluatorActionTypes, LOAD_CONDITION_EVALUATORS_SUCCESS, SAVE_CONDITION_EVALUATOR_REQUEST, REMOVE_CONDITION_EVALUATOR_REQUEST } from '../actions/types';
+import { ProjectActionTypes, LOAD_PROJECT_SUCCESS, RESTORE_PROJECT, ConditionEvaluatorActionTypes, SAVE_CONDITION_EVALUATOR_REQUEST, REMOVE_CONDITION_EVALUATOR_REQUEST } from '../actions/types';
 import omit from 'lodash/omit';
 
 export interface ConditionEvaluatorState {  
@@ -13,13 +13,13 @@ const defaultState = {
   tags: []
 } as ConditionEvaluatorState
 
-export const conditionEvaluatorReducer = (state = defaultState, action : ConditionEvaluatorActionTypes) : ConditionEvaluatorState  => {  
+export const conditionEvaluatorReducer = (state = defaultState, action : ProjectActionTypes | ConditionEvaluatorActionTypes) : ConditionEvaluatorState  => {  
   switch(action.type) {
-    case LOAD_CONDITION_EVALUATORS_SUCCESS:
+    case LOAD_PROJECT_SUCCESS:
       return {
         ...state, 
-        byTag: createByTagStructure(action.payload),
-        tags: getTags(action.payload)
+        byTag: createByTagStructure(action.payload.conditionEvaluators),
+        tags: getTags(action.payload.conditionEvaluators)
       }
     case SAVE_CONDITION_EVALUATOR_REQUEST:
       {
@@ -49,6 +49,8 @@ export const conditionEvaluatorReducer = (state = defaultState, action : Conditi
           tags
         } 
       }
+    case RESTORE_PROJECT:
+      return defaultState;
     default: 
       return state;
   }

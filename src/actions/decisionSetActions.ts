@@ -1,28 +1,7 @@
-import history from '../history';
-import { getValuesFromByTag } from '../common/utility';
-import { LOAD_DECISION_SETS_SUCCESS, LOAD_DECISION_SETS_REQUEST, SAVE_DECISION_SETS_REQUEST, DecisionSetActionTypes, REMOVE_DECISION_SET_REQUEST } from './types';
-import  *  as decisionSetAPI from '../api/decisionSetAPI';
-
+import { DecisionSetActionTypes, SAVE_DECISION_SETS_REQUEST, REMOVE_DECISION_SET_REQUEST } from './types';
 import { DecisionSetModel } from '../common/models';
+import { saveProject } from './projectActions';
 
-const loadDecisionSetsRequest = () : DecisionSetActionTypes => {
-  return {
-    type: LOAD_DECISION_SETS_REQUEST
-  }
-}
-
-const loadDecisionSetsSuccess = (decisions : Array<DecisionSetModel>) : DecisionSetActionTypes => {
-  return {
-    type: LOAD_DECISION_SETS_SUCCESS,
-    payload: decisions
-  }
-}
-
-export const loadDecisionSets = () => async (dispatch) => {
-  dispatch(loadDecisionSetsRequest());
-  const decisionSets = await decisionSetAPI.loadDecisionSets();
-  dispatch(loadDecisionSetsSuccess(decisionSets));
-}
 
 const saveDecisionSet =  (decisionSet : DecisionSetModel) : DecisionSetActionTypes => {
   return {
@@ -32,11 +11,12 @@ const saveDecisionSet =  (decisionSet : DecisionSetModel) : DecisionSetActionTyp
 }
 
 
-export const saveDecisionSetAndRedirect = (decisionSet) => async (dispatch, getState) => {
+export const saveDecisionSetAndRedirect = (decisionSet) => async (dispatch) => {
   dispatch(saveDecisionSet(decisionSet));
-  const decisionSets = getValuesFromByTag(getState().decisionSets.byTag);
+  dispatch(saveProject(true));
+  /*const decisionSets = getValuesFromByTag(getState().decisionSets.byTag);
   await decisionSetAPI.saveDecisionSets(decisionSets);
-  history.push('/DecisionSets');
+  history.push('/DecisionSets');*/
 }
 
 
@@ -48,9 +28,11 @@ const removeDecisionSetRequest =  (tag : string) : DecisionSetActionTypes => {
   }
 }
 
-export const removeDecisionSet = (tag) => async (dispatch, getState) => {
+export const removeDecisionSet = (tag) => async (dispatch) => {
   dispatch(removeDecisionSetRequest(tag));
+  dispatch(saveProject(true));
+  /*
   const decisionSets = getValuesFromByTag(getState().decisionSets.byTag);
-  await decisionSetAPI.saveDecisionSets(decisionSets);  
+  await decisionSetAPI.saveDecisionSets(decisionSets); */ 
 }
 

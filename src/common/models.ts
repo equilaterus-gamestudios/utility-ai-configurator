@@ -50,6 +50,26 @@ export interface DecisionSetModel {
   description: string
 }
 
+
+// Configuration
+// Models
+
+export interface ProjectModel {
+  conditionEvaluators: Array<ConditionEvaluatorModel>,
+  decisions: Array<DecisionModel>,
+  decisionSets: Array<DecisionSetModel>
+}
+
+
+// Runtime 
+// Models
+export interface runtimeModel {
+  projectPath: string
+  projectName: string
+  projectOpen: boolean
+  changesNotSaved: boolean
+}
+
 //
 
 export interface Dictionary<T> {

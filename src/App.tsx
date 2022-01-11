@@ -1,6 +1,5 @@
-import React, { useEffect} from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { Titlebar, Color } from 'custom-electron-titlebar';
 import history from './history';
 import Home from './pages/Home';
 import ConditionEvaluators from './pages/ConditionEvaluators';
@@ -9,27 +8,29 @@ import Decisions from './pages/Decisions';
 import EditDecision from './pages/EditDecision';
 import DecisionSets from './pages/DecisionSets';
 import EditDecisionSet from './pages/EditDecisionSet';
-
-import { loadConditionEvaluators } from './actions/conditionEvaluatorActions';
-import { loadDecisions } from './actions/decisionActions';
-import { loadDecisionSets } from './actions/decisionSetActions';
 import Header from './components/Header';
+import SideMenu from './components/SideMenu';
 
 
-const App = ({ loadConditionEvaluators, loadDecisions, loadDecisionSets }) => {
-  useEffect(() => {
-    setTimeout(() => {
-      loadConditionEvaluators();
-      loadDecisions();
-      loadDecisionSets();
-    }, 1000);
-  }, [loadConditionEvaluators, loadDecisions, loadDecisionSets])
+// Custom title bar
+export const titlebar = new Titlebar({
+	backgroundColor: Color.fromHex('#000'),
+  icon: `${process.env.PUBLIC_URL}/icon.png`
+});
+
+const App = () => {
+  //useEffect(() => {
+  //  setTimeout(() => {
+  //    loadConfiguration();
+  //  }, 1000);
+  //})
 
   return (         
     <Router history={history}>
+      <Header />
+      <SideMenu />
       <div className="container-fluid">
-      <div className="row">
-        <Header />
+      <div className="row">        
         <div className="col">
           <div className="pt-5 d-block d-sm-none">&nbsp;</div>
           <div className="container main-container overflow-auto">
@@ -52,4 +53,4 @@ const App = ({ loadConditionEvaluators, loadDecisions, loadDecisionSets }) => {
   );
 }
 
-export default connect(null, { loadConditionEvaluators, loadDecisions, loadDecisionSets })(App);
+export default App;

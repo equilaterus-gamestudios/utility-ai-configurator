@@ -64,7 +64,7 @@ const sCurveInverse : Curve = {
   yShift: 0.5
 };
 
-export const predefinedCurves = {
+export const predefinedCurves = {  
   lineal,
   linealInverse,
   quadratic,

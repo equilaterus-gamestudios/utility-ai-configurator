@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback } from 'react'
+import React, { useMemo, useCallback, useEffect, useState } from 'react'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
 import { Curve } from '../../common/models';
 import { predefinedCurves } from '../../common/defaultCurves';
@@ -59,26 +59,60 @@ export interface CurveProps {
 }
 
 const CurveEditor = ({ curve, setCurve } : CurveProps) => {
-  const handleChange = (property, value) => {    
+  const [predefinedCurveSelected, setPredefinedCurveSelected] = useState("")
+
+  useEffect(() => {
+    const predefinedCurvesKeys = Object.keys(predefinedCurves);
+    for (let i = 0; i < predefinedCurvesKeys.length; ++i) {
+      if (JSON.stringify(predefinedCurves[predefinedCurvesKeys[i]]) === JSON.stringify(curve)) {
+        setPredefinedCurveSelected(predefinedCurvesKeys[i])
+        return;
+      }
+    }
+    setPredefinedCurveSelected('custom')
+  }, [curve])
+
+  const handleChange = (property, value) => {
     setCurve('curve', {
       ...curve,
       [property]: value
     })
   }
 
+  const handlePredefinedCurve = (e) => {
+    if (e && e.target.value != "custom") {
+      setCurve('curve', predefinedCurves[e.target.value]);
+    }
+    else {
+      setPredefinedCurveSelected('custom')
+    }
+  }
+
   const renderPredefinedCurves = () => (
-    <>
-    <label>Predefined Curves:</label>
-    <div className="nes-select">
-      <select className="form-control" onChange={(e) => setCurve('curve', predefinedCurves[e.target.value])}>
-        {
-          Object.keys(predefinedCurves).map(key => (
-            <option value={key} key={key}>{key}</option>
-          ))
-        }        
-      </select>      
+    <div className="row">
+      <div className="col-md-8">
+        <label>Predefined Curves:</label>
+        <div className="nes-select">
+          <select className="form-control" value={predefinedCurveSelected} onChange={handlePredefinedCurve}>
+            <option value="custom" key="custom">Custom</option>
+            {                    
+                Object.keys(predefinedCurves).map(key => (
+                  <option value={key} key={key}>{key}</option>
+                ))
+            }        
+          </select>      
+        </div>
+      </div>
+      <div className="col-md-4">
+        <label>Curve type:</label>
+        <div className="nes-select">
+          <select className="form-control" value={curve.curveType} onChange={(e) => handleChange('curveType', e.target.value)}>
+            <option value="POLYNOMIAL">Polynomial</option>
+            <option value="GAUSSIAN">Guassian</option>
+          </select>      
+        </div>
+      </div>
     </div>
-    </>
   )
  
   return (
@@ -89,22 +123,22 @@ const CurveEditor = ({ curve, setCurve } : CurveProps) => {
       <div className="row">
         <div className="col-md-6">
           <label>Exponent:</label>
-          <input type="number" className="nes-input" value={curve.exponent} onChange={(e) => handleChange('exponent', e.target.value)} />
+          <input type="number" className="nes-input" value={curve.exponent} onChange={(e) => handleChange('exponent', +(e.target.value))} />
         </div>
         <div className="col-md-6">
           <label>Slop:</label>
-          <input type="number" className="nes-input" value={curve.slope} step="0.01" onChange={(e) => handleChange('slope',e.target.value)} />
+          <input type="number" className="nes-input" value={curve.slope} step="0.01" onChange={(e) => handleChange('slope', +(e.target.value))} />
         </div>
       </div>
 
       <div className="row">
         <div className="col-md-6">
           <label>XShift:</label>
-          <input type="number" className="nes-input" value={curve.xShift} step="0.01" onChange={(e) => handleChange('xShift', e.target.value)} />
+          <input type="number" className="nes-input" value={curve.xShift} step="0.01" onChange={(e) => handleChange('xShift', +(e.target.value))} />
         </div>
         <div className="col-md-6">
           <label>YShift:</label>
-          <input type="number" className="nes-input" value={curve.yShift} step="0.01" onChange={(e) => handleChange('yShift', e.target.value)} />
+          <input type="number" className="nes-input" value={curve.yShift} step="0.01" onChange={(e) => handleChange('yShift', +(e.target.value))} />
         </div>
       </div>   
     </>

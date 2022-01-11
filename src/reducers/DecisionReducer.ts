@@ -1,6 +1,6 @@
 import { getTags, createByTagStructure } from '../common/utility';
 import { Dictionary, DecisionModel } from '../common/models';
-import { DecisionActionTypes, LOAD_DECISIONS_SUCCESS, SAVE_DECISIONS_REQUEST, REMOVE_DECISION_REQUEST, REMOVE_CONDITION_EVALUATOR_REQUEST } from '../actions/types';
+import { ProjectActionTypes, LOAD_PROJECT_SUCCESS, RESTORE_PROJECT, DecisionActionTypes, SAVE_DECISIONS_REQUEST, REMOVE_DECISION_REQUEST, ConditionEvaluatorActionTypes, REMOVE_CONDITION_EVALUATOR_REQUEST } from '../actions/types';
 import omit from 'lodash/omit';
 import mapValues from 'lodash/mapValues';
 
@@ -14,13 +14,13 @@ const defaultState = {
   tags: []
 } as DecisionState
 
-export const decisionReducer = (state = defaultState, action : DecisionActionTypes) : DecisionState  => {
+export const decisionReducer = (state = defaultState, action : ProjectActionTypes | DecisionActionTypes | ConditionEvaluatorActionTypes) : DecisionState  => {
   switch(action.type) {
-    case LOAD_DECISIONS_SUCCESS:
+    case LOAD_PROJECT_SUCCESS:
       return {
         ...state, 
-        byTag: createByTagStructure(action.payload),
-        tags: getTags(action.payload)
+        byTag: createByTagStructure(action.payload.decisions),
+        tags: getTags(action.payload.decisions)
       }
     case SAVE_DECISIONS_REQUEST:
       {
@@ -61,6 +61,8 @@ export const decisionReducer = (state = defaultState, action : DecisionActionTyp
           byTag
         } 
       }
+    case RESTORE_PROJECT:
+      return defaultState;
     default: 
       return state;
   }
