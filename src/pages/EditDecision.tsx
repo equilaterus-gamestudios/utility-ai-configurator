@@ -9,9 +9,7 @@ const EditDecision = ({ match }) => {
   const decision = useSelector(selectDecisionByTag(match.params.tag))
 
   return (
-    <>
-      <DecisionEditorContainer decision={decision} />    
-    </>
+    <DecisionEditorContainer decision={decision} />
   )
 }
 

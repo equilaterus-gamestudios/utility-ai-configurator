@@ -1,22 +1,11 @@
 
 import StartActions from '../components/StartActions';
-import RecentFiles from '../components/RecentFiles';
+import withLayout from '../wrappers/withLayout';
 
 const Home = () => {
   return  (
-    <>
-      <div className="editor">
-          <div className="default-col container-fluid">
-            <div className="row">
-              <div className="col-4">
-                <StartActions />
-              </div>
-            </div>
-            <RecentFiles />
-          </div>
-        </div>
-    </>
+    <StartActions />
   );
   
 }
-export default Home;
+export default withLayout(Home, "Geppetto");

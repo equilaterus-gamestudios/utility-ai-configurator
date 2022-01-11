@@ -80,7 +80,7 @@ const CurveEditor = ({ curve, setCurve } : CurveProps) => {
   }
 
   const handlePredefinedCurve = (e) => {
-    if (e && e.target.value != "custom") {
+    if (e && e.target.value !== "custom") {
       setCurve('curve', predefinedCurves[e.target.value]);
     }
     else {

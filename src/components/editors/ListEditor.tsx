@@ -1,7 +1,6 @@
 import React from "react";
 import { ReactComponent as UpIcon }  from '../../icons/up.svg';
 import { ReactComponent as DownIcon }  from '../../icons/down.svg';
-import { ReactComponent as TrashIcon }  from '../../icons/trash.svg';
 import Button from "../Button";
 
 export interface ListEditorProps {

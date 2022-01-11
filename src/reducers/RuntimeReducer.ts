@@ -34,7 +34,7 @@ export const runtimeReducer = (state = defaultState, action : ProjectActionTypes
       return {
         ...state,
         changesNotSaved: false,
-        latestOpenedProjects: state.projectPath != TEMP_FILE 
+        latestOpenedProjects: state.projectPath !== TEMP_FILE 
           ? takeRight(concat(without(state.latestOpenedProjects, state.projectPath), state.projectPath), 10)
           : state.latestOpenedProjects
       }
