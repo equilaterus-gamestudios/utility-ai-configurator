@@ -100,9 +100,9 @@ export function useActions() {
       const choice = await dialog.showMessageBox(
         {
           type: 'question',
-          buttons: ['Save changes.', 'Discard changes'],
+          buttons: ['Save changes.', 'Discard changes.'],
           title: 'Confirmation',
-          message: 'Do you want to save your changes?.'
+          message: 'Do you want to save your changes?'
         }
       );
       // Save the in-memory changes into disk
@@ -128,7 +128,7 @@ export function useActions() {
         type: 'info',
         buttons: ['Ok'],
         title: 'Export',
-        message: 'Exporting process has been completed' 
+        message: 'Exporting process has been completed.' 
       }
     );
   }
