@@ -1,7 +1,7 @@
 {
   "name": "utility-ai-configurator",
   "description": "Geppetto Ai: Master of puppets.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "dependencies": {
     "@electron/remote": "^1.1.0",
