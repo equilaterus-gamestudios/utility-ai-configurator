@@ -15,7 +15,7 @@ const RecentFiles = () => {
       <p>Recent files</p>
       <ul>
         {reverse(latestOpenedProjects).map(file => (
-          <li key={file}><button className="link" onClick={() => onLoadProject(file)}>{file}</button></li>
+          <li key={file}><button className="link recent-link" onClick={() => onLoadProject(file)}>{file}</button></li>
         ))}        
       </ul>
     </>

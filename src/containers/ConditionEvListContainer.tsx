@@ -17,7 +17,7 @@ const ConditionEvListContainer = ({ conditionEvaluatorTags, removeConditionEvalu
   if (!conditionEvaluatorTags || !conditionEvaluatorTags.length) {
     return (
       <>
-        <div>You haven't created any condition evaluator yet</div>
+        <div>You haven't created any condition evaluator yet.</div>
         <Link to="/EditConditionEvaluator" className="nes-btn is-primary main-btn">Add new condition evaluator</Link>
       </>
     );
