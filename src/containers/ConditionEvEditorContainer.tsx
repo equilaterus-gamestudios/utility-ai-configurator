@@ -7,6 +7,7 @@ import { ConditionEvaluatorModel } from '../common/models';
 import { useForm } from '../hooks/useForm';
 
 import { useDispatch } from 'react-redux';
+import { curveTypes } from '../common/Global';
 
 interface ConditionEvEditorContainerProps {
   conditionEvaluator: ConditionEvaluatorModel,
@@ -17,7 +18,7 @@ const defaultConditionEvaluator:ConditionEvaluatorModel = {
   functionName: '',
   parameters: [],
   curve: {
-    curveType: 'POLYNOMIAL',
+    curveType: curveTypes.POLYNOMIAL,
     exponent: 1,
     slope: 1,
     xShift: 1,

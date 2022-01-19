@@ -1,76 +1,42 @@
+import { curveTypes } from './Global';
 import { Curve } from './models';
 
-const lineal : Curve = {
-  curveType: 'POLYNOMIAL',
-  exponent: 1,
-  slope: 1,
-  xShift: 1,
-  yShift: 1
-};
+const basicLineal : Curve = { curveType: curveTypes.LINEAR, slope: 1.0, exponent: 0.0, xShift: 0.0, yShift: 0.0 };
+const basicQuadricLowerLeft : Curve = { curveType: curveTypes.POLYNOMIAL, slope: 1.0, exponent: 4.0, xShift: 1.0, yShift: 0.0 };
+const basicQuadricLowerRight : Curve = { curveType: curveTypes.POLYNOMIAL, slope: 1.0, exponent: 4.0, xShift: 0.0, yShift: 0.0 };
+const basicQuadricUpperLeft : Curve = { curveType: curveTypes.POLYNOMIAL, slope: -1.0, exponent: 4.0, xShift: 1.0, yShift: 1.0 };
+const basicQuadricUpperRight : Curve = { curveType: curveTypes.POLYNOMIAL, slope: -1.0, exponent: 4.0, xShift: 0.0, yShift: 1.0 };
+const inverseLinear : Curve = { curveType: curveTypes.LINEAR, slope: -1.0, exponent: 0.0, xShift: 0.0, yShift: 1.0 };
+const constant : Curve = { curveType: curveTypes.LINEAR, slope: 0.0, exponent: 0.0, xShift: 0.0, yShift: 0.5 };
+const cooldown : Curve = { curveType: curveTypes.POLYNOMIAL, slope: 1.0, exponent: 6.0, xShift: 0.0, yShift: 0.0 };
+const runtime : Curve = { curveType: curveTypes.POLYNOMIAL, slope: -1.0, exponent: 6.0, xShift: 0.0, yShift: 1.0 };
+const basicLogistic : Curve = { curveType: curveTypes.LOGISTIC, slope: 1.0, exponent: 1.0, xShift: 0.0, yShift: 0.0 };
+const inverseLogistic : Curve = { curveType: curveTypes.LOGISTIC, slope: -1.0, exponent: 1.0, xShift: 0.0, yShift: 1.0 };
+const basicLogit : Curve = { curveType: curveTypes.LOGIT, slope: 1.0, exponent: 1.0, xShift: 0.0, yShift: 0.0 };
+const inverseLogit : Curve = { curveType: curveTypes.LOGIT, slope: -1.0, exponent: 1.0, xShift: 0.0, yShift: 0.0 };
+const basicNormal : Curve = { curveType: curveTypes.NORMAL, slope: 1.0, exponent: 1.0, xShift: 0.0, yShift: 0.0 };
+const inverseNormal : Curve = { curveType: curveTypes.NORMAL, slope: -1.0, exponent: 1.0, xShift: 0.0, yShift: 1.0 };
+const basicSine : Curve = { curveType: curveTypes.SINE, slope: 1.0, exponent: 1.0, xShift: 0.0, yShift: 0.0 };
+const inverseSine : Curve = { curveType: curveTypes.SINE, slope: -1.0, exponent: 1.0, xShift: 0.0, yShift: 0.0 };
 
-const linealInverse : Curve = {
-  curveType: 'POLYNOMIAL',
-  exponent: 1,
-  slope: -1,
-  xShift: 0,
-  yShift: -1
-};
 
-const quadratic : Curve = {
-  curveType: 'POLYNOMIAL',
-  exponent: 2,
-  slope: 1,
-  xShift: 1,
-  yShift: 1
-};
-
-const quadraticInverse : Curve = {
-  curveType: 'POLYNOMIAL',
-  exponent: 2,
-  slope: -1,
-  xShift: 0,
-  yShift: -1
-};
-
-const gaussian : Curve = {
-  curveType: 'GAUSSIAN',
-  exponent: 1,
-  slope: 0,
-  xShift: 0.5,
-  yShift: 0.3
-};
-
-const gaussianInverse : Curve = {
-  curveType: 'GAUSSIAN',
-  exponent: -1,
-  slope: -1,
-  xShift: 0.5,
-  yShift: 0.20
-};
-
-const sCurve : Curve = {
-  curveType: 'GAUSSIAN',
-  exponent: 1,
-  slope: 0,
-  xShift: 1,
-  yShift: 0.5
-};
-
-const sCurveInverse : Curve = {
-  curveType: 'GAUSSIAN',
-  exponent: 1,
-  slope: 0,
-  xShift: 0,
-  yShift: 0.5
-};
 
 export const predefinedCurves = {  
-  lineal,
-  linealInverse,
-  quadratic,
-  quadraticInverse,
-  gaussian,
-  gaussianInverse,
-  sCurve,
-  sCurveInverse
+  basicLineal,
+  basicQuadricLowerLeft,
+  basicQuadricLowerRight,
+  basicQuadricUpperLeft,
+  basicQuadricUpperRight,
+  inverseLinear,
+  constant,
+  cooldown,
+  runtime,
+  basicLogistic,
+  inverseLogistic,
+  basicLogit, 
+  inverseLogit,
+  basicNormal,
+  inverseNormal,
+  basicSine,
+  inverseSine 
 }

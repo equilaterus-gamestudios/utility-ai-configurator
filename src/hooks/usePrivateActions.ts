@@ -35,7 +35,7 @@ export function usePrivateActions() {
             type: 'info',
             buttons: ['Ok'],
             title: 'Recovery',
-            message: 'Recovery file has been open. Pleas, use the SAVE AS function to make a copy of this project, the current opened project is a temporal file and will be cleaned up.' 
+            message: 'Recovery file has been open. Please, use the SAVE AS function to make a copy of this project, the current opened project is a temporal file and will be cleaned up.' 
           }
         );
       }

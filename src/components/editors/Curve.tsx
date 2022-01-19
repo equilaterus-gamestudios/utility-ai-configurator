@@ -2,18 +2,35 @@ import React, { useMemo, useCallback, useEffect, useState } from 'react'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
 import { Curve } from '../../common/models';
 import { predefinedCurves } from '../../common/defaultCurves';
+import { curveTypes } from '../../common/Global';
 
-const POLYNOMIAL = "POLYNOMIAL";
+
 const range = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0];
 
 const clamp = (x) => Math.min(Math.max(x, 0), 1);
 
-const polynomialFunction = (exponent, slope, xShift, yShift) => x =>  {
-  return clamp(slope * Math.pow(x, exponent) - yShift + xShift);
+const linearFunction = (exponent, slope, xShift, yShift) => x =>  {
+  return clamp(slope * (x - xShift) + yShift);
 }
 
-const gaussianFunction = (exponent, slope, xShift, yShift) => x =>  {
-  return clamp(exponent * Math.exp(-1 * Math.pow((x - xShift) / yShift, 2)) - slope);  
+const polynomialFunction = (exponent, slope, xShift, yShift) => x =>  {
+  return clamp(slope * Math.pow(x - xShift, exponent) + yShift);
+}
+
+const logisticFunction = (exponent, slope, xShift, yShift) => x =>  {
+  return clamp(slope / (1 + Math.exp(-10.0 * exponent * (x - 0.5 - xShift))) + yShift );
+}
+
+const logitFunction = (exponent, slope, xShift, yShift) => x =>  {
+  return clamp(slope * Math.log((x - xShift) / (1.0 - (x - xShift))) / 5.0 + 0.5 + yShift);
+}
+
+const normalFunction = (exponent, slope, xShift, yShift) => x =>  {
+  return clamp(slope * Math.exp(-30 * exponent * (x - xShift - 0.5) * (x - xShift - 0.5)) + yShift);  
+}
+
+const sineFunction = (exponent, slope, xShift, yShift) => x =>  {
+  return clamp(0.5 * slope * Math.sin(2.0 * Math.PI * (x - xShift)) + 0.5 + yShift);  
 }
 
 const CurvePreview = ({curveType, exponent, slope, xShift, yShift}) => {  
@@ -24,10 +41,22 @@ const CurvePreview = ({curveType, exponent, slope, xShift, yShift}) => {
   
   const calculateData = useCallback(() => {
     let curveFunction;
-    if (curveType === POLYNOMIAL) {
-      curveFunction = polynomialFunction(exponent, slope, xShift, yShift);
-    } else {
-      curveFunction = gaussianFunction(exponent, slope, xShift, yShift);
+    switch (curveType)
+    {
+      case curveTypes.LINEAR:
+        curveFunction = linearFunction(exponent, slope, xShift, yShift); break;
+      case curveTypes.POLYNOMIAL:
+        curveFunction = polynomialFunction(exponent, slope, xShift, yShift); break;
+      case curveTypes.LOGISTIC:
+        curveFunction = logisticFunction(exponent, slope, xShift, yShift); break;
+      case curveTypes.LOGIT:
+        curveFunction = logitFunction(exponent, slope, xShift, yShift); break;
+      case curveTypes.NORMAL:
+        curveFunction = normalFunction(exponent, slope, xShift, yShift); break;
+      case curveTypes.SINE:
+        curveFunction = sineFunction(exponent, slope, xShift, yShift); break;
+      default:
+        curveFunction = linearFunction(exponent, slope, xShift, yShift); break;
     }
     const data = range.map(x => ({x, y: curveFunction(x), max: 1.0, min: 0.0 }))
 
@@ -107,8 +136,11 @@ const CurveEditor = ({ curve, setCurve } : CurveProps) => {
         <label>Curve type:</label>
         <div className="nes-select">
           <select className="form-control" value={curve.curveType} onChange={(e) => handleChange('curveType', e.target.value)}>
-            <option value="POLYNOMIAL">Polynomial</option>
-            <option value="GAUSSIAN">Guassian</option>
+            {
+              Object.keys(curveTypes).map(key => (
+                <option value={curveTypes[key]} key={curveTypes[key]}>{curveTypes[key]}</option>
+              ))
+            }
           </select>      
         </div>
       </div>
@@ -122,13 +154,13 @@ const CurveEditor = ({ curve, setCurve } : CurveProps) => {
 
       <div className="row">
         <div className="col-md-6">
-          <label>Exponent:</label>
-          <input type="number" className="nes-input" value={curve.exponent} onChange={(e) => handleChange('exponent', +(e.target.value))} />
-        </div>
-        <div className="col-md-6">
-          <label>Slop:</label>
+          <label>Slope:</label>
           <input type="number" className="nes-input" value={curve.slope} step="0.01" onChange={(e) => handleChange('slope', +(e.target.value))} />
         </div>
+        <div className="col-md-6">
+          <label>Exponent:</label>
+          <input type="number" className="nes-input" value={curve.exponent} onChange={(e) => handleChange('exponent', +(e.target.value))} />
+        </div>        
       </div>
 
       <div className="row">
