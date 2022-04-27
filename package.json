@@ -30,9 +30,9 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
-    "start-web": "rescripts start",
-    "build-web": "rescripts build",
-    "test-web": "rescripts test",
+    "start-web": "react-app-rewired start",
+    "build-web": "react-app-rewired build",
+    "test-web": "react-app-rewired test",
     "start": "concurrently \"cross-env BROWSER=none npm run start-web\" \"wait-on http://localhost:3000 && electron .\"",
     "postinstall": "electron-builder install-app-deps",
     "build": "electron-builder build -w",
@@ -57,12 +57,11 @@
     ]
   },
   "devDependencies": {
-    "@rescripts/cli": "0.0.16",
-    "@rescripts/rescript-env": "0.0.12",
     "concurrently": "^6.0.0",
     "cross-env": "^7.0.3",
     "electron": "^12.0.1",
     "electron-builder": "^22.10.5",
+    "react-app-rewired": "^2.1.11",
     "wait-on": "^5.3.0"
   },
   "win": {
