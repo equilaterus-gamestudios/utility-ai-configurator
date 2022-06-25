@@ -1,4 +1,4 @@
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 import { Titlebar, Color } from 'custom-electron-titlebar';
 import history from './history';
 import Home from './pages/Home';
