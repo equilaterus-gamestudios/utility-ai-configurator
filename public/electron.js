@@ -1,5 +1,7 @@
 const electron = require('electron');
-require('@electron/remote/main').initialize();
+const remote = require('@electron/remote/main');
+remote.initialize();
+
 const app = electron.app;
 app.allowRendererProcessReuse = false;
 const BrowserWindow = electron.BrowserWindow;
@@ -9,6 +11,10 @@ const isDev =  require('electron-is-dev');
 
 let mainWindow;
 let fullscreen = false;
+
+
+const customTitlebar = require('custom-electron-titlebar/main');
+customTitlebar.setupTitlebar();
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -25,7 +31,7 @@ function createWindow() {
       enableRemoteModule: true
     }
   });
-  require('@electron/remote/main').enable(mainWindow.webContents);
+  remote.enable(mainWindow.webContents);
   loadUrlWithNodeWorkaround(mainWindow, isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
   if (isDev) {
     // Open the DevTools.
@@ -34,6 +40,7 @@ function createWindow() {
   } else {
     // Do nothing
   }
+  customTitlebar.attachTitlebarToWindow(mainWindow);
   
   mainWindow.on('close', (e) => {
     const choice = electron.dialog.showMessageBoxSync(

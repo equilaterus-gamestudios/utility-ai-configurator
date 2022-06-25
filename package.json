@@ -6,7 +6,7 @@
   "dependencies": {
     "@electron/remote": "^2.0.8",
     "bootstrap": "^4.6.0",
-    "custom-electron-titlebar": "^3.2.7",
+    "custom-electron-titlebar": "^4.1.0",
     "electron-is-dev": "^2.0.0",
     "lodash": "^4.17.15",
     "nes.css": "^2.3.0",
