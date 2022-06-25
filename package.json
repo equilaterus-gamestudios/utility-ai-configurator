@@ -4,39 +4,39 @@
   "version": "1.0.2",
   "private": true,
   "dependencies": {
-    "@electron/remote": "^1.1.0",
-    "@testing-library/jest-dom": "^5.11.9",
-    "@testing-library/react": "^11.2.5",
-    "@testing-library/user-event": "^12.8.3",
-    "@types/jest": "^26.0.21",
-    "@types/node": "^12.20.6",
-    "@types/react": "^17.0.3",
-    "@types/react-dom": "^17.0.3",
+    "@electron/remote": "^2.0.8",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.11.41",
+    "@types/react": "^18.0.14",
+    "@types/react-dom": "^18.0.5",
     "bootstrap": "^4.6.0",
     "custom-electron-titlebar": "^3.2.7",
     "electron-is-dev": "^2.0.0",
     "lodash": "^4.17.15",
     "nes.css": "^2.3.0",
     "node-sass": "^4.0.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.3",
+    "react-scripts": "5.0.1",
     "recharts": "^1.8.5",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
-    "typescript": "^4.2.3",
-    "web-vitals": "^1.1.1"
+    "typescript": "^4.7.4",
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start-web": "react-app-rewired start",
-    "build-web": "react-app-rewired build",
-    "test-web": "react-app-rewired test",
-    "start": "concurrently \"cross-env BROWSER=none npm run start-web\" \"wait-on http://localhost:3000 && electron .\"",
+    "start-app": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "start": "concurrently \"cross-env BROWSER=none npm run start-app\" \"wait-on http://localhost:3000 && electron .\"",
     "postinstall": "electron-builder install-app-deps",
-    "build": "electron-builder build -w",
-    "preelectron-pack": "npm run build-web"
+    "preelectron-pack": "npm run build",
+    "electron-pack": "electron-builder build -wl"
   },
   "eslintConfig": {
     "extends": [
@@ -57,40 +57,47 @@
     ]
   },
   "devDependencies": {
-    "concurrently": "^6.0.0",
+    "@types/lodash": "^4.14.182",
+    "@types/react-router-dom": "^5.3.3",
+    "@types/recharts": "^1.8.23",
+    "concurrently": "^7.2.2",
     "cross-env": "^7.0.3",
-    "electron": "^12.0.1",
-    "electron-builder": "^22.10.5",
-    "react-app-rewired": "^2.1.11",
-    "wait-on": "^5.3.0"
-  },
-  "win": {
-    "icon": "public/icon.png"
+    "electron": "^19.0.6",
+    "electron-builder": "^23.1.0",
+    "react-app-rewired": "^2.2.1",
+    "wait-on": "^6.0.1"
   },
   "main": "public/electron.js",
-  "homepage": ".",
+  "homepage": "./",
   "author": {
-    "name": "Equilaterus",
-    "url": "https://equilaterus.com"
+    "name": "Your name",
+    "email": "your.email@domain.com",
+    "url": "https://your-website.com"
   },
   "build": {
-    "appId": "com.equilaterus.utilityai",
-    "productName": "GeppettoAi",
-    "copyright": "Copyright © 2021 ${author}",
-    "mac": {
-      "category": "public.app-category.utilities"
+    "appId": "com.my-website.my-app",
+    "productName": "MyApp",
+    "copyright": "Copyright © 2019 ${author}",
+    "linux": {
+      "target": [
+        "AppImage"
+      ]
     },
     "win": {
       "target": [
         "portable"
       ]
     },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
     "files": [
       "build/**/*",
       "node_modules/**/*"
     ],
     "directories": {
-      "buildResources": "build"
+      "buildResources": "assets"
     }
   }
 }
