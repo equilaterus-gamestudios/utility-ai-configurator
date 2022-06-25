@@ -5,7 +5,7 @@ import { selectArchetypeByTag } from '../selectors/ArchetypeSelector';
 import withLayout from '../wrappers/withLayout';
 
 
-const EditArchetype = ({ match }) => {
+const EditArchetype = ({ match }: any) => {
   const archetype = useSelector(selectArchetypeByTag(match.params.tag))
 
   return (

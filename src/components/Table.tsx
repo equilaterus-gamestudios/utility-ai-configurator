@@ -4,11 +4,11 @@ import RowContainer from '../containers/RowContainer';
 interface PropTypes {
   tags: Array<string>,
   properties: Array<string>,
-  actions: (any) => any,
-  selector: (any) => any
+  actions: (arg0: any) => any,
+  selector: (arg0: any) => any
 }
 
-const renderBody = (tags : Array<string>, properties : Array<string>, actions : (any) => any, selector : (any) => any) => (
+const renderBody = (tags : Array<string>, properties : Array<string>, actions : (arg0: any) => any, selector : (arg0: any) => any) => (
   tags.map(tag => (
     <tr key={tag}>
       <RowContainer properties={properties} actions={actions} selector={selector(tag)} />  

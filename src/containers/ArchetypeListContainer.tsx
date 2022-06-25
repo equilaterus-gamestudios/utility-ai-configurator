@@ -37,7 +37,7 @@ const ArchetypeListContainer = ({ archetypeTags, removeArchetype } : PropTypes) 
   );
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
   archetypeTags: selectArchetypeTags(state)
 })
 

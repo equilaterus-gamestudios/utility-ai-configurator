@@ -17,7 +17,7 @@ const ListEditor = ({list, onChangeList, editorComponent} :ListEditorProps) => {
     onChangeList(newList);
   }
 
-  const onRemove = (index) => {
+  const onRemove = (index: number) => {
     const newList = list.filter((value, i) => i !== index);
     onChangeList(newList);
   }

@@ -4,12 +4,12 @@ import { ParameterModel } from '../../common/models';
 interface PropTypes {
   parameter: ParameterModel,
   index: Number,
-  remove: (any, Number) => void,
-  update: (Number, ParameterModel) => void
+  remove: (arg0: any, arg1: Number) => void,
+  update: (arg0: Number, arg1: ParameterModel) => void
 }
 
 const Parameter = ({ parameter, index, remove, update } : PropTypes) => {  
-  const handleChange = (property, value) => {    
+  const handleChange = (property: string, value: string) => {    
     update(index, {
       ...parameter,
       [property]: value

@@ -51,7 +51,7 @@ const ConditionEvEditorContainer = ({ conditionEvaluator = defaultConditionEvalu
         <input type="text" className="nes-input" value={model.description} onChange={(e) => setProperty('description', e.target.value)} />
       </div>
       <CurveEditor curve={model.curve} setCurve={setProperty} />
-      <ParametersManager parameters={model.parameters} setParameters={(newValue) => setProperty('parameters', newValue)} />
+      <ParametersManager parameters={model.parameters} setParameters={(newValue: any) => setProperty('parameters', newValue)} />
       <input type="button" className="nes-btn is-primary" value="Save" onClick={handleSave}/>
     </form>
   )

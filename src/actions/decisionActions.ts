@@ -12,21 +12,21 @@ const saveDecisions =  (decision : DecisionModel) : DecisionActionTypes => {
   }
 }
 
-export const saveDecisionAndRedirect = (decision) => async (dispatch) => {
+export const saveDecisionAndRedirect = (decision: DecisionModel) => async (dispatch: any) => {
   dispatch(saveDecisions(decision));
   dispatch(saveProject(true));
 
   history.push('/Decisions');
 }
 
-const removeDecisionRequest =  (tag : string) : DecisionActionTypes => {
+const removeDecisionRequest =  (tag: string) : DecisionActionTypes => {
   return {
     type: REMOVE_DECISION_REQUEST,
     payload: tag
   }
 }
 
-export const removeDecision = (tag) => async (dispatch) => {
+export const removeDecision = (tag: string) => async (dispatch: any) => {
   dispatch(removeDecisionRequest(tag));
   dispatch(saveProject(true));
 }

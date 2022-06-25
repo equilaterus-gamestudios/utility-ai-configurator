@@ -9,7 +9,7 @@ export interface ButtonProps {
 const Button: FC<ButtonProps> = ({ onClick, children, ...otherProps }: ButtonProps) => {
   const onClickHandler = (event: SyntheticEvent) => {
     event.preventDefault();
-    onClick();
+    if (onClick) onClick();
   }
 
   if (onClick)

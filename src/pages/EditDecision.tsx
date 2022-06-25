@@ -5,7 +5,7 @@ import { selectDecisionByTag } from '../selectors/DecisionSelector';
 import withLayout from '../wrappers/withLayout';
 
 
-const EditDecision = ({ match }) => {
+const EditDecision = ({ match }: any) => {
   const decision = useSelector(selectDecisionByTag(match.params.tag))
 
   return (

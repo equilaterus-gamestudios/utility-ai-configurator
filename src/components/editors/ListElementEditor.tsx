@@ -4,8 +4,8 @@ import { useSelector } from 'react-redux';
 export interface ListElementEditorProps {
   index: number,
   tag: string,
-  onChangeValue: (index, string) => void,
-  selector: (any) => any
+  onChangeValue: (index: number, value: string) => void,
+  selector: (any: any) => any
 }
 
 const ListElementEditor = ({index, tag, onChangeValue, selector} : ListElementEditorProps) => {
