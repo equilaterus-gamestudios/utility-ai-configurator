@@ -25,6 +25,7 @@ function createWindow() {
       enableRemoteModule: true
     }
   });
+  require('@electron/remote/main').enable(mainWindow.webContents);
   loadUrlWithNodeWorkaround(mainWindow, isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
   if (isDev) {
     // Open the DevTools.
