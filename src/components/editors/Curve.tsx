@@ -3,7 +3,6 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
 import { Curve } from '../../common/models';
 import { predefinedCurves, predefinedCurvesDict } from '../../common/defaultCurves';
 import { curveTypes, curveTypesDict } from '../../common/Global';
-import { Dictionary } from 'lodash';
 
 
 const range = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0];
