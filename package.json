@@ -1,7 +1,7 @@
 {
   "name": "utility-ai-configurator",
   "description": "Geppetto Ai: Master of puppets.",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "private": true,
   "dependencies": {
     "@electron/remote": "^2.0.8",
@@ -24,12 +24,13 @@
   },
   "scripts": {
     "start-app": "react-app-rewired start",
-    "build": "react-app-rewired build",
+    "build-app": "react-app-rewired build",
     "test": "react-app-rewired test",
     "start": "concurrently \"cross-env BROWSER=none npm run start-app\" \"wait-on http://localhost:3000 && electron .\"",
     "postinstall": "electron-builder install-app-deps",
-    "preelectron-pack": "npm run build",
-    "electron-pack": "electron-builder build -wl"
+    "preelectron-pack": "npm run build-app",
+    "build-linux": "electron-builder build -l",
+    "build-win": "electron-builder build -w"
   },
   "eslintConfig": {
     "extends": [
@@ -68,17 +69,19 @@
     "react-app-rewired": "^2.2.1",
     "wait-on": "^6.0.1"
   },
+  "win": {
+    "icon": "public/icon.png"
+  },
   "main": "public/electron.js",
-  "homepage": "./",
+  "homepage": ".",
   "author": {
-    "name": "Your name",
-    "email": "your.email@domain.com",
-    "url": "https://your-website.com"
+    "name": "Equilaterus",
+    "url": "https://equilaterus.com"
   },
   "build": {
-    "appId": "com.my-website.my-app",
-    "productName": "MyApp",
-    "copyright": "Copyright © 2019 ${author}",
+    "appId": "com.equilaterus.utilityai",
+    "productName": "GeppettoAi",
+    "copyright": "Copyright © 2021-2022 ${author}",
     "linux": {
       "target": [
         "AppImage"
@@ -89,16 +92,15 @@
         "portable"
       ]
     },
-    "nsis": {
-      "oneClick": false,
-      "allowToChangeInstallationDirectory": true
+    "mac": {
+      "category": "public.app-category.utilities"
     },
     "files": [
       "build/**/*",
       "node_modules/**/*"
     ],
     "directories": {
-      "buildResources": "assets"
+      "buildResources": "build"
     }
   }
 }
