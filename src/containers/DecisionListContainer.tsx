@@ -37,7 +37,7 @@ const DecisionListContainer = ({ decisionTags, removeDecision } : PropTypes) => 
   );
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
   decisionTags: selectDecisionTags(state)
 })
 

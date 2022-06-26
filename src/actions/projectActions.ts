@@ -21,7 +21,7 @@ const loadProjectSuccess = (project : ProjectModel) : ProjectActionTypes => {
   }
 }
 
-export const loadProject = (filePath: string) => async (dispatch) => {
+export const loadProject = (filePath: string) => async (dispatch: any) => {
   dispatch(loadProjectRequest(filePath));
   const project = await projectAPI.loadProject(filePath);
   dispatch(loadProjectSuccess(project));
@@ -40,7 +40,7 @@ const saveProjectSuccess = (isTemporalSave : boolean) : ProjectActionTypes => ({
   payload: isTemporalSave
 })
 
-export const saveProject = (isTemporalSave : boolean) => async (dispatch, getState) => {
+export const saveProject = (isTemporalSave : boolean) => async (dispatch: any, getState: any) => {
     dispatch(saveProjectRequest);
     const fileName = isTemporalSave ? TEMP_FILE : getState().runtime.projectPath;
     const conditionEvaluators = getValuesFromByTag(getState().conditionEvaluators.byTag);
@@ -62,7 +62,7 @@ const exportProjectSuccess = () : ProjectActionTypes => ({
     type: EXPORT_PROJECT_SUCCESS
 })
 
-export const exportProject = (filePath : string) => async (dispatch, getState) => {
+export const exportProject = (filePath : string) => async (dispatch: any, getState: any) => {
   dispatch(exportProjectRequest());
   const conditionEvaluators = getValuesFromByTag(getState().conditionEvaluators.byTag);
   const decisions = getValuesFromByTag(getState().decisions.byTag);

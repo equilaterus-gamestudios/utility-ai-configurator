@@ -38,7 +38,7 @@ const ConditionEvListContainer = ({ conditionEvaluatorTags, removeConditionEvalu
   );
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
   conditionEvaluatorTags: selectConditionEvaluatorTags(state)
 })
 

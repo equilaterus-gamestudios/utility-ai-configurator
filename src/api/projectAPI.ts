@@ -1,8 +1,9 @@
 import { promises as fs } from 'fs';
-import { ProjectModel } from '../common/models'
+import { Dictionary, ParameterModel, ProjectModel } from '../common/models'
 import { StringifyToPascalCase } from '../common/utility';
 
 import pick from 'lodash/pick';
+import { IndexType } from 'typescript';
 
 const conditionEvaluatorProperties = ['tag', 'functionName', 'curve', 'parameters'];
 const decisionProperties = ['tag', 'functionName', 'weight', 'hasTargetDependency', 'conditionEvaluators'];
@@ -10,8 +11,8 @@ const archetypeProperties = ['tag', 'defaultDecision', 'decisions'];
 
 // This functions takes the parameters in the condition evaluator and converts them from a parameter's array to
 // a dictionary that only sets the key and the value per each parameter, removing the description
-const parametersToDictionary = (parameters) => {
-  const paramatersDic = {};
+const parametersToDictionary = (parameters: Array<ParameterModel>) => {
+  const paramatersDic = {} as Dictionary<string>;
   for (let i = 0; i < parameters.length; ++i) {
     const parameter = parameters[i];
     paramatersDic[parameter.key] = parameter.value;

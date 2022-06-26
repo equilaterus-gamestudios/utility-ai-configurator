@@ -1,46 +1,46 @@
 import React, { useMemo, useCallback, useEffect, useState } from 'react'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
 import { Curve } from '../../common/models';
-import { predefinedCurves } from '../../common/defaultCurves';
-import { curveTypes } from '../../common/Global';
+import { predefinedCurves, predefinedCurvesDict } from '../../common/defaultCurves';
+import { curveTypes, curveTypesDict } from '../../common/Global';
 
 
 const range = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0];
 
-const clamp = (x) => Math.min(Math.max(x, 0), 1);
+const clamp = (x: number) => Math.min(Math.max(x, 0), 1);
 
-const linearFunction = (exponent, slope, xShift, yShift) => x =>  {
+const linearFunction = (exponent: number, slope: number, xShift: number, yShift: number) => (x: number) =>  {
   return clamp(slope * (x - xShift) + yShift);
 }
 
-const polynomialFunction = (exponent, slope, xShift, yShift) => x =>  {
+const polynomialFunction = (exponent: number, slope: number, xShift: number, yShift: number) => (x: number) =>  {
   return clamp(slope * Math.pow(x - xShift, exponent) + yShift);
 }
 
-const logisticFunction = (exponent, slope, xShift, yShift) => x =>  {
+const logisticFunction = (exponent: number, slope: number, xShift: number, yShift: number) => (x: number) =>  {
   return clamp(slope / (1 + Math.exp(-10.0 * exponent * (x - 0.5 - xShift))) + yShift );
 }
 
-const logitFunction = (exponent, slope, xShift, yShift) => x =>  {
+const logitFunction = (exponent: number, slope: number, xShift: number, yShift: number) => (x: number) =>  {
   return clamp(slope * Math.log((x - xShift) / (1.0 - (x - xShift))) / 5.0 + 0.5 + yShift);
 }
 
-const normalFunction = (exponent, slope, xShift, yShift) => x =>  {
+const normalFunction = (exponent: number, slope: number, xShift: number, yShift: number) => (x: number) =>  {
   return clamp(slope * Math.exp(-30 * exponent * (x - xShift - 0.5) * (x - xShift - 0.5)) + yShift);  
 }
 
-const sineFunction = (exponent, slope, xShift, yShift) => x =>  {
+const sineFunction = (exponent: number, slope: number, xShift: number, yShift: number) => (x: number) =>  {
   return clamp(0.5 * slope * Math.sin(2.0 * Math.PI * (x - xShift)) + 0.5 + yShift);  
 }
 
-const CurvePreview = ({curveType, exponent, slope, xShift, yShift}) => {  
+const CurvePreview = ({curveType, exponent, slope, xShift, yShift}: any) => {  
   exponent = parseFloat(exponent);
   slope = parseFloat(slope);
   xShift = parseFloat(xShift);
   yShift = parseFloat(yShift);
   
   const calculateData = useCallback(() => {
-    let curveFunction;
+    let curveFunction: any;
     switch (curveType)
     {
       case curveTypes.LINEAR:
@@ -84,7 +84,7 @@ const CurvePreview = ({curveType, exponent, slope, xShift, yShift}) => {
 
 export interface CurveProps {
   curve: Curve,
-  setCurve: (string, any) => void
+  setCurve: (string: any, any: any) => void
 }
 
 const CurveEditor = ({ curve, setCurve } : CurveProps) => {
@@ -93,7 +93,7 @@ const CurveEditor = ({ curve, setCurve } : CurveProps) => {
   useEffect(() => {
     const predefinedCurvesKeys = Object.keys(predefinedCurves);
     for (let i = 0; i < predefinedCurvesKeys.length; ++i) {
-      if (JSON.stringify(predefinedCurves[predefinedCurvesKeys[i]]) === JSON.stringify(curve)) {
+      if (JSON.stringify(predefinedCurvesDict[predefinedCurvesKeys[i]]) === JSON.stringify(curve)) {
         setPredefinedCurveSelected(predefinedCurvesKeys[i])
         return;
       }
@@ -101,16 +101,16 @@ const CurveEditor = ({ curve, setCurve } : CurveProps) => {
     setPredefinedCurveSelected('custom')
   }, [curve])
 
-  const handleChange = (property, value) => {
+  const handleChange = (property: any, value: any) => {
     setCurve('curve', {
       ...curve,
       [property]: value
     })
   }
 
-  const handlePredefinedCurve = (e) => {
+  const handlePredefinedCurve = (e: any) => {
     if (e && e.target.value !== "custom") {
-      setCurve('curve', predefinedCurves[e.target.value]);
+      setCurve('curve', predefinedCurvesDict[e.target.value]);
     }
     else {
       setPredefinedCurveSelected('custom')
@@ -138,7 +138,7 @@ const CurveEditor = ({ curve, setCurve } : CurveProps) => {
           <select className="form-control" value={curve.curveType} onChange={(e) => handleChange('curveType', e.target.value)}>
             {
               Object.keys(curveTypes).map(key => (
-                <option value={curveTypes[key]} key={curveTypes[key]}>{curveTypes[key]}</option>
+                <option value={curveTypesDict[key]} key={curveTypesDict[key]}>{curveTypesDict[key]}</option>
               ))
             }
           </select>      

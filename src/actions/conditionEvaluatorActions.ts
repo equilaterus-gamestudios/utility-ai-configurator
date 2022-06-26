@@ -12,20 +12,20 @@ const saveConditionEvaluator =  (conditionEvaluator : ConditionEvaluatorModel) :
   }
 }
 
-export const saveConditionEvaluatorAndRedirect = (conditionEvaluator) => async (dispatch, getState) => {
+export const saveConditionEvaluatorAndRedirect = (conditionEvaluator: ConditionEvaluatorModel) => async (dispatch: any, getState: any) => {
   dispatch(saveConditionEvaluator(conditionEvaluator));
   dispatch(saveProject(true));
   history.push('/ConditionEvaluators');
 }
 
-const removeConditionEvaluatorRequest =  (tag : string) : ConditionEvaluatorActionTypes => {
+const removeConditionEvaluatorRequest =  (tag: string) : ConditionEvaluatorActionTypes => {
   return {
     type: REMOVE_CONDITION_EVALUATOR_REQUEST,
     payload: tag
   }
 }
 
-export const removeConditionEvaluator = (tag) => async (dispatch) => {
+export const removeConditionEvaluator = (tag: string) => async (dispatch: any) => {
   dispatch(removeConditionEvaluatorRequest(tag));
   dispatch(saveProject(true));
 }

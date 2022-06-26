@@ -11,7 +11,7 @@ const saveArchetype =  (archetype : ArchetypeModel) : ArchetypeActionTypes => {
   }
 }
 
-export const saveArchetypeAndRedirect = (archetype) => async (dispatch) => {
+export const saveArchetypeAndRedirect = (archetype: ArchetypeModel) => async (dispatch: any) => {
   dispatch(saveArchetype(archetype));
   dispatch(saveProject(true));
 
@@ -25,7 +25,7 @@ const removeArchetypeRequest =  (tag : string) : ArchetypeActionTypes => {
   }
 }
 
-export const removeArchetype = (tag) => async (dispatch) => {
+export const removeArchetype = (tag: string) => async (dispatch: any) => {
   dispatch(removeArchetypeRequest(tag));
   dispatch(saveProject(true));
 }

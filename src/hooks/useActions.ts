@@ -3,15 +3,22 @@ import { useSelector, useDispatch } from 'react-redux';
 import { loadProject, saveProject, exportProject, restoreProject } from '../actions/projectActions';
 import { changeProjectPath } from '../actions/runtimeActions';
 import { runtimeModel } from '../common/models';
+import { forceExtension } from '../common/fileUtils';
+import { selectRuntime } from '../selectors/RuntimeSelector';
+
+const AIPROJ_EXTENSION = 'aiproj';
+const AIPROJ_NAME = 'AI Project file';
+const AIDB_EXTENSION = 'aidb';
+const AIDB_NAME = 'AI Database file';
 
 export function useActions() {
-  const runtime = useSelector((state) => state.runtime) as runtimeModel
+  const runtime = useSelector(selectRuntime) as runtimeModel
   const dispatch = useDispatch();
 
   /**
    * Load project
    */
-  const onLoadProjectDialog = async () => {
+  const onLoadProjectDialog = async () => {   
     // Pending changes?
     if (runtime.changesNotSaved) {
       const choice = await dialog.showMessageBox(
@@ -30,14 +37,19 @@ export function useActions() {
       {
         title:'Open Dialogue',
         properties: ['openFile'],
-        filters: [{'extensions': ['aiproj'], 'name': 'AI Project file' } as Electron.FileFilter]
+        filters: [
+          {'extensions': [AIPROJ_EXTENSION], 'name': AIPROJ_NAME } as Electron.FileFilter,
+          {'extensions': ['*'], 'name': 'All files' } as Electron.FileFilter,
+        ]
       }
     );
-    if (result.filePaths.length === 0) return;
+    
+    if (result.canceled || result.filePaths.length === 0) return;
     
     // Load file
     dispatch(loadProject(result.filePaths[0]));
   }
+
   /** 
    * Load Project
    */
@@ -81,12 +93,12 @@ export function useActions() {
       {
         title:'Create Dialogue',
         properties: ['createDirectory'],
-        filters: [{'extensions': ['aiproj'], 'name': 'AI Project file' } as Electron.FileFilter]
+        filters: [{'extensions': [AIPROJ_EXTENSION], 'name': AIPROJ_NAME } as Electron.FileFilter]
       }
     );    
-    if (result.canceled === true) return;
-        
-    dispatch(changeProjectPath(result.filePath));
+    if (result.canceled) return;
+    
+    dispatch(changeProjectPath(await forceExtension(result.filePath, AIPROJ_EXTENSION)));
     dispatch(restoreProject());
     dispatch(saveProject(false));
   }
@@ -116,13 +128,13 @@ export function useActions() {
       {
         title:'Export Dialogue',
         properties: ['createDirectory'],
-        filters: [{'extensions': ['aidb'], 'name': 'AI database file' } as Electron.FileFilter]
+        filters: [{'extensions': [AIDB_EXTENSION], 'name':  AIDB_NAME} as Electron.FileFilter]
       }
     );
     if (result.canceled === true) return;
     
     // Export file
-    dispatch(exportProject(result.filePath));
+    dispatch(exportProject(await forceExtension(result.filePath, AIDB_EXTENSION)));
     dialog.showMessageBox(
       {
         type: 'info',
@@ -149,13 +161,13 @@ export function useActions() {
       {
         title:'Save As Dialogue',
         properties: ['createDirectory'],
-        filters: [{'extensions': ['aiproj'], 'name': 'AI Project file' } as Electron.FileFilter]
+        filters: [{'extensions': [AIPROJ_EXTENSION], 'name': AIPROJ_NAME } as Electron.FileFilter]
       }
     );
     if (result.canceled === true) return;
     
     // Save
-    dispatch(changeProjectPath(result.filePath));
+    dispatch(changeProjectPath(await forceExtension(result.filePath, AIPROJ_EXTENSION)));
     dispatch(saveProject(false));
   }
 

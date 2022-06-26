@@ -12,22 +12,22 @@ const setProjectPath =  (newProjectPath: string) : RuntimeActionTypes => {
   }
 }
 
-export const changeProjectPath = (newProjectPath: string) => async (dispatch) => {
+export const changeProjectPath = (newProjectPath: string) => async (dispatch:any) => {
   dispatch(setProjectPath(newProjectPath));
 }
 
-const loadRuntimeSuccess = (runtime : runtimeModel) => ({
+const loadRuntimeSuccess = (runtime: runtimeModel) => ({
   type: LOAD_RUNTIME_SUCCESS,
   payload: runtime
 })
 
-export const loadRuntime = (callback) => async (dispatch) => {
+export const loadRuntime = (callback: any) => async (dispatch: any) => {
   const runtime = await runtimeAPI.loadRuntime();
   dispatch(loadRuntimeSuccess(runtime));
   await callback(runtime);
 }
 
-export const saveRuntime = () => async (dispatch, getState) => {  
+export const saveRuntime = () => async (dispatch: any, getState: any) => {  
   await runtimeAPI.saveRuntime(getState().runtime);
 }
 
@@ -35,7 +35,7 @@ const cleanupSuccess = () => ({
   type: CLEANUP_SUCCESS
 })
 
-export const cleanTemp = () => async (dispatch) => {
+export const cleanTemp = () => async (dispatch: any) => {
   await projectAPI.saveProject(TEMP_FILE, DEFAULT_PROJ as ProjectModel);
   dispatch(cleanupSuccess());
 

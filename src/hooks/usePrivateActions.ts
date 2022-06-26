@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { loadProject } from '../actions/projectActions';
 import { loadRuntime, cleanTemp } from '../actions/runtimeActions';
 import { TEMP_FILE } from '../common/Global';
+import { runtimeModel } from '../common/models';
 
 export function usePrivateActions() {  
   const dispatch = useDispatch();
@@ -12,7 +13,7 @@ export function usePrivateActions() {
    * Load runtime
    */
   const onLoadRuntimeDialog = async () => {
-    const runtimeDialogCallback = async (runtime) => {
+    const runtimeDialogCallback = async (runtime: runtimeModel) => {
       // Pending changes?
       if (runtime.changesNotSaved) {
         const choice = await dialog.showMessageBox(
@@ -45,7 +46,6 @@ export function usePrivateActions() {
     dispatch(loadRuntime(runtimeDialogCallback));
   }
 
-  // eslint-disable-next-line 
-  return { onLoadRuntimeDialog: useCallback(onLoadRuntimeDialog, []) }
+  return { onLoadRuntimeDialog }
 }
 

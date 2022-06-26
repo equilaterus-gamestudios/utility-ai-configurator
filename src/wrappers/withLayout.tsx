@@ -2,8 +2,8 @@ import React from 'react';
 import Menu from '../components/Menu';
 import { useActions } from '../hooks/useActions';
 
-function withLayout(WrappedComponent, title:string) {
-  return function(props) {
+function withLayout(WrappedComponent: any, title:string) {
+  return function(props: any) {
     const { runtime } = useActions();
     return (
       <div className="app">

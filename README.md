@@ -8,12 +8,15 @@ UtilityAI for Unreal by Equilaterus.
 * Run: 
   ```
   npm start
-  ````
+  ```
 
 * Build dist:
-  ```
-  npm run build-web
-  npm run build
+  ```bash
+  npm run build-app
+  # Build for linux
+  npm run build-linux
+  # Build for win
+  npm run build-win
   ```
 
 This project is being developed by Equilaterus.

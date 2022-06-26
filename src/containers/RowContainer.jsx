@@ -19,4 +19,3 @@ const RowContainer = ({ selector, properties, actions }) => {
 }
 
 export default RowContainer;
-

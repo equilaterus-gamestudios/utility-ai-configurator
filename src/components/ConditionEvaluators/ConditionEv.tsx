@@ -6,7 +6,7 @@ import { ConditionEvaluatorModel, Dictionary } from '../../common/models';
 export interface ConditionEvProps {
   index: number,
   tag: string,
-  onChangeValue: (index, string) => void
+  onChangeValue: (index: number, value: string) => void
 }
 
 const ConditionEv = ({index, tag, onChangeValue} :ConditionEvProps) => {

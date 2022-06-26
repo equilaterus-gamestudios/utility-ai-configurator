@@ -1,5 +1,5 @@
 import { curveTypes } from './Global';
-import { Curve } from './models';
+import { Curve, Dictionary } from './models';
 
 const basicLineal : Curve = { curveType: curveTypes.LINEAR, slope: 1.0, exponent: 0.0, xShift: 0.0, yShift: 0.0 };
 const basicQuadricLowerLeft : Curve = { curveType: curveTypes.POLYNOMIAL, slope: 1.0, exponent: 4.0, xShift: 1.0, yShift: 0.0 };
@@ -18,8 +18,6 @@ const basicNormal : Curve = { curveType: curveTypes.NORMAL, slope: 1.0, exponent
 const inverseNormal : Curve = { curveType: curveTypes.NORMAL, slope: -1.0, exponent: 1.0, xShift: 0.0, yShift: 1.0 };
 const basicSine : Curve = { curveType: curveTypes.SINE, slope: 1.0, exponent: 1.0, xShift: 0.0, yShift: 0.0 };
 const inverseSine : Curve = { curveType: curveTypes.SINE, slope: -1.0, exponent: 1.0, xShift: 0.0, yShift: 0.0 };
-
-
 
 export const predefinedCurves = {  
   basicLineal,
@@ -40,3 +38,5 @@ export const predefinedCurves = {
   basicSine,
   inverseSine 
 }
+
+export const predefinedCurvesDict = predefinedCurves as Dictionary<Curve>;

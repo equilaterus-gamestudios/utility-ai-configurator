@@ -5,7 +5,7 @@ import { selectConditionEvaluatorByTag } from '../selectors/ConditionEvSelector'
 import withLayout from '../wrappers/withLayout';
 
 
-const EditConditionEvaluator = ({ match }) => {
+const EditConditionEvaluator = ({ match }: any) => {
   const conditionEvaluator = useSelector(selectConditionEvaluatorByTag(match.params.tag))
 
   return (

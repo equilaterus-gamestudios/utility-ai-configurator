@@ -5,4 +5,4 @@ interface RootState {
 }
 
 export const selectArchetypeTags = (state: RootState) => state.archetypes.tags;
-export const selectArchetypeByTag = (tag) => (state: RootState) => state.archetypes.byTag[tag];
+export const selectArchetypeByTag = (tag: string) => (state: RootState) => state.archetypes.byTag[tag];
